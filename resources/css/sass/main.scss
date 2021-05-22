@@ -1,0 +1,25 @@
+/*
+** To start processing this file run "npm watch" in terminal
+** Add tailwind components to scss using imports:
+**
+**
+*/
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+.header{
+  &__image{
+    transform: rotate(180deg);
+  }
+}
+
+
+
+.footer{
+  &__image{
+    margin-bottom: -5em;
+  }
+}
