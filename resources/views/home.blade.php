@@ -10,13 +10,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <!-- Include main css file -->
         <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
+        <!-- Include favicon  -->
+        <link rel="shortcut icon" type="image/png" href="{{asset('img/favicon.png')}}">
 
     </head>
     <body class="">
 
     {{-- Wave image: --}}
     <div class="header">
-        <img class="header__image " src="{{asset('./img/wave.svg')}}" alt="">
+        <img class="header__image " src="{{asset('./img/wave_transparent.svg')}}" alt="">
     </div>
 
 
@@ -68,34 +70,78 @@
                                     </p>
 
                                     <p class="">Start your journey now by clicking the button below!</p>
-
-                                    <div class="text-center my-8">
-                                        {{--To customize this go to views/vendor/jetstream/components/button.blade.php--}}
-                                        <x-jet-button>Register here:</x-jet-button>
-                                    </div>
-
                                 </div>
                             </div>
+
+
+                            <div class="text-center my-8">
+                                {{--To customize this go to views/vendor/jetstream/components/button.blade.php--}}
+                                <a href="{{url('/register')}}">
+                                    <x-jet-button type="button">Register here:</x-jet-button>
+                                </a>
+                            </div>
+
                         </div>
 
+                        {{--Login form: --}}
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <div class="flex items-center">
 
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Login</a></div>
-                            </div>
+                            <x-jet-validation-errors class="mb-4" />
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <div class="mt-4 mb-2">
-                                        <x-jet-input placeholder="Username"></x-jet-input>
-                                    </div>
-                                    <x-jet-input placeholder="Password"></x-jet-input>
-
-                                    <div class="my-4 p-0 m-0">
-                                        <x-jet-button class="p-0 m-0 bg-blue-500 text-pink-100 hover:bg-blue-700 font-bold rounded shadow-sm">Login:</x-jet-button>
-                                    </div>
+                            @if (session('status'))
+                                <div class="mb-4 font-medium text-sm text-green-600">
+                                    {{ session('status') }}
                                 </div>
-                            </div>
+                            @endif
+
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
+
+                                <div>
+                                    <x-jet-label for="email" value="{{ __('Email') }}" />
+                                    {{--<x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />--}}
+                                    <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" value="admin@admin.com" required autofocus />
+                                </div>
+
+                                <div class="mt-4">
+                                    <x-jet-label for="password" value="{{ __('Password') }}" />
+                                    <x-jet-input id="password" class="block mt-1 w-full" value="testtest" type="password" name="password" required autocomplete="current-password" />
+                                </div>
+
+                                <div class="block mt-4">
+                                    <label for="remember_me" class="flex items-center">
+                                        <x-jet-checkbox id="remember_me" name="remember" />
+                                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center justify-start mt-4">
+
+                                    <x-jet-button class="px-10">
+                                        {{ __('Log in') }}
+                                    </x-jet-button>
+
+                                    <a href="{{url('/register')}}">
+                                        <x-jet-button type="button" class="ml-4 mr-2 p-0 m-0 bg-blue-500 text-pink-100 hover:bg-blue-700 font-bold rounded shadow-sm">
+                                            {{ __('Register') }}
+                                        </x-jet-button>
+                                    </a>
+
+                                </div>
+
+                                @if (Route::has('password.request'))
+                                    <div class="mt-4">
+                                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                            {{ __('Forgot your password?') }}
+                                        </a>
+                                    </div>
+                                @endif
+
+                            </form>
+
+                        {{--End login form--}}
+
+
                         </div>
                     </div>
                 </div>

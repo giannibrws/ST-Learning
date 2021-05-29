@@ -17,7 +17,8 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerComponent('button-secondary');
+        $this->registerComponent('table');
     }
 
 
@@ -29,7 +30,8 @@ class JetstreamServiceProvider extends ServiceProvider
     protected function configureComponents()
     {
         $this->callAfterResolving(BladeCompiler::class, function () {
-            $this->registerComponent('button-custom');
+            $this->registerComponent('button-secondary');
+            $this->registerComponent('table');
         });
     }
 
@@ -41,7 +43,7 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     protected function registerComponent(string $component)
     {
-        Blade::component('jetstream::components.'.$component, 'jet-'.$component);
+        \Illuminate\Support\Facades\Blade::component('jetstream::components.'.$component, 'jet-'.$component);
     }
 
 

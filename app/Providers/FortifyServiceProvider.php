@@ -31,6 +31,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // ignore default routes:
+        Fortify::ignoreRoutes();
+
+
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
