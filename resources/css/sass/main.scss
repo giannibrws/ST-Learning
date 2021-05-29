@@ -2,12 +2,17 @@
 ** To start processing this file run "npm watch" in terminal
 ** Add tailwind components to scss using imports:
 **
-**
+** https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/sass
 */
+
+$fa-font-path: "../webfonts";
 
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+
 
 
 .header{
