@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClassroomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,18 @@ Route::get('/', function () {
     return view('home');
 });
 
+// @info: https://gyazo.com/b1dcca493538db567a9ec28d3a5fadf3
+Route::resource('classrooms', ClassroomController::class);
+
+
 
 // if verified get dashboard url:
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 
-    // @info: https://gyazo.com/b1dcca493538db567a9ec28d3a5fadf3
-//    Route::resource('classrooms', ClassroomController::class);
+    Route::get('classrooms/{name}', function ($name) {
+        return view('classrooms.classroom-overview');
+    });
 
 
 })->name('dashboard');

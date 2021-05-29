@@ -108,23 +108,23 @@
                                                 </div>
 
                                                 <div class="mx-5">
-
-                                                    <div class="st-input">
-                                                        <div class="st-inputGroup">
-                                                            <input type="text" id="name" class="no-outline" placeholder="My classroom.." />
-                                                            <span id="st-create-classroom">
-                                                                <i class="fas fa-times"></i>
-                                                              </span>
-                                                            <label for="name">Classroom name:</label>
-
+                                                    <form method="POST" action="{{ route('classrooms.store')}}">
+                                                        @csrf
+                                                        <div class="st-input">
+                                                            <div class="st-inputGroup">
+                                                                <input type="text" id="name" name="cr-name" class="no-outline" placeholder="My classroom.." />
+                                                                <span id="st-create-classroom">
+                                                                    <i class="fas fa-times"></i>
+                                                                  </span>
+                                                                <label for="name">Classroom name:</label>
+                                                            </div>
+                                                            <div class="text-gray-500 pb-2">Create a new classroom:</div>
+                                                            <x-jet-button type="submit">Add classroom</x-jet-button>
                                                         </div>
-                                                    <div class="text-gray-500 pb-2">Create a new classroom:</div>
-                                                    <x-jet-button>Add classroom</x-jet-button>
+                                                    </form>
                                                 </div>
-                                            </div>
                                         </div>
                                         {{--End card:--}}
-
 
                             </div>
 

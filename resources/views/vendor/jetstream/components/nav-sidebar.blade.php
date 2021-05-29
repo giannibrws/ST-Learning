@@ -14,7 +14,7 @@
         <div class="text-white text-2xl mx-2 font-semibold">Dashboard</div>
 
         <nav class="mt-10">
-            <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="/dashboard">
+            <a class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100" href="/classrooms">
                 <i class="fas fa-users"></i>
                 <span class="mx-3">Classrooms:</span>
             </a>
