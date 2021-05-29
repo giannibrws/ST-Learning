@@ -4,8 +4,9 @@
 
         {{-- nav header logo:--}}
             <div class="flex">
-                <div class="flex w-32 ml-2">
-                    <x-jet-application-mark></x-jet-application-mark>
+                <div class="flex w-32 ml-2 p-4">
+                    <img src="{{asset('./img/st-logo-white.svg')}}" alt="">
+                    {{--<x-jet-application-mark></x-jet-application-mark>--}}
                 </div>
             </div>
         {{--header logo:--}}

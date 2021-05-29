@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins&display=swap);
 @charset "UTF-8";
 
 /*
@@ -39494,6 +39495,10 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
 }
 
+body {
+  font-family: Roboto, Helvetica;
+}
+
 .header {
   background-color: transparent;
 }
@@ -39504,6 +39509,122 @@ readers do not read off random characters that represent icons */
 
 .footer__image {
   margin-bottom: -5em;
+}
+
+.heading {
+  font-size: 2em;
+  margin: 3em 0 2em;
+}
+
+.st-input {
+  position: relative;
+}
+
+.st-input span {
+  font-size: 1.2rem;
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
+  cursor: pointer;
+}
+
+/* Input Field Animation */
+
+/* Keep things contained do not style html attrs outside of classes: */
+
+.st-inputGroup {
+  font-family: "Poppins Medium", Helvetica;
+  display: flex;
+  margin: 1em 0;
+  border: none;
+}
+
+.st-inputGroup input[type=text]:focus, .st-inputGroup select:focus {
+  outline: none;
+}
+
+.st-inputGroup select {
+  margin: 2em 0 0;
+}
+
+.st-inputGroup input {
+  background-color: inherit;
+  color: #000;
+  font-size: 1em;
+  padding: 30px 10px 10px;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+}
+
+.st-inputGroup input::-moz-placeholder {
+  opacity: 0.9;
+}
+
+.st-inputGroup input:-ms-input-placeholder {
+  opacity: 0.9;
+}
+
+.st-inputGroup input::placeholder {
+  opacity: 0.9;
+}
+
+.st-inputGroup select {
+  border-bottom: 2px solid #000;
+  cursor: pointer;
+}
+
+.st-inputGroup label {
+  position: absolute;
+  padding-left: 10px;
+  margin-bottom: 2px;
+  color: #fff;
+  cursor: pointer;
+  transform: translate(4px, -14px) scale(1.02);
+  transform-origin: left top;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.st-inputGroup input, .st-inputGroup label {
+  transition: 0.4s all ease;
+}
+
+.st-inputGroup input[type=text]:focus {
+  border: none !important;
+}
+
+.st-inputGroup input:not(:-moz-placeholder-shown) {
+  outline: none;
+  border: none;
+}
+
+.st-inputGroup input:not(:-ms-input-placeholder) {
+  outline: none;
+  border: none;
+}
+
+.st-inputGroup input:focus, .st-inputGroup input:not(:placeholder-shown) {
+  outline: none;
+  border: none;
+}
+
+.st-inputGroup input:not(:-moz-placeholder-shown) ~ label {
+  transform: translate(10px, -2rem) scale(0.9);
+  padding: 0;
+  color: #000;
+}
+
+.st-inputGroup input:not(:-ms-input-placeholder) ~ label {
+  transform: translate(10px, -2rem) scale(0.9);
+  padding: 0;
+  color: #000;
+}
+
+.st-inputGroup input:focus ~ label, .st-inputGroup input:not(:placeholder-shown) ~ label {
+  transform: translate(10px, -2rem) scale(0.9);
+  padding: 0;
+  color: #000;
 }
 
 @media (min-width: 640px){

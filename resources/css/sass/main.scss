@@ -12,7 +12,12 @@ $fa-font-path: "../webfonts";
 @import "tailwindcss/utilities";
 @import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+
+body{
+  font-family: Roboto, Helvetica;
+}
 
 
 .header{
@@ -25,9 +30,88 @@ $fa-font-path: "../webfonts";
 }
 
 
-
 .footer{
   &__image{
     margin-bottom: -5em;
   }
+}
+
+.heading {
+  font-size: 2em;
+  margin: 3em 0 2em;
+}
+.st-input {
+  position: relative;
+
+    span {
+      font-size: 1.2rem;
+      position: absolute;
+      right: 1rem;
+      top: 1.5rem;
+      cursor: pointer;
+    }
+}
+
+/* Input Field Animation */
+/* Keep things contained do not style html attrs outside of classes: */
+
+.st-inputGroup {
+  font-family:"Poppins Medium", Helvetica;
+  display: flex;
+  margin: 1em 0;
+  border: none;
+
+  input[type=text]:focus, select:focus{
+    outline: none;
+  }
+
+    select {
+      margin: 2em 0 0;
+    }
+    input {
+      background-color: inherit;
+      color: #000;
+      font-size: 1em;
+      padding: 30px 10px 10px;
+      border: none;
+      border-bottom: 2px solid #fff;
+      outline: none;
+    }
+    input::placeholder {
+      opacity: 0.9;
+    }
+    select {
+      border-bottom: 2px solid #000;
+      cursor: pointer;
+    }
+    label {
+      position: absolute;
+      padding-left: 10px;
+      margin-bottom: 2px;
+      color: #fff;
+      cursor: pointer;
+      transform: translate(4px, -14px) scale(1.02);
+      transform-origin: left top;
+      text-transform: uppercase;
+      font-weight: normal;
+    }
+    input, label {
+      transition: 0.4s all ease;
+    }
+
+    input[type=text]:focus{
+      border: none !important;
+    }
+
+    input:focus, input:not(:placeholder-shown) {
+      outline: none;
+      border: none;
+    }
+    //foreach input focus that follows a label:
+    input:focus ~ label, input:not(:placeholder-shown) ~ label {
+      transform: translate(10px, -2rem) scale(0.9);
+      padding: 0;
+      color: #000;
+    }
+
 }
