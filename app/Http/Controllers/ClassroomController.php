@@ -22,9 +22,9 @@ class ClassroomController extends Controller
     public function index()
     {
         // fetch all data
-        $classRoomData = DB::table('classrooms')->get();
+        $classrooms = DB::table('classrooms')->get();
 
-        return view($this->prefix . '.classroom-overview', compact('classRoomData'));
+        return view($this->prefix . '.classroom-overview', compact('classrooms'));
     }
 
     /**
@@ -72,8 +72,7 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
-
-        return view('classrooms.classroom-overview', compact('classroom'));
+        return view('classrooms.view-classroom', compact('classroom'));
     }
 
 
