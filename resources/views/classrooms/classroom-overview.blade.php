@@ -1,6 +1,8 @@
 
 <h1>Classroom</h1>
 
-@foreach($classRoomData as $data)
-    <p>    {{var_dump($data->name)}}</p>
-@endforeach
+Info:
+
+<p> {{$classroom->id}}</p>
+<p> {{$classroom->name}}</p>
+<p> {{$classroom->bio}}</p>

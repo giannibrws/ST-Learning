@@ -21,5 +21,8 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => Hash::make('testtest'),
         ]);
+
+        // create 10 random user accounts:
+        \App\Models\User::factory(10)->create();
     }
 }

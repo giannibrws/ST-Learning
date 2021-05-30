@@ -18,21 +18,25 @@ Route::get('/', function () {
     return view('home');
 });
 
-// @info: https://gyazo.com/b1dcca493538db567a9ec28d3a5fadf3
-Route::resource('classrooms', ClassroomController::class);
-
-
-
 // if verified get dashboard url:
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 
-    Route::get('classrooms/{name}', function ($name) {
-        return view('classrooms.classroom-overview');
-    });
-
-
 })->name('dashboard');
+
+
+
+// Only authenticated users may access this route...
+Route::group(['middleware' => 'auth'], function () {
+
+    // custom urls go before resource routes:
+//    Route::get('classrooms/{classroom}', [ClassroomController::class, 'test']);
+
+    // @info: https://gyazo.com/b1dcca493538db567a9ec28d3a5fadf3
+    Route::resource('classrooms', ClassroomController::class);
+
+
+});
 
 
 //Require custom jetstream fortify routing:

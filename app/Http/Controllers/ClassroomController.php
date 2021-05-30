@@ -17,6 +17,8 @@ class ClassroomController extends Controller
     protected $table = 'classrooms';
     protected $prefix = 'classrooms';
 
+
+
     public function index()
     {
         // fetch all data
@@ -43,18 +45,23 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
         // Validate input data:
         $this->validateInput($request);
-
         $classroom = new Classroom();
-
         $classroom->name = request('cr-name');
-        $classroom->fk_user_id = '1';
+
+        // fetch user id:
+        $classroom->fk_user_id = auth()->id();
         // Store data:
         $classroom->save();
 
+        $room_id = $classroom->id;
+
         // return to home index action:
-        return redirect()->action([ClassroomController::class, 'index']);
+        return redirect()->action([ClassroomController::class, 'show'], $classroom);
     }
 
     /**
@@ -65,9 +72,10 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
-        dd('yo');
 
+        return view('classrooms.classroom-overview', compact('classroom'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -104,10 +112,15 @@ class ClassroomController extends Controller
     }
 
 
+    /**
+     * Validate user input:
+     * * @param  \Illuminate\Http\Request  $request
+     */
     private function validateInput(Request $request){
 
         foreach ($request->input() as $key => $field){
             if($key !== "_token" || $key !== "_method"){
+                // if textarea:
                 if($key == "content"){
                     $request->validate([$key => 'required|max:1000'],
                         [
