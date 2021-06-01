@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Controllers\UserHistoryController;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
+
 class UserController extends Controller
 {
+
+    protected $table = 'users';
+
     /**
      * Display a listing of the resource.
      *
@@ -97,6 +101,17 @@ class UserController extends Controller
 
         $userHistory = new UserHistoryController();
         $userHistory->updateVisited($visited);
+    }
+
+    public function getDefaultProfilePhotoUrl()
+    {
+        $currentUserName = DB::table($this->table)->where('id', '=', auth()->id())->first()->name;
+        return 'https://ui-avatars.com/api/?name='.urlencode($currentUserName).'&color=7F9CF5&background=EBF4FF';
+    }
+
+    public function getUserProfilePicture()
+    {
+       return Auth::user()->profile_photo_url;
     }
 
 }

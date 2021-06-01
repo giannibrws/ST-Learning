@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserHistory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Laravel\Jetstream\HasProfilePhoto;
+use Carbon\Carbon;
 
 class UserHistoryController extends Controller
 {
+    protected $table = 'user_histories';
+    protected $prefix = 'history';
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,16 @@ class UserHistoryController extends Controller
      */
     public function index()
     {
-        //
+
+        // fetch all data
+        $userManager = new UserController();
+        $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl();
+        $userProfilePath = $userManager->getUserProfilePicture();
+
+        $userHistory = DB::table($this->table)->where('id', '=', auth()->id())->get();
+        $currentUser = DB::table('users')->where('id', '=', auth()->id())->first();
+
+        return view($this->prefix . '.history-overview', compact('userHistory', 'currentUser', 'defaultPhotoPath', 'userProfilePath'));
     }
 
     /**
@@ -48,6 +65,8 @@ class UserHistoryController extends Controller
     {
         $this->store($visited);
     }
+
+
 
 
 }

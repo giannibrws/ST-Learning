@@ -22,7 +22,14 @@
         @livewireStyles
 
         <!-- Scripts -->
+
+        <!-- Jquery: -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        <script src="{{ ('js/search.js') }}" defer></script>
 
         <!-- Alpine: -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -57,12 +64,14 @@
             </main>
         </div>
 
-        @stack('modals')
+        <footer>
 
-        @livewireScripts
+            @stack('modals')
+
+            @livewireScripts
 
 
-
+        </footer>
 
     </body>
 
