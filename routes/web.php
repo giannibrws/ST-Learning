@@ -24,17 +24,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 })->name('dashboard');
 
-
-
 // Only authenticated users may access this route...
 Route::group(['middleware' => 'auth'], function () {
 
+    // if signed in:
+    Route::get('/', function () {
+        return view('dashboard');
+    });
+
     // custom urls go before resource routes:
-//    Route::get('classrooms/{classroom}', [ClassroomController::class, 'test']);
+    // Route::get('classrooms/{classroom}', [ClassroomController::class, 'test']);
 
     // @info: https://gyazo.com/b1dcca493538db567a9ec28d3a5fadf3
     Route::resource('classrooms', ClassroomController::class);
-
 
 });
 

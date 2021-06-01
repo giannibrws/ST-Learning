@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classroom;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -72,7 +73,8 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
-        return view('classrooms.view-classroom', compact('classroom'));
+        $adminName = User::where('id', $classroom->fk_user_id)->first()->name;
+        return view('classrooms.view-classroom', compact('classroom', 'adminName'));
     }
 
 

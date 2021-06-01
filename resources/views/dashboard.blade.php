@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-    <div>
-
         <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
-        <x-jet-nav-sidebar></x-jet-nav-sidebar>
+        <x-jet-nav-sidebar>
+            <x-slot name="url">{{"Dashboard"}}</x-slot>
+        </x-jet-nav-sidebar>
 
             <div class="w-full">
                 {{--header start:--}}
@@ -63,6 +63,5 @@
                 </main>
             </div>
         </div>
-    </div>
 
 </x-app-layout>

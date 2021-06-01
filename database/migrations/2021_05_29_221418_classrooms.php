@@ -16,7 +16,7 @@ class Classrooms extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('bio')->nullable();
+            $table->text('bio')->nullable();
 
             // add foreign key relation:
             $table->foreignId('fk_user_id')->constrained('users');

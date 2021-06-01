@@ -28,7 +28,7 @@
 
         <div class="mx-5">
             <h4 class="text-2xl font-semibold text-gray-700">{{ $title }}</h4>
-            <div class="text-gray-500">{{ $description  }}</div>
+            <div class="text-gray-500">{{ substr($description,0,100) . "..." }}</div>
         </div>
     </div>
     </a>
