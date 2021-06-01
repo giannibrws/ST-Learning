@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\UserController;
 use App\Models\Classroom;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ClassroomController extends Controller
 {
@@ -47,19 +49,15 @@ class ClassroomController extends Controller
     public function store(Request $request)
     {
 
-
-
         // Validate input data:
         $this->validateInput($request);
         $classroom = new Classroom();
         $classroom->name = request('cr-name');
-
         // fetch user id:
         $classroom->fk_user_id = auth()->id();
         // Store data:
         $classroom->save();
 
-        $room_id = $classroom->id;
 
         // return to home index action:
         return redirect()->action([ClassroomController::class, 'show'], $classroom);
@@ -73,6 +71,15 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
+
+        // Add visit to history:
+        $currentUser = auth()->id();
+        $page_visted = $classroom->name;
+        $timestamp = Carbon::now()->format('Y-m-d-H');
+
+        $userController = new UserController();
+        $userController->registerVisit($currentUser, $page_visted, $timestamp);
+
         $adminName = User::where('id', $classroom->fk_user_id)->first()->name;
         return view('classrooms.view-classroom', compact('classroom', 'adminName'));
     }
