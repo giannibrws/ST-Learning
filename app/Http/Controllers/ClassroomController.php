@@ -162,6 +162,11 @@ class ClassroomController extends Controller
                             </a>
                         </div>';
                     }
+
+                    //blade
+                    $lastCard = (view('vendor/jetstream/components/card-submit')->render());
+                    $output .= $lastCard;
+
                 }
 
                 else{

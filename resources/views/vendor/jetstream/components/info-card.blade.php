@@ -1,7 +1,9 @@
 {{--Start card:--}}
-<div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
+<div class="st-card w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
+    @if(!isset($noRedirect))
     <a href="{{ route('classrooms.show', $id)}}">
-    <div class="flex items-center px-5 py-12 shadow-sm rounded-md bg-white hover:opacity-50">
+    @endif
+    <div class="flex items-center px-5 py-12 shadow-sm rounded-md bg-white {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
         <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
             <svg class="h-12 w-12 text-white" viewBox="0 0 28 30" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
@@ -22,9 +24,21 @@
 
         <div class="mx-5">
             <h4 class="text-2xl font-semibold text-gray-700">{{ $title }}</h4>
-            <div class="text-gray-500">{{ substr($description,0,100) . "..." }}</div>
+            @if(isset($editable))
+
+
+                @else
+                <div class="text-gray-500">{{ substr($description,0,100) . "..." }}</div>
+            @endif
+            <div class="p-4"></div>
+            @if(isset($madeBy))
+                <span class="absolute -ml-20 font-bold st-admin-title">{{$madeBy}}</span>
+            @endif
+
         </div>
     </div>
+    @if(!isset($noRedirect))
     </a>
+    @endif
 </div>
 {{--End card:--}}

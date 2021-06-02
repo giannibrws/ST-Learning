@@ -115,3 +115,27 @@ body{
     }
 
 }
+
+
+//Elements:
+
+.st-container{
+  max-height:100%;
+  display:flex;
+  flex-wrap: wrap;
+  width:100%;
+  margin:auto;
+  padding: 2rem 1.5rem 2rem 2rem;
+}
+
+.st-card{
+
+}
+
+.st-sidebar{
+
+}
+
+span .st-admin-title{
+  margin-bottom: -30px;
+}

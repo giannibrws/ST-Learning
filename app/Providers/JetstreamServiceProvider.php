@@ -21,6 +21,8 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->registerComponent('nav-sidebar');
         $this->registerComponent('table');
         $this->registerComponent('info-card');
+        $this->registerComponent('card-submit');
+        $this->registerComponent('pagination-nav');
     }
 
 
@@ -35,6 +37,9 @@ class JetstreamServiceProvider extends ServiceProvider
             $this->registerComponent('button-secondary');
             $this->registerComponent('nav-sidebar');
             $this->registerComponent('info-card');
+            $this->registerComponent('card-submit');
+            $this->registerComponent('pagination-nav');
+
         });
     }
 

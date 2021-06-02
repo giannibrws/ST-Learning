@@ -1,6 +1,8 @@
+    {{--Sidebar collapse:--}}
     <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="overflow-y-auto	fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
+    {{--Sidebar collapse:--}}
 
-    <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="overflow-y-auto z-30 inset-y-0 left-0 w-52 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
+    <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="st-sidebar overflow-y-auto z-30 inset-y-0 left-0 w-52 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
 
         {{-- nav header logo:--}}
             <div class="flex">
