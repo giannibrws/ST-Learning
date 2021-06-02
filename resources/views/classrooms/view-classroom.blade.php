@@ -27,6 +27,12 @@
 
             <div class="container py-8 mx-auto">
 
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                    @endforeach
+                    <div class="st-error">{{isset($error) ? $error : ''}}</div>
+                @endif
+
                 @php $adminName = 'Made by: ' . $adminName  @endphp
 
                 <x-jet-info-card class="px-12">
@@ -63,7 +69,15 @@
                 <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
                     <div class="st-card shadow-sm">
                         <div class="mx-5">
-                            <div class="text-gray-500 pb-2">Browse subjects:</div>
+                            <div class="text-gray-500 pb-2">
+                                <p class="font-bold">Browse subjects:</p>
+
+                                @foreach($linked_subjects as $subject)
+                                    <p><a href="subjects/{{$subject->id}}" class="st-hover">{{strtolower($subject->name)}}</a></p>
+                                @endforeach
+
+
+                            </div>
                         </div>
                     </div>
                 </div>

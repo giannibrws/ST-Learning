@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\UserController;
 use App\Models\Classroom;
+use App\Models\Subjects;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Traits\InputValidator;
 use Carbon\Carbon;
 
 class ClassroomController extends Controller
 {
+
+    use InputValidator;
+
     /**
      * Display a listing of the resource.
      *
@@ -71,7 +76,6 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
-
         // Add visit to history:
         $currentUser = auth()->id();
         $page_visted = $classroom->name;
@@ -79,9 +83,10 @@ class ClassroomController extends Controller
 
         $userController = new UserController();
         $userController->registerVisit($currentUser, $page_visted, $timestamp);
+        $linked_subjects = $this->getChildSubjects($classroom->id);
 
         $adminName = User::where('id', $classroom->fk_user_id)->first()->name;
-        return view('classrooms.view-classroom', compact('classroom', 'adminName'));
+        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'linked_subjects'));
     }
 
 
@@ -118,6 +123,16 @@ class ClassroomController extends Controller
     {
         //
     }
+
+
+
+    public function getChildSubjects($cr_id){
+        return Subjects::where('fk_classroom_id', $cr_id)->get();
+    }
+
+
+
+
 
     public function searchClassrooms(Request $request)
     {
@@ -175,34 +190,6 @@ class ClassroomController extends Controller
         }
 
         return $output;
-    }
-
-
-    /**
-     * Validate user input:
-     * * @param  \Illuminate\Http\Request  $request
-     */
-    private function validateInput(Request $request){
-
-        foreach ($request->input() as $key => $field){
-            if($key !== "_token" || $key !== "_method"){
-                // if textarea:
-                if($key == "content"){
-                    $request->validate([$key => 'required|max:1000'],
-                        [
-                            $key . '.required' => 'Field ' . $key . ' is required',
-                            $key . '.max' => 'Field ' . $key . ' is too long. Max 1000 characters allowed!',
-                        ]);
-                }
-                else{
-                    $request->validate([$key => 'required|max:255'],
-                        [
-                            $key . '.required' => 'Field ' . $key . ' is required',
-                            $key . '.max' => 'Field ' . $key . ' is too long. Max 255 characters allowed!',
-                        ]);
-                }
-            }
-        }
     }
 
 

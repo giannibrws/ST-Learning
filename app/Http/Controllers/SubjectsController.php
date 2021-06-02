@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subjects;
+use App\Models\User;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
 use App\Http\Traits\InputValidator;
+use Carbon\Carbon;
 
 class SubjectsController extends Controller
 {
 
     use InputValidator;
+
+    protected $table = 'subjects';
+    protected $prefix = 'subjects.';
 
     /**
      * Display a listing of the resource.
@@ -44,7 +50,7 @@ class SubjectsController extends Controller
         $this->validateInput($request);
 
         $subject = new Subjects();
-        $subject->name = request('name');
+        $subject->name = request('sub_name');
         // fetch user id:
         $subject->fk_user_id = auth()->id();
         $subject->fk_classroom_id = request('cr_id');
@@ -58,12 +64,25 @@ class SubjectsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Subjects  $subjects
+     * @param  \App\Models\Subjects  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(Subjects $subjects)
+    public function show(Subjects $subject)
     {
-        //
+        // Add visit to history:
+        $currentUser = auth()->id();
+        $page_visited = $subject->name;
+        $timestamp = Carbon::now()->format('Y-m-d-H');
+
+        $userController = new UserController();
+        $userController->registerVisit($currentUser, $page_visited, $timestamp);
+
+        $is_child_page = true;
+        $parent_page_name = Classroom::where('id', $subject->fk_classroom_id)->first()->name;
+        $adminName = User::where('id', $subject->fk_user_id)->first()->name;
+
+        return view($this->prefix . 'view-subject', compact('subject', 'adminName', 'is_child_page', 'parent_page_name'));
+
     }
 
     /**

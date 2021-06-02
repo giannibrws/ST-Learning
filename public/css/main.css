@@ -39649,6 +39649,11 @@ body {
   border-radius: 0.375rem;
 }
 
+.st-error {
+  color: red;
+  text-align: center;
+}
+
 a.st-hover:hover {
   color: #7B74EC;
 }
