@@ -43,10 +43,9 @@ Route::group(['middleware' => 'auth'], function () {
     // @info: https://gyazo.com/b1dcca493538db567a9ec28d3a5fadf3
     route::get('/classrooms/search', [ClassroomController::class, 'searchClassrooms']);
     Route::resource('classrooms', ClassroomController::class);
+    Route::resource('subjects', ClassroomController::class);
     Route::resource('history-overview', UserHistoryController::class)->only('index', 'show', 'destroy');
 });
-
-
 
 
 //Require custom jetstream fortify routing:
