@@ -5,7 +5,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\UserHistoryController;
-
+use App\Http\Controllers\NotesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,9 +47,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('classrooms', ClassroomController::class);
 
+
     // use prefix for subjects:
     Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms'], function() {
         Route::resource('subjects', SubjectsController::class);
+
+        Route::group(['middelware' => 'subjects', 'prefix' => 'subjects'], function() {
+            Route::resource('notes', NotesController::class);
+        });
     });
 
     Route::resource('history-overview', UserHistoryController::class)->only('index', 'show', 'destroy');

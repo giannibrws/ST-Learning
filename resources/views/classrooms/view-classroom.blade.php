@@ -36,6 +36,7 @@
                 @php $adminName = 'Made by: ' . $adminName  @endphp
 
                 <x-jet-info-card class="px-12">
+                <x-slot name="url">{{'classrooms'}}</x-slot>
                 <x-slot name="id">{{$classroom->id}}</x-slot>
                 <x-slot name="noRedirect">{{true}}</x-slot>
                 <x-slot name="title">{{$classroom->name}}</x-slot>

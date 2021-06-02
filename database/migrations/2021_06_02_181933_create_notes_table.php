@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Classrooms extends Migration
+class CreateNotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class Classrooms extends Migration
      */
     public function up()
     {
-        Schema::create('classrooms', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->string('name');
-            $table->text('bio')->nullable();
-
+            $table->text('content')->nullable();
             // add foreign key relation:
             $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->foreignId('fk_subject_id')->constrained('subjects')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class Classrooms extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classrooms');
+        Schema::dropIfExists('notes');
     }
 }

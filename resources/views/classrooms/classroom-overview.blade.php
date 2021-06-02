@@ -42,6 +42,7 @@
 
                                 @foreach($classrooms as $classroom)
                                     <x-jet-info-card>
+                                        <x-slot name="url">{{'classrooms'}}</x-slot>
                                         <x-slot name="id">{{$classroom->id}}</x-slot>
                                         <x-slot name="title">{{$classroom->name}}</x-slot>
                                         <x-slot name="description">{{$classroom->bio}}</x-slot>

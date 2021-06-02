@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Subjects;
 use App\Models\User;
+use App\Models\Notes;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 use App\Http\Traits\InputValidator;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class SubjectsController extends Controller
@@ -81,7 +83,9 @@ class SubjectsController extends Controller
         $parent_page_name = Classroom::where('id', $subject->fk_classroom_id)->first()->name;
         $adminName = User::where('id', $subject->fk_user_id)->first()->name;
 
-        return view($this->prefix . 'view-subject', compact('subject', 'adminName', 'is_child_page', 'parent_page_name'));
+        $subject_notes = $this->getSubjectNotes();
+
+        return view($this->prefix . 'view-subject', compact('subject', 'adminName', 'is_child_page', 'parent_page_name', 'subject_notes'));
 
     }
 
@@ -118,4 +122,10 @@ class SubjectsController extends Controller
     {
         //
     }
+
+    public function getSubjectNotes()
+    {
+        return DB::table('notes')->paginate(3);
+    }
+
 }

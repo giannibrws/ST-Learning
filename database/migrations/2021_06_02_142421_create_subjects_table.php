@@ -19,7 +19,7 @@ class CreateSubjectsTable extends Migration
             $table->text('bio')->nullable();
             // add foreign key relation:
             $table->foreignId('fk_user_id')->constrained('users');
-            $table->foreignId('fk_classroom_id')->constrained('classrooms');
+            $table->foreignId('fk_classroom_id')->constrained('classrooms')->onDelete('cascade');
             $table->timestamps();
         });
     }

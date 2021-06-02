@@ -25,14 +25,14 @@
 
         <!-- Jquery: -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-        <script src="{{ mix('js/app.js') }}" defer></script>
-
-        <script src="{{ ('js/search.js') }}" defer></script>
-
+        <!-- Ckeditor: -->
+        <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
         <!-- Alpine: -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+        <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ ('js/search.js') }}" defer></script>
+
 
     </head>
     <body class="font-sans antialiased">

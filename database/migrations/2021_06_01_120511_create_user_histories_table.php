@@ -17,7 +17,7 @@ class CreateUserHistoriesTable extends Migration
             $table->id();
             $table->string('last_viewed');
             // add foreign key relation:
-            $table->foreignId('fk_user_id')->constrained('users');
+            $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade');
             $table->timestamp('created_at');
         });
     }

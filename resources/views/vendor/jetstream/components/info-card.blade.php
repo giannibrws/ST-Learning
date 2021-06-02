@@ -1,7 +1,7 @@
 {{--Start card:--}}
 <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
     @if(!isset($noRedirect))
-    <a href="{{ route('classrooms.show', $id)}}">
+    <a href="{{ route( $url . '.show', $id)}}">
     @endif
     <div class="st-card shadow-sm {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
         <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">

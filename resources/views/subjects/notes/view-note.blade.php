@@ -31,44 +31,17 @@
                 </div>
             </header>
 
-            <div class="container py-8 mx-auto">
-
-
-                @php $adminName = 'Made by: ' . $adminName  @endphp
-
-                <x-jet-info-card class="px-12">
-                <x-slot name="url">{{'subjects'}}</x-slot>
-                <x-slot name="id">{{$subject->id}}</x-slot>
-                <x-slot name="noRedirect">{{true}}</x-slot>
-                <x-slot name="title">{{$subject->name}}</x-slot>
-                <x-slot name="description">{{$subject->bio}}</x-slot>
-                <x-slot name="editable">{{true}}</x-slot>
-                <x-slot name="madeBy">{{$adminName}}</x-slot>
-                </x-jet-info-card>
-
-
-                @foreach($subject_notes as $note)
-                    <x-jet-info-card class="px-12">
-                        <x-slot name="url">{{'notes'}}</x-slot>
-                        <x-slot name="id">{{$note->id}}</x-slot>
-                        <x-slot name="title">{{$note->name}}</x-slot>
-                        <x-slot name="description">{{$note->content}}</x-slot>
-                        <x-slot name="madeBy">{{$adminName}}</x-slot>
-                    </x-jet-info-card>
-                @endforeach
-
-                <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
-                    <div class="st-card shadow-sm">
-                        <div class="mx-5">
-                            <div class="text-gray-500 pb-2">Welcome:</div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-</div>
-
+            <div id="editor">This is some sample content.</div>
+            <script>
+                ClassicEditor
+                    .create( document.querySelector( '#editor' ) )
+                    .then( editor => {
+                    console.log( editor );
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+            </script>
 
 </div>
 </div>
