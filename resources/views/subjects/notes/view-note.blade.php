@@ -25,7 +25,7 @@
                         <a href="{{URL::previous()}}" class="st-hover text-lg">{{$parent_page_name}}</a>
                     @if($is_child_page)
                         <span class="font-bold">{{'>'}}</span>
-                        <a href="{{url()->current()}}" class="st-hover font-bold">{{$subject->name}}</a>
+                        <a href="{{url()->current()}}" class="st-hover font-bold">{{$note->name}}</a>
                     @endif
                     </h2>
                 </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notes;
+use App\Models\Classroom;
+use App\Models\Subjects;
 use Illuminate\Http\Request;
 
 class NotesController extends Controller
@@ -47,12 +49,15 @@ class NotesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Notes  $notes
+     * @param  \App\Models\Notes  $note
      * @return \Illuminate\Http\Response
      */
-    public function show(Notes $notes)
+    public function show(Notes $note)
     {
-        //
+
+        $parent_page_name = Subjects::where('id', $note->fk_subject_id)->first()->name;
+        $is_child_page = true;
+        return view($this->prefix . 'view-note', compact('note', 'parent_page_name', 'is_child_page'));
     }
 
     /**
