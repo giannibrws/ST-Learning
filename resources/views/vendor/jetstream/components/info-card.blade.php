@@ -1,9 +1,9 @@
 {{--Start card:--}}
-<div class="st-card w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
+<div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
     @if(!isset($noRedirect))
     <a href="{{ route('classrooms.show', $id)}}">
     @endif
-    <div class="flex items-center px-5 py-12 shadow-sm rounded-md bg-white {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
+    <div class="st-card shadow-sm {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
         <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
             <svg class="h-12 w-12 text-white" viewBox="0 0 28 30" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
                 @else
                 <div class="text-gray-500">{{ substr($description,0,100) . "..." }}</div>
             @endif
-            <div class="p-4"></div>
+            <div class="pt-8 pb-4"></div>
             @if(isset($madeBy))
                 <span class="absolute -ml-20 font-bold st-admin-title">{{$madeBy}}</span>
             @endif

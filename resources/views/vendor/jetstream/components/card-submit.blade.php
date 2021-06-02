@@ -1,6 +1,6 @@
     {{--Start card:--}}
-    <div class="st-card w-full px-6 sm:w-1/2 xl:w-1/3" id="cr_card_submit">
-        <div class="flex items-center px-5 py-12 shadow-sm rounded-md bg-white">
+    <div class="w-full px-6 sm:w-1/2 xl:w-1/3" id="cr_card_submit">
+        <div class="st-card shadow-sm">
             <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
                 <svg class="h-12 w-12 text-white" viewBox="0 0 28 30" fill="none"
                      xmlns="http://www.w3.org/2000/svg">

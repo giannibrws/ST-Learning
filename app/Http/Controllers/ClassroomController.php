@@ -170,7 +170,7 @@ class ClassroomController extends Controller
                 }
 
                 else{
-                    $output = "no results";
+                    $output = "<h3 class='text-center'>No results</h3>";
                 }
         }
 

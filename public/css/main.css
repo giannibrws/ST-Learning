@@ -39511,6 +39511,11 @@ body {
   margin-bottom: -5em;
 }
 
+.cr-header {
+  text-align: center;
+  margin: auto;
+}
+
 .heading {
   font-size: 2em;
   margin: 3em 0 2em;
@@ -39636,8 +39641,16 @@ body {
   padding: 2rem 1.5rem 2rem 2rem;
 }
 
-span .st-admin-title {
-  margin-bottom: -30px;
+.st-card {
+  display: flex;
+  align-items: center;
+  padding: 3rem;
+  background-color: white;
+  border-radius: 0.375rem;
+}
+
+a.st-hover:hover {
+  color: #7B74EC;
 }
 
 @media (min-width: 640px){

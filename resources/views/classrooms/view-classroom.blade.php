@@ -20,6 +20,9 @@
                               stroke-linejoin="round"></path>
                     </svg>
                 </button>
+                <div class="cr-header">
+                    <h2><a href="{{url()->current()}}" class="st-hover">{{$classroom->name}}</a></h2>
+                </div>
             </header>
 
             <div class="container py-8 mx-auto">
@@ -35,14 +38,37 @@
                 <x-slot name="madeBy">{{$adminName}}</x-slot>
                 </x-jet-info-card>
 
-                <div class="st-card w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
-                        <div class="flex items-center px-5 py-12 shadow-sm rounded-md bg-white">
-                            <div class="mx-5">
-                                <h4 class="text-2xl font-semibold text-gray-700"></h4>
-                                <div class="text-gray-500"></div>
-                            </div>
+
+                 <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
+                    <div class="st-card shadow-sm">
+                        <div class="mx-5">
+                            <form method="POST" action="{{ route('subjects.store')}}">
+                                @csrf
+                                <div class="st-input">
+                                    <div class="st-inputGroup">
+                                        <input type="hidden" name="cr_id" value="{{$classroom->id}}" />
+                                        <input type="text" name="sub_name" class="no-outline" placeholder="Subject name.." />
+                                        <span id="st-create-classroom"><i class="fas fa-times"></i></span>
+                                        <label for="name">Subject name:</label>
+                                    </div>
+                                    <div class="text-gray-500 pb-2">Create a new subject:</div>
+                                    <x-jet-button type="submit">Create subject</x-jet-button>
+                                </div>
+                            </form>
                         </div>
+                    </div>
                 </div>
+
+
+                <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
+                    <div class="st-card shadow-sm">
+                        <div class="mx-5">
+                            <div class="text-gray-500 pb-2">Browse subjects:</div>
+                        </div>
+                    </div>
+                </div>
+
+
 
 </div>
 
