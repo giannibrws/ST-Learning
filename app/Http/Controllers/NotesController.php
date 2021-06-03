@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notes;
 use App\Models\Classroom;
+use App\Http\Controllers\SubjectsController;
 use App\Models\Subjects;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,6 @@ class NotesController extends Controller
      */
     public function index()
     {
-        // fetch all data
-        $classrooms = DB::table('notes')->paginate(3);
-        return view($this->prefix . 'view-note', compact('classrooms'));
     }
 
     /**
@@ -43,7 +41,19 @@ class NotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $note = new Notes();
+
+        $note->name = "leave_blank";
+        $note->content = request('content');
+        // fetch user id:
+        $note->fk_user_id = auth()->id();
+        $note->fk_subject_id = request('subject_id');
+        // Store data:
+        $note->save();
+
+        // return to home index action:
+        return redirect()->action([NotesController::class, 'show'], $note);
     }
 
     /**
@@ -62,25 +72,32 @@ class NotesController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Notes  $notes
+     * @param  \App\Models\Notes  $note
      * @return \Illuminate\Http\Response
      */
-    public function edit(Notes $notes)
+    public function edit(Notes $note)
     {
-        //
+        $parent_page_name = Subjects::where('id', $note->fk_subject_id)->first()->name;
+        $is_child_page = true;
+        return view($this->prefix . 'edit-note', compact('note', 'parent_page_name', 'is_child_page'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Notes  $notes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Notes $notes)
+    public function update(Request $request)
     {
-        //
+        $updateValues = $request->all();
+        unset($updateValues['_token'], $updateValues['_method']);
+
+//        $this->validateInput($request);
+        Notes::where('id', $request->id)
+            ->update($updateValues);
+
+        return redirect()->action([SubjectsController::class, 'show'], $request->fk_subject_id);
     }
 
     /**

@@ -20,13 +20,12 @@ class SubjectsController extends Controller
     protected $prefix = 'subjects.';
 
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of the resource
+     * @info Only show route will be used for subjects
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -85,7 +84,9 @@ class SubjectsController extends Controller
 
         $subject_notes = $this->getSubjectNotes($subject->id);
 
-        return view($this->prefix . 'view-subject', compact('subject', 'adminName', 'is_child_page', 'parent_page_name', 'subject_notes'));
+        $this->removeHtmlAttrs($subject_notes);
+
+        return view($this->prefix . 'view-subject', compact('subject','adminName', 'is_child_page', 'parent_page_name', 'subject_notes'));
 
     }
 
@@ -126,6 +127,17 @@ class SubjectsController extends Controller
     public function getSubjectNotes($subject_id)
     {
         return DB::table('notes')->where('fk_subject_id', $subject_id)->paginate(10);
+    }
+
+    /* Clears html from preview: */
+    public function removeHtmlAttrs($contents){
+        $j = 0;
+        foreach ($contents as $note){
+            $contents[$j]->content = html_entity_decode($note->content);
+            $contents[$j]->content = strip_tags($note->content);
+            $contents[$j]->content = str_ireplace('&nbsp;', '', $note->content);
+            $j++;
+        }
     }
 
 }
