@@ -3,7 +3,7 @@
     @if(!isset($noRedirect))
     <a href="{{ route( $url . '.show', $id)}}">
     @endif
-    <div class="st-card shadow-sm {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
+    <div class="st-item-flex st-card shadow-sm {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
         <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
             <svg class="h-12 w-12 text-white" viewBox="0 0 28 30" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
