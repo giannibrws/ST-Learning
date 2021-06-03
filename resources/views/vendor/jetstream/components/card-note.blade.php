@@ -7,11 +7,11 @@
                     <h4 class="text-2xl font-semibold text-gray-700">{{ $title }}</h4>
                     @if(isset($editable))
                     @else
-                    <div class="text-gray-500">{{ $description }}</div>
+                    <div class="text-gray-500">{{ substr($description,0,125) . "..." }}</div>
                     @endif
                     <div class="pt-8 pb-4"></div>
                     @if(isset($madeBy))
-                    <span class="-ml-12 font-bold st-admin-title">{{$madeBy}}</span>
+                    <span class="font-bold st-admin-title">{{$madeBy}}</span>
                     @endif
                 </div>
             </div>

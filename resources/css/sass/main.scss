@@ -158,6 +158,7 @@ body{
     min-height:200px;
     max-height:410px;
     overflow-y: hidden;
+    padding:1rem;
   }
 
 
@@ -240,6 +241,11 @@ a.st-hover:hover{
     font-size:1.5rem;
   }
 
+}
+
+// Ckeditor:
+.ck-editor__editable_inline {
+  min-height: 500px;
 }
 
 

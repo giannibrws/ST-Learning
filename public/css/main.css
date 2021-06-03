@@ -39663,6 +39663,7 @@ body {
   min-height: 200px;
   max-height: 410px;
   overflow-y: hidden;
+  padding: 1rem;
 }
 
 .st-error {
@@ -39732,6 +39733,10 @@ a.st-hover:hover {
 .ck-textarea h3 {
   color: #7B74EC;
   font-size: 1.5rem;
+}
+
+.ck-editor__editable_inline {
+  min-height: 500px;
 }
 
 @media (min-width: 640px){

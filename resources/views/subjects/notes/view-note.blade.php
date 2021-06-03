@@ -38,6 +38,7 @@
                     <input type="hidden" name="subject_id" value="{{$note->fk_subject_id}}">
                     <textarea id="editor" name="content" placeholder="start writing..">{{$note->content}}</textarea>
                     <x-jet-button-secondary class="mt-4 px-8" type="submit">Submit</x-jet-button-secondary>
+                    <a href="/classrooms/subjects/{{$note->fk_subject_id}}"><x-jet-button class="mt-4 px-8" type="button">Return</x-jet-button></a>
                 </form>
 
             </div>
