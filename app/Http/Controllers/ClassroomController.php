@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Classroom;
 use App\Models\Subjects;
 use App\Models\User;
+use App\Models\ClassroomUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Traits\InputValidator;
@@ -54,15 +55,19 @@ class ClassroomController extends Controller
     public function store(Request $request)
     {
 
+
         // Validate input data:
         $this->validateInput($request);
         $classroom = new Classroom();
         $classroom->name = request('cr-name');
         // fetch user id:
-        $classroom->fk_user_id = auth()->id();
+        $userID = auth()->id();
+        $classroom->fk_user_id = $userID;
         // Store data:
         $classroom->save();
 
+        $referenced_room = DB::table('classrooms')->latest()->first();
+        $this->linkClassroom($userID, $referenced_room->id);
 
         // return to home index action:
         return redirect()->action([ClassroomController::class, 'show'], $classroom);
@@ -131,7 +136,25 @@ class ClassroomController extends Controller
     }
 
 
+      /**
+       * Links users to their respective classrooms.
+       **/
 
+    protected function linkClassroom($user_id, $classroom_id){
+        // Link user to classroom:
+        $linkClassroom = new ClassroomUser();
+        $linkClassroom->user_id = $user_id;
+        $linkClassroom->classroom_id = $classroom_id;
+
+        $is_registered = ClassroomUser::where('id', $classroom_id)->get()->count();
+
+        if(!$is_registered){
+            $linkClassroom->is_admin = true;
+        }
+        
+        // Store data:
+        $linkClassroom->save();
+    }
 
 
     public function searchClassrooms(Request $request)

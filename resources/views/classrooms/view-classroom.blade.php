@@ -26,16 +26,20 @@
             </header>
 
             <div class="container py-8 mx-auto">
+                <div class="st-grid-container">
+
+                    {{--<div class="st-grid-row--span-2" style="height:40px; text-align: center; background: white;"> ttttt</div>--}}
 
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)
                     @endforeach
-                    <div class="st-error">{{isset($error) ? $error : ''}}</div>
+                    <div class="st-error st-grid-row-span-2">{{isset($error) ? $error : ''}}</div>
                 @endif
 
                 @php $adminName = 'Made by: ' . $adminName  @endphp
 
                 <x-jet-info-card class="px-12">
+                <x-slot name="display_grid">{{true}}</x-slot>
                 <x-slot name="url">{{'classrooms'}}</x-slot>
                 <x-slot name="id">{{$classroom->id}}</x-slot>
                 <x-slot name="noRedirect">{{true}}</x-slot>
@@ -45,10 +49,24 @@
                 <x-slot name="madeBy">{{$adminName}}</x-slot>
                 </x-jet-info-card>
 
+                    <div class="st-card cr-chat">
+                        Here comes the chat.
+                    </div>
 
-                 <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
+                 <div class="cr-subjects">
+                     <div class="st-card shadow-sm">
+                         <div class="mx-5">
+                             <div class="text-gray-500 pb-2">
+                                 <p class="font-bold">Browse subjects:</p>
+                                 @foreach($linked_subjects as $subject)
+                                     <p><a href="subjects/{{$subject->id}}" class="st-hover">{{strtolower($subject->name)}}</a></p>
+                                 @endforeach
+                             </div>
+                         </div>
+                     </div>
+
                     <div class="st-card shadow-sm">
-                        <div class="mx-5">
+                        <div class="">
                             <form method="POST" action="{{ route('subjects.store')}}">
                                 @csrf
                                 <div class="st-input">
@@ -56,9 +74,8 @@
                                         <input type="hidden" name="cr_id" value="{{$classroom->id}}" />
                                         <input type="text" name="sub_name" class="no-outline" placeholder="Subject name.." />
                                         <span id="st-create-classroom"><i class="fas fa-times"></i></span>
-                                        <label for="name">Subject name:</label>
+                                        <label for="name">Create a new subject:</label>
                                     </div>
-                                    <div class="text-gray-500 pb-2">Create a new subject:</div>
                                     <x-jet-button type="submit">Create subject</x-jet-button>
                                 </div>
                             </form>
@@ -66,24 +83,11 @@
                     </div>
                 </div>
 
-
-                <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
-                    <div class="st-card shadow-sm">
-                        <div class="mx-5">
-                            <div class="text-gray-500 pb-2">
-                                <p class="font-bold">Browse subjects:</p>
-
-                                @foreach($linked_subjects as $subject)
-                                    <p><a href="subjects/{{$subject->id}}" class="st-hover">{{strtolower($subject->name)}}</a></p>
-                                @endforeach
-
-
-                            </div>
-                        </div>
-                    </div>
+                <div class="text-center st-card cr-extensions st-grid-row-span-2">
+                    <p>Connected Apps:</p>
                 </div>
 
-
+            </div>
 
 </div>
 

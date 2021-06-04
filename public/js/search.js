@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+    console.log('test')
+
     let cooldown = false;
     const cooldown_time = 100; // 100ms of cooldown to prevent request exhaustion.
 

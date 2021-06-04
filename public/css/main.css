@@ -39499,6 +39499,10 @@ body {
   font-family: Roboto, Helvetica;
 }
 
+main {
+  min-height: 100vh !important;
+}
+
 .header {
   background-color: transparent;
 }
@@ -39641,8 +39645,37 @@ body {
   padding: 2rem 1.5rem 2rem 2rem;
 }
 
+.st-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em 2em;
+  /* Grid-template-rows starts from the first row downward: */
+  /* You can add as many template rows as you like: */
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.st-grid-row-span-2 {
+  grid-row: span 1;
+  grid-column: span 2;
+}
+
 .st-item-flex {
   display: flex;
+}
+
+.cr-chat {
+  grid-row: span 2;
+}
+
+.cr-subjects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0em 1em;
+}
+
+.cr-subjects .st-card:first-child {
+  max-height: 350px;
+  overflow-y: auto;
 }
 
 .st-card {

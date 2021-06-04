@@ -17,8 +17,16 @@ $fa-font-path: "../webfonts";
 
 $secondary-color: #7B74EC;
 
+html{
+
+}
+
 body{
   font-family: Roboto, Helvetica;
+}
+
+main{
+  min-height:100vh !important;
 }
 
 
@@ -136,8 +144,52 @@ body{
   padding: 2rem 1.5rem 2rem 2rem;
 }
 
+.st-grid-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em 2em;
+  /* Grid-template-rows starts from the first row downward: */
+  /* You can add as many template rows as you like: */
+
+  //grid-template-rows: 50px;
+
+  //Define the height of the upfollowing grid rows:
+  // set this on auto and give cards a max height.
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.st-grid-row-span-2{
+  grid-row: span 1;
+  grid-column:span 2;
+}
+
+
 .st-item-flex{
   display:flex;
+}
+
+// Classroom styling:
+
+.cr-chat{
+ grid-row:span 2;
+
+}
+
+.cr-subjects{
+  //Divide into 2 columns:
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0em 1em;
+
+  // makes subjects scrollable:
+  .st-card:first-child{
+    max-height:350px;
+    overflow-y: auto;
+  }
+}
+
+.cr-extensions{
+
 }
 
 // modifiers start with "--"
@@ -176,6 +228,8 @@ body{
 a.st-hover:hover{
   color:$secondary-color;
 }
+
+
 
 .subject-grid-container {
   display: grid;
