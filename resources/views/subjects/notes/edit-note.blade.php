@@ -32,7 +32,7 @@
             </header>
 
             <div class="ck-textarea">
-                <form method="POST" action="{{ route('notes.update', $note->id)}}">
+                <form method="POST" action="{{ route('notes.update', [$classroom_id, $note->fk_subject_id , $note->id])}}">
                     {{--Post methods are unsupported for this route, therefore use PUT--}}
                     {{csrf_field()}}
                     @method('PUT')
@@ -40,7 +40,7 @@
                     <input type="hidden" name="fk_subject_id" value="{{$note->fk_subject_id}}">
                     <textarea id="ck_editor" name="content" placeholder="start writing..">{{$note->content}}</textarea>
                     <x-jet-button-secondary class="mt-4 px-8" type="submit">Submit</x-jet-button-secondary>
-                    <a href="/classrooms/subjects/{{$note->fk_subject_id}}"><x-jet-button class="mt-4 px-8" type="button">Return</x-jet-button></a>
+                    <a href="/classrooms/{{$classroom_id}}/subjects/{{$note->fk_subject_id}}"><x-jet-button class="mt-4 px-8" type="button">Return</x-jet-button></a>
                 </form>
 
             </div>

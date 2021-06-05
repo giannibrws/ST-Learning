@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\UserController;
 use App\Models\Classroom;
 use App\Models\Subjects;
+use App\Models\Messages;
 use App\Models\User;
 use App\Models\ClassroomUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Traits\InputValidator;
 use Carbon\Carbon;
+use Exception;
 
 class ClassroomController extends Controller
 {
@@ -30,9 +32,9 @@ class ClassroomController extends Controller
 
     public function index()
     {
+
         // fetch all data
         $classrooms = DB::table('classrooms')->paginate(8);
-
         return view($this->prefix . '.classroom-overview', compact('classrooms'));
     }
 
@@ -54,8 +56,6 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-
-
         // Validate input data:
         $this->validateInput($request);
         $classroom = new Classroom();
@@ -89,9 +89,20 @@ class ClassroomController extends Controller
         $userController = new UserController();
         $userController->registerVisit($currentUser, $page_visted, $timestamp);
         $linked_subjects = $this->getChildSubjects($classroom->id);
+        $linked_users = $this->getLinkedUsers($classroom->id);
+        $userProfilePhotos = [];
+
+         // fetch all data
+        $userManager = new UserController();
+
+        foreach ($linked_users as $user){
+            $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl($user->id);
+            array_push($userProfilePhotos, $defaultPhotoPath);
+        }
+
 
         $adminName = User::where('id', $classroom->fk_user_id)->first()->name;
-        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'linked_subjects'));
+        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'linked_subjects', 'linked_users', 'userProfilePhotos'));
     }
 
 
@@ -130,9 +141,33 @@ class ClassroomController extends Controller
     }
 
 
+    /**
+     * Displays classroom chat view:
+     */
+    public function viewChat($classroom_id){
+
+        $messages = [];
+
+        $messages = Messages::where('classroom_id', $classroom_id)->get();
+
+        if(!filled($messages)){
+            return 'No messages';
+        }
+
+        return $messages;
+    }
 
     public function getChildSubjects($cr_id){
         return Subjects::where('fk_classroom_id', $cr_id)->get();
+    }
+
+    public function getLinkedUsers($cr_id){
+
+        $linkedIDs = ClassroomUser::where('classroom_id', $cr_id)->get();
+        // Fetches the ids from the dataset:
+        $plucked = $linkedIDs->pluck('user_id')->all();
+
+        return User::whereIn('id', $plucked)->get();
     }
 
 

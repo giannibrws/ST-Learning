@@ -20,7 +20,7 @@
             </div>
 
             <div class="mx-5">
-                <form method="POST" action="{{ route('classrooms.store')}}">
+                <form method="POST" action="{{ route('classrooms.store', )}}">
                     @csrf
                     <div class="st-input">
                         <div class="st-inputGroup">

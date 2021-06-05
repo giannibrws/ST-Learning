@@ -58,18 +58,20 @@ class SubjectsController extends Controller
         // Store data:
         $subject->save();
 
-        // return to home index action:
-        return redirect()->action([SubjectsController::class, 'show'], $subject);
+        // Show the created resource;
+        return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => $subject->fk_classroom_id, 'subject' =>  $subject]);
     }
 
     /**
      * Display the specified resource.
-     *
      * @param  \App\Models\Subjects  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(Subjects $subject)
+    public function show($classroom_id, Subjects $subject)
     {
+        // @info: Herschrijven zodat subject id wordt meegegeven in card note dan query naar die subject
+        // en dan de rest allemaal ook zo herschrijven kk
+
         // Add visit to history:
         $currentUser = auth()->id();
         $page_visited = $subject->name;

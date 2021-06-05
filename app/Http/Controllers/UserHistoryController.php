@@ -25,7 +25,7 @@ class UserHistoryController extends Controller
 
         // fetch all data
         $userManager = new UserController();
-        $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl();
+        $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl(auth()->id());
         $userProfilePath = $userManager->getUserProfilePicture();
 
         $userHistory = DB::table($this->table)->where('id', '=', auth()->id())->get();

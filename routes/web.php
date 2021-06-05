@@ -49,10 +49,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // use prefix for subjects:
-    Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms'], function() {
+    Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms/{classroom_id}'], function() {
+
+        // register chat route:
+        Route::get('chat', [ClassroomController::class, 'viewChat'], ['classroom_id' => '{classroom_id}']);
+
+        // subjects needs Classroom parameter:
         Route::resource('subjects', SubjectsController::class);
 
-        Route::group(['middelware' => 'subjects', 'prefix' => 'subjects'], function() {
+        Route::group(['middelware' => 'subjects', 'prefix' => 'subjects/{subject_id}'], function() {
             Route::resource('notes', NotesController::class);
         });
     });

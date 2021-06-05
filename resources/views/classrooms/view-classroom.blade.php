@@ -33,7 +33,7 @@
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)
                     @endforeach
-                    <div class="st-error st-grid-row-span-2">{{isset($error) ? $error : ''}}</div>
+                    <div class="st-card st-error st-grid-row-span-2">{{isset($error) ? $error : ''}}</div>
                 @endif
 
                 @php $adminName = 'Made by: ' . $adminName  @endphp
@@ -49,17 +49,34 @@
                 <x-slot name="madeBy">{{$adminName}}</x-slot>
                 </x-jet-info-card>
 
-                    <div class="st-card cr-chat">
-                        Here comes the chat.
-                    </div>
 
-                 <div class="cr-subjects">
+                    {{-- @info: Chat display::--}}
+                    <div class="st-card cr-chat ">
+                        <div class="cr-chat__content st-scroll-custom">
+                            @php ($j = 0) @endphp
+                            <p>Registered users:</p>
+                            @foreach($linked_users as $user)
+                                <div class="cr-chat__content__row">
+                                    <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$j]}}" alt="">
+                                    <p class="cr-chat__content__row__title">{{$user->name}}</p>
+                                </div>
+                                @php $j++ @endphp
+                            @endforeach
+
+                            <a href="{{url()->current() . '/chat'}}"><x-jet-button class="st-item-flex m-4 px-8" type="button">Show messages:</x-jet-button></a>
+                        </div>
+                    </div>
+                    {{-- @info: END chat display::--}}
+
+
+
+                 <div class="cr-subjects st-scroll-custom">
                      <div class="st-card shadow-sm">
                          <div class="mx-5">
                              <div class="text-gray-500 pb-2">
                                  <p class="font-bold">Browse subjects:</p>
                                  @foreach($linked_subjects as $subject)
-                                     <p><a href="subjects/{{$subject->id}}" class="st-hover">{{strtolower($subject->name)}}</a></p>
+                                     <p><a href="{{$classroom->id}}/subjects/{{$subject->id}}" class="st-hover">{{strtolower($subject->name)}}</a></p>
                                  @endforeach
                              </div>
                          </div>
@@ -67,7 +84,7 @@
 
                     <div class="st-card shadow-sm">
                         <div class="">
-                            <form method="POST" action="{{ route('subjects.store')}}">
+                            <form method="POST" action="{{ route('subjects.store', $classroom->id)}}">
                                 @csrf
                                 <div class="st-input">
                                     <div class="st-inputGroup">

@@ -52,12 +52,13 @@
                     </div>
                 </div>
 
-                    <div class="notes-container">
+                    <div class="notes-container st-scroll-custom">
 
                         @foreach($subject_notes as $note)
                             <x-jet-card-note>
-                                <x-slot name="url">{{'notes'}}</x-slot>
-                                <x-slot name="id">{{$note->id}}</x-slot>
+                                <x-slot name="classroom_id">{{$subject->fk_classroom_id}}</x-slot>
+                                <x-slot name="subject_id">{{$subject->id}}</x-slot>
+                                <x-slot name="note_id">{{$note->id}}</x-slot>
                                 <x-slot name="title">{{$note->name}}</x-slot>
                                 <x-slot name="description">{{$note->content}}</x-slot>
                                 <x-slot name="madeBy">{{$adminName}}</x-slot>

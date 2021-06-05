@@ -1,6 +1,6 @@
 {{--Start card:--}}
     @if(!isset($noRedirect))
-        <a href="{{ route( $url . '.edit', $id)}}">
+        <a href="{{ route('notes.edit', [$classroom_id, $subject_id, $note_id])}}">
     @endif
             <div class="st-card st-card--note shadow-sm {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
                 <div class="mx-5">

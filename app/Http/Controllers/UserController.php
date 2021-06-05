@@ -103,15 +103,20 @@ class UserController extends Controller
         $userHistory->updateVisited($visited);
     }
 
-    public function getDefaultProfilePhotoUrl()
+    public function getDefaultProfilePhotoUrl($user_id)
     {
-        $currentUserName = DB::table($this->table)->where('id', '=', auth()->id())->first()->name;
+        $currentUserName = DB::table($this->table)->where('id', '=', $user_id)->first()->name;
         return 'https://ui-avatars.com/api/?name='.urlencode($currentUserName).'&color=7F9CF5&background=EBF4FF';
     }
 
     public function getUserProfilePicture()
     {
        return Auth::user()->profile_photo_url;
+    }
+
+    // For multiple:
+    public function  getUserprofilePhotos(){
+
     }
 
 }

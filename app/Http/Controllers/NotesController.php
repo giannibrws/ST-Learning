@@ -72,14 +72,15 @@ class NotesController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param  \App\Models\Notes  $note
+     * @info: ID's are needed for parameter routing
+     * @param  \App\Models\Notes  $note ($id)
      * @return \Illuminate\Http\Response
      */
-    public function edit(Notes $note)
+    public function edit($classroom_id, $subject_id, Notes $note)
     {
         $parent_page_name = Subjects::where('id', $note->fk_subject_id)->first()->name;
         $is_child_page = true;
-        return view($this->prefix . 'edit-note', compact('note', 'parent_page_name', 'is_child_page'));
+        return view($this->prefix . 'edit-note', compact('note', 'parent_page_name', 'is_child_page', 'classroom_id'));
     }
 
     /**
