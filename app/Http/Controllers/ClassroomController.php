@@ -100,7 +100,6 @@ class ClassroomController extends Controller
             array_push($userProfilePhotos, $defaultPhotoPath);
         }
 
-
         $adminName = User::where('id', $classroom->fk_user_id)->first()->name;
         return view('classrooms.view-classroom', compact('classroom', 'adminName', 'linked_subjects', 'linked_users', 'userProfilePhotos'));
     }

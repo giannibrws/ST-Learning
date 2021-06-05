@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('View Classrooms:') }}
+            {{ __('Classrooms:') }}
         </h2>
     </x-slot>
 
@@ -52,23 +52,25 @@
 
                     {{-- @info: Chat display::--}}
                     <div class="st-card cr-chat ">
-                        <div class="cr-chat__content st-scroll-custom">
-                            @php ($j = 0) @endphp
-                            <p>Registered users:</p>
-                            @foreach($linked_users as $user)
-                                <div class="cr-chat__content__row">
-                                    <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$j]}}" alt="">
-                                    <p class="cr-chat__content__row__title">{{$user->name}}</p>
-                                </div>
-                                @php $j++ @endphp
-                            @endforeach
+                        {{-- @livewire --}}
+                        <livewire:user-chat></livewire:user-chat>
 
-                            <a href="{{url()->current() . '/chat'}}"><x-jet-button class="st-item-flex m-4 px-8" type="button">Show messages:</x-jet-button></a>
+                        <div class="cr-chat__content st-scroll-custom">
+                            <div class="">
+                                @php ($j = 0) @endphp
+                                <p>Registered users:</p>
+                                @foreach($linked_users as $user)
+                                    <div class="cr-chat__content__row">
+                                        <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$j]}}" alt="">
+                                        <p class="cr-chat__content__row__title">{{$user->name}}</p>
+                                    </div>
+                                    @php $j++ @endphp
+                                @endforeach
+                                <a href="{{url()->current() . '/chat'}}"><x-jet-button class="st-item-flex m-4 px-8" type="button">Show messages:</x-jet-button></a>
+                            </div>
                         </div>
                     </div>
                     {{-- @info: END chat display::--}}
-
-
 
                  <div class="cr-subjects st-scroll-custom">
                      <div class="st-card shadow-sm">

@@ -15,12 +15,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+        // @info: Seeding order is VERY important, make sure to seed dependency tables first.
+
         $this->call([
             UserTableSeeder::class,
             ClassroomTableSeeder::class,
             SubjectTableSeeder::class,
             SubjectNoteSeeder::class,
             ClassroomUserSeeder::class,
+            UserMessagesSeeder::class,
 //            PostSeeder::class,
 //            CommentSeeder::class,
         ]);

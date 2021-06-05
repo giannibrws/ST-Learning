@@ -1,22 +1,41 @@
 {{-- @info: Data table template:--}}
 <x-app-layout>
-<div class="flex flex-col mt-8">
-    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+
+    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
+        <x-jet-nav-sidebar>
+            <x-slot name="url">{{"Classrooms"}}</x-slot>
+        </x-jet-nav-sidebar>
+
+        <div class="w-full">
+            {{--header start:--}}
+            <header class="flex py-8 px-6 bg-white border-b-4 border-indigo-600">
+                {{--Expand btn: --}}
+                <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+                <div class="cr-header">
+                    <h2><a href="{{url()->current()}}"class="st-hover">User-History:</a></h2>
+                </div>
+            </header>
+
+
+
+<div class="flex flex-col mt-8 p-4">
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
             <table class="min-w-full">
                 <thead>
                 <tr>
-                    <th
-                            class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Name</th>
-                    <th
-                            class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Title</th>
-                    <th
-                            class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        Last_visited:</th>
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Status</th>
-                    <th
-                            class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Last edited:</th>
                     <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
                 </tr>
@@ -60,6 +79,9 @@
         </div>
     </div>
 </div>
-
 {{-- @info: End Data table template:--}}
+
+        </div>
+    </div>
+
 </x-app-layout>

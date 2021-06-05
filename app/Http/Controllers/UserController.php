@@ -114,7 +114,7 @@ class UserController extends Controller
        return Auth::user()->profile_photo_url;
     }
 
-    // For multiple:
+    //
     public function  getUserprofilePhotos(){
 
     }
