@@ -39700,13 +39700,19 @@ main {
 .cr-chat__content__row {
   display: flex;
   flex-direction: row;
-  height: 4rem;
+  min-height: 4rem;
+  height: auto;
 }
 
 .cr-chat__content__row__title {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.cr-chat__content__row__message {
+  padding: 1rem;
+  text-align: left;
 }
 
 .cr-chat__content__row img {

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Messages;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ClassroomController;
+use App\Models\Classroom;
 
 class MessageController extends Controller
 {
@@ -35,7 +37,18 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $message = new Messages();
+        $message->body = request('message_body');
+        $message->user_id = auth()->id();
+        $message->classroom_id = auth()->id();
+
+        $message->save();
+
+        $classroom = Classroom::where('id', auth()->id())->first();
+
+        // return to home index action:
+        return redirect()->action([ClassroomController::class, 'show'], $classroom);
     }
 
     /**
@@ -82,4 +95,6 @@ class MessageController extends Controller
     {
         //
     }
+
+
 }

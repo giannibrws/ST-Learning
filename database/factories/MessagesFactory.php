@@ -25,7 +25,7 @@ class MessagesFactory extends Factory
         return [
                 'user_id' => $i++,
                 'classroom_id' => rand(1, 1),
-                'body' => $this->faker->paragraph(rand(0, 20))
+                'body' => $this->faker->realText(rand(30,160))
         ];
     }
 }

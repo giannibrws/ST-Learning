@@ -143,7 +143,7 @@ class ClassroomController extends Controller
     /**
      * Displays classroom chat view:
      */
-    public function viewChat($classroom_id){
+    public function updateChat($classroom_id){
 
         $messages = [];
 

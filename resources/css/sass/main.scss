@@ -210,12 +210,18 @@ main{
     &__row{
       display: flex;
       flex-direction: row;
-      height: 4rem;
+      min-height: 4rem;
+      height: auto;
 
       &__title{
         display: flex;
         flex-direction: column;
         justify-content: center;
+      }
+
+      &__message{
+        padding: 1rem;
+        text-align: left;
       }
 
       img{

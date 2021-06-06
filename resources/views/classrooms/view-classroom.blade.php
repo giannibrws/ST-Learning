@@ -52,23 +52,8 @@
 
                     {{-- @info: Chat display::--}}
                     <div class="st-card cr-chat ">
-                        {{-- @livewire --}}
-                        <livewire:user-chat></livewire:user-chat>
-
-                        <div class="cr-chat__content st-scroll-custom">
-                            <div class="">
-                                @php ($j = 0) @endphp
-                                <p>Registered users:</p>
-                                @foreach($linked_users as $user)
-                                    <div class="cr-chat__content__row">
-                                        <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$j]}}" alt="">
-                                        <p class="cr-chat__content__row__title">{{$user->name}}</p>
-                                    </div>
-                                    @php $j++ @endphp
-                                @endforeach
-                                <a href="{{url()->current() . '/chat'}}"><x-jet-button class="st-item-flex m-4 px-8" type="button">Show messages:</x-jet-button></a>
-                            </div>
-                        </div>
+                        {{-- @livewire component:--}}
+                        @livewire('user-chat', ['classroom_id' => $classroom->id])
                     </div>
                     {{-- @info: END chat display::--}}
 

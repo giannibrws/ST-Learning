@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Messages;
 use App\Models\User;
+use App\Models\ClassroomUser;
 use App\Http\Controllers\UserController;
 
 class UserChat extends Component
@@ -12,29 +13,40 @@ class UserChat extends Component
 
     public $linked_users;
     public $is_visible = false;
-
     public $users;
-    public $userProfilePics;
+    public $userProfilePhotos;
     public $messages;
+    public $classroom_id;
 
 
     // Livewire constructor:
-    public function mount()
+    public function mount($classroom_id)
     {
+       $this->classroom_id = $classroom_id;
        $this->messages = '';
+       $this->linked_users = $this->getLinkedUsers($this->classroom_id);
+       $this->userProfilePhotos = [];
 
-        $userProfilePhotos = [];
         // fetch all data
         $userManager = new UserController();
 
-//        foreach ($linked_users as $user){
-//            $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl($user->id);
-//            array_push($userProfilePhotos, $defaultPhotoPath);
-//        }
+        foreach ($this->linked_users as $user){
 
+            $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl($user->id);
+            $userProfile = ([
+                'user_id' => $user->id,
+                'picture' => $defaultPhotoPath,
+            ]);
+            array_push($this->userProfilePhotos, $userProfile);
+        }
+        // Link id to picture:
+        foreach ($this->userProfilePhotos as $idx => $value){
+            $this->userProfilePhotos[$value["user_id"]] = $value["picture"];
+        }
 
     }
 
+    // Toggle chat & messages:
     public function displayUserChat(){
         $this->messages = Messages::all();
 
@@ -44,7 +56,6 @@ class UserChat extends Component
         else{
             $this->is_visible = false;
         }
-
     }
 
     public function hideUserChat(){
@@ -56,23 +67,11 @@ class UserChat extends Component
         return view('livewire.user-chat');
     }
 
-
-    public function getDefaultProfilePhotoUrl($user_id)
-    {
-        $currentUserName = DB::table($this->table)->where('id', '=', $user_id)->first()->name;
-        return 'https://ui-avatars.com/api/?name='.urlencode($currentUserName).'&color=7F9CF5&background=EBF4FF';
-    }
-
     public function getLinkedUsers($cr_id){
-
         $linkedIDs = ClassroomUser::where('classroom_id', $cr_id)->get();
         // Fetches the ids from the dataset:
         $plucked = $linkedIDs->pluck('user_id')->all();
-
         return User::whereIn('id', $plucked)->get();
     }
-
-
-
 
 }

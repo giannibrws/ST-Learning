@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\UserHistoryController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\MessageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms/{classroom_id}'], function() {
 
         // register chat route:
-        Route::get('chat', [ClassroomController::class, 'viewChat'], ['classroom_id' => '{classroom_id}']);
+        Route::post('chat', [MessageController::class, 'store'], ['classroom_id' => '{classroom_id}']);
 
         // subjects needs Classroom parameter:
         Route::resource('subjects', SubjectsController::class);
