@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72944fd4-3c1a-4004-ad21-304e7c31db37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassroomController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassroomController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Livewire/UserChat.php" afterPath="$PROJECT_DIR$/app/Http/Livewire/UserChat.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/factories/MessagesFactory.php" afterPath="$PROJECT_DIR$/database/factories/MessagesFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/main.css" afterPath="$PROJECT_DIR$/public/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/css/sass/main.scss" afterPath="$PROJECT_DIR$/resources/css/sass/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/classrooms/view-classroom.blade.php" afterPath="$PROJECT_DIR$/resources/views/classrooms/view-classroom.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/livewire/user-chat.blade.php" afterPath="$PROJECT_DIR$/resources/views/livewire/user-chat.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -83,7 +74,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-chat.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user-chat.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/livewire/user-chat.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
@@ -93,6 +84,19 @@
                 <marker date="1622940220434" expanded="true" signature="493:2747" ph="..." />
                 <marker date="1622940220434" expanded="true" signature="1308:1495" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="26">
+                <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -179,7 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/vendor/jetstream/components/pagination-nav.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Traits/InputValidator.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/jetstream/components/nav-sidebar.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2021_06_02_142421_create_subjects_table.php" />
@@ -230,6 +233,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
         <option value="$PROJECT_DIR$/app/Http/Livewire/UserChat.php" />
         <option value="$PROJECT_DIR$/resources/views/livewire/user-chat.blade.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -518,12 +522,12 @@
       <workItem from="1622626217627" duration="26740000" />
       <workItem from="1622715708166" duration="23285000" />
       <workItem from="1622798101810" duration="12243000" />
-      <workItem from="1622891134347" duration="31599000" />
+      <workItem from="1622891134347" duration="32010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204175000" />
+    <option name="totallyTimeSpent" value="204586000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -580,7 +584,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/custom.css" />
     <entry file="file://$PROJECT_DIR$/resources/css/sass/custom.scss" />
     <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -1014,6 +1017,17 @@
             <marker date="1622940220434" expanded="true" signature="493:2747" ph="..." />
             <marker date="1622940220434" expanded="true" signature="1308:1495" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="26">
+            <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
