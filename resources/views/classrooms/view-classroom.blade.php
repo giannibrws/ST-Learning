@@ -80,7 +80,7 @@
                                         <span id="st-create-classroom"><i class="fas fa-times"></i></span>
                                         <label for="name">Create a new subject:</label>
                                     </div>
-                                    <x-jet-button type="submit">Create subject</x-jet-button>
+                                    <x-jet-button wire:click.prevent="storeMessage" type="submit">Create subject</x-jet-button>
                                 </div>
                             </form>
                         </div>

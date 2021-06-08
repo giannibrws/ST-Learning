@@ -19,6 +19,13 @@ trait InputValidator
                             $key . '.max' => 'Field ' . $key . ' is too long. Max 1000 characters allowed!',
                         ]);
                 }
+                elseif($key == "body"){
+                    $request->validate([$key => 'required|max:500'],
+                        [
+                            $key . '.required' => 'Field ' . $key . ' is required',
+                            $key . '.max' => 'Field ' . $key . ' is too long. Max 1000 characters allowed!',
+                        ]);
+                }
                 else{
                     $request->validate([$key => 'required|max:255'],
                         [

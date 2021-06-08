@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    console.log('test')
-
     let cooldown = false;
     const cooldown_time = 100; // 100ms of cooldown to prevent request exhaustion.
 
@@ -23,7 +21,7 @@ $(document).ready(function(){
                     'searchRequest': searchRequest
                 },
                 success:function(data){
-                    console.log(data)
+                    // console.log(data)
                     $('#dynamic_cr_results').html(data);
                     // show last card once user has finished searching:
                     searchRequest.length <= 1 ? $('#cr_card_submit').show() : $('#cr_card_submit').hide()

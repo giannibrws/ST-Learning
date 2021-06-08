@@ -31,7 +31,8 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script type="text/javascript" src="{{ ('js/search.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('js/search.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('js/custom.js') }}" defer></script>
 
 
     </head>
@@ -69,7 +70,7 @@
             @stack('modals')
 
             @livewireScripts
-
+            @stack('scripts')
 
         </footer>
 
