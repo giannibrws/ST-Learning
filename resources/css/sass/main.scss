@@ -350,3 +350,15 @@ a.st-hover:hover{
 }
 
 
+.card-editable{
+
+  textarea{
+    min-height:150px;
+    margin:1rem 1rem 0.2rem 1rem;
+    width:100%;
+    border: none;
+    overflow: auto;
+    outline: none;
+  }
+}
+

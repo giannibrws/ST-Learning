@@ -85,9 +85,10 @@ class ClassroomController extends Controller
         $currentUser = auth()->id();
         $page_visted = $classroom->name;
         $timestamp = Carbon::now()->format('Y-m-d-H');
+        $url = '/classrooms/' . $classroom->id;
 
         $userController = new UserController();
-        $userController->registerVisit($currentUser, $page_visted, $timestamp);
+        $userController->registerVisit($currentUser, $page_visted, $url, $timestamp);
         $linked_subjects = $this->getChildSubjects($classroom->id);
         $linked_users = $this->getLinkedUsers($classroom->id);
         $userProfilePhotos = [];
@@ -120,12 +121,19 @@ class ClassroomController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Classroom  $classrooms
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classroom $classrooms)
+    public function update(Request $request)
     {
-        //
+        $updateValues = $request->all();
+        unset($updateValues['_token'], $updateValues['_method']);
+        $this->validateInput($request);
+        $classroom_bio = $updateValues['cr_bio'];
+
+        Classroom::where('id', $request->id)
+            ->update(['bio' => $classroom_bio]);
+
+        return redirect()->action([ClassroomController::class, 'show'], $request->id);
     }
 
     /**

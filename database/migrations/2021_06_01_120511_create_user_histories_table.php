@@ -15,7 +15,9 @@ class CreateUserHistoriesTable extends Migration
     {
         Schema::create('user_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('last_viewed');
+            // name of last viewed:
+            $table->string('visited_page');
+            $table->string('page_url');
             // add foreign key relation:
             $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade');
             $table->timestamp('created_at');

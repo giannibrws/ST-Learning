@@ -24,6 +24,7 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->registerComponent('card-note');
         $this->registerComponent('card-submit');
         $this->registerComponent('pagination-nav');
+        $this->registerComponent('cr-image');
     }
 
 

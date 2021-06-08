@@ -69,27 +69,26 @@ class SubjectsController extends Controller
      */
     public function show($classroom_id, Subjects $subject)
     {
-        // @info: Herschrijven zodat subject id wordt meegegeven in card note dan query naar die subject
-        // en dan de rest allemaal ook zo herschrijven kk
+        // general settings:
+        $is_child_page = true;
+        $parent_page_name = Classroom::where('id', $subject->fk_classroom_id)->first()->name;
 
         // Add visit to history:
         $currentUser = auth()->id();
-        $page_visited = $subject->name;
+        $page_visited = $parent_page_name . ' / ' . $subject->name;
         $timestamp = Carbon::now()->format('Y-m-d-H');
-
+        $url = '/classrooms/' . $subject->fk_classroom_id . '/subjects/' .$subject->id;
         $userController = new UserController();
-        $userController->registerVisit($currentUser, $page_visited, $timestamp);
+        $userController->registerVisit($currentUser, $page_visited, $url, $timestamp);
 
-        $is_child_page = true;
-        $parent_page_name = Classroom::where('id', $subject->fk_classroom_id)->first()->name;
+        // fetch display data:
         $adminName = User::where('id', $subject->fk_user_id)->first()->name;
-
         $subject_notes = $this->getSubjectNotes($subject->id);
 
+        // remove html code from ckeditor:
         $this->removeHtmlAttrs($subject_notes);
 
         return view($this->prefix . 'view-subject', compact('subject','adminName', 'is_child_page', 'parent_page_name', 'subject_notes'));
-
     }
 
     /**

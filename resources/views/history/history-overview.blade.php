@@ -3,7 +3,7 @@
 
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
         <x-jet-nav-sidebar>
-            <x-slot name="url">{{"Classrooms"}}</x-slot>
+            <x-slot name="url">{{"History"}}</x-slot>
         </x-jet-nav-sidebar>
 
         <div class="w-full">
@@ -59,7 +59,7 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">{{$history_item->last_viewed}}</div>
+                                <div class="text-sm leading-5 text-gray-900">{{$history_item->visited_page}}</div>
                                 {{--<div class="text-sm leading-5 text-gray-500">Web dev</div>--}}
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -69,7 +69,7 @@
                                 {{$history_item->created_at}}
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Navigate to item</a>
+                                <a href="{{$history_item->page_url}}" class="text-indigo-600 hover:text-indigo-900">Navigate to item</a>
                             </td>
                         </tr>
                     @endforeach
