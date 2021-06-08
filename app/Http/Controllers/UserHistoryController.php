@@ -28,7 +28,7 @@ class UserHistoryController extends Controller
         $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl(auth()->id());
         $userProfilePath = $userManager->getUserProfilePicture();
 
-        $userHistory = DB::table($this->table)->where('fk_user_id', '=', auth()->id())->orderByDesc('created_at')->get();
+        $userHistory = DB::table($this->table)->where('fk_user_id', '=', auth()->id())->orderByDesc('created_at')->paginate(10);
         $currentUser = DB::table('users')->where('id', '=', auth()->id())->first();
 
         return view($this->prefix . '.history-overview', compact('userHistory', 'currentUser', 'defaultPhotoPath', 'userProfilePath'));

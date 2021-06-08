@@ -1,4 +1,4 @@
-{{-- @info: Data table template:--}}
+
 <x-app-layout>
 
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
@@ -22,7 +22,7 @@
             </header>
 
 
-
+ {{-- @info: Start Data table template:--}}
 <div class="flex flex-col mt-8 p-4">
         <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
@@ -75,13 +75,21 @@
                     @endforeach
                 </tbody>
             </table>
-
         </div>
     </div>
+
+    {{--Pagination:--}}
+    <x-jet-pagination-nav>
+        <x-slot name="items">{{$userHistory->links()}}</x-slot>
+    </x-jet-pagination-nav>
+    {{--Pagination:--}}
+
 </div>
 {{-- @info: End Data table template:--}}
 
-        </div>
-    </div>
+
+
+</div>
+</div>
 
 </x-app-layout>
