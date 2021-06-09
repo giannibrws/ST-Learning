@@ -47,10 +47,8 @@
                         <form method="POST" action="{{ route('classrooms.update', $classroom->id)}}">
                             {{csrf_field()}}
                              @method('PUT')
-
-                        <input type="hidden" name="id" value="{{$classroom->id}}">
-                        <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="cr_bio">{{$classroom->bio}}</textarea>
-                        <x-jet-button type="submit">Update bio</x-jet-button>
+                            <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="cr_bio">{{$classroom->bio}}</textarea>
+                            <x-jet-button type="submit">Update bio</x-jet-button>
                         </form>
                     </div>
 

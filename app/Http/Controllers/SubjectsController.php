@@ -64,6 +64,7 @@ class SubjectsController extends Controller
 
     /**
      * Display the specified resource.
+     * @param  \App\Models\Classroom  $classroom_id
      * @param  \App\Models\Subjects  $subject
      * @return \Illuminate\Http\Response
      */
@@ -104,14 +105,24 @@ class SubjectsController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Subjects  $subjects
+     * @param  \App\Models\Subjects $subject_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subjects $subjects)
+    public function update(Request $request, $subject_id)
     {
-        //
+        $updateValues = $request->all();
+        unset($updateValues['_token'], $updateValues['_method']);
+        $this->validateInput($request);
+        $classroom_bio = $updateValues['cr_bio'];
+
+        Subjects::where('id', $subject_id)
+            ->update(['bio' => $classroom_bio]);
+
+        $classroom_id = Subjects::where('id', $subject_id)->first()->fk_classroom_id;
+        $subject = Subjects::where('id', $subject_id)->first();
+
+        return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => $classroom_id, 'subject' => $subject]);
     }
 
     /**

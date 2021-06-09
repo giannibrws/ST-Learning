@@ -41,13 +41,25 @@
                 @php $adminName = 'Made by: ' . $adminName  @endphp
 
                 <div class="w-full mb-8">
-                    <div class="st-card shadow-sm">
+                    <div class="st-card card-editable shadow-sm">
                         <div class="mx-5">
-                            <h4 class="text-2xl font-semibold text-gray-700">{{$subject->name}}</h4>
-                            <div class="text-gray-500 pb-2">{{$subject->bio}}</div>
-                            @if(isset($adminName))
-                                <span class="absolute -ml-12 font-bold st-admin-title">{{$adminName}}</span>
-                            @endif
+
+                            <div class="st-item-flex">
+                                <h3 class="text-3xl mt-5 ml-5">{{$subject->name}}</h3>
+                            </div>
+
+                            <form method="POST" action="{{ route('subjects.update', [$subject->fk_classroom_id, $subject->id])}}">
+                                {{csrf_field()}}
+                                @method('PUT')
+                                <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="cr_bio">{{$subject->bio}}</textarea>
+                                <div class="st-item-flex space-between">
+                                    <x-jet-button type="submit">Update bio</x-jet-button>
+                                    @if(isset($adminName))
+                                        <span class="font-bold mt-2 st-admin-title">{{$adminName}}</span>
+                                    @endif
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

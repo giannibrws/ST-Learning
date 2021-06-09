@@ -119,21 +119,21 @@ class ClassroomController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     *@param  \App\Models\Classroom $classroom_id
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update($classroom_id, Request $request)
     {
         $updateValues = $request->all();
         unset($updateValues['_token'], $updateValues['_method']);
         $this->validateInput($request);
         $classroom_bio = $updateValues['cr_bio'];
 
-        Classroom::where('id', $request->id)
+        Classroom::where('id', $classroom_id)
             ->update(['bio' => $classroom_bio]);
 
-        return redirect()->action([ClassroomController::class, 'show'], $request->id);
+        return redirect()->action([ClassroomController::class, 'show'], $classroom_id);
     }
 
     /**
