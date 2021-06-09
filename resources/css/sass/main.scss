@@ -229,6 +229,35 @@ main{
 
 .cr-extensions{
 
+  &__title{
+    margin-bottom:1rem;
+  }
+
+  &__list{
+    justify-content: center;
+  }
+
+
+  &__add-form{
+    display: flex;
+    padding:0.5rem;
+    // top to bottom:
+    flex-direction: column;
+    align-items:center;
+
+    div{
+      margin-bottom:0.3rem;
+    }
+
+
+
+  }
+
+  &__add-new{
+    cursor: pointer;
+    font-size:24px;
+  }
+
 }
 
 // modifiers start with "--"
@@ -366,3 +395,6 @@ a.st-hover:hover{
   justify-content: space-between;
 }
 
+.noPadding{
+  padding: 0 !important;
+}

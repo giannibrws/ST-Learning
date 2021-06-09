@@ -52,8 +52,6 @@
                         </form>
                     </div>
 
-
-
                     {{-- @info: Chat display::--}}
                     <div class="st-card cr-chat ">
                         {{-- @livewire component:--}}
@@ -92,7 +90,7 @@
                 </div>
 
                 <div class="text-center st-card cr-extensions st-grid-row-span-2">
-                    <p>Connected Apps:</p>
+                    @livewire('connected-apps', ['classroom_id' => $classroom->id])
                 </div>
 
             </div>

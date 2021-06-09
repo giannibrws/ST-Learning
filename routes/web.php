@@ -18,7 +18,7 @@ use App\Http\Controllers\MessageController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 });
 
@@ -29,7 +29,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-
 // Only authenticated users may access this route...
 Route::group(['middleware' => 'auth'], function () {
 
@@ -38,8 +37,6 @@ Route::group(['middleware' => 'auth'], function () {
         return view('dashboard');
     });
 
-
-
     // custom urls go before resource routes:
     // Route::get('classrooms/{classroom}', [ClassroomController::class, 'test']);
 
@@ -47,7 +44,6 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('/classrooms/search', [ClassroomController::class, 'searchClassrooms']);
 
     Route::resource('classrooms', ClassroomController::class);
-
 
     // use prefix for subjects:
     Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms/{classroom_id}'], function() {

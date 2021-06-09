@@ -98,7 +98,9 @@ class NotesController extends Controller
         Notes::where('id', $request->id)
             ->update($updateValues);
 
-        return redirect()->action([SubjectsController::class, 'show'], $request->fk_subject_id);
+        // @todo: Fetch classroom id from Query
+
+        return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => 1, 'subject' => $request->fk_subject_id]);
     }
 
     /**

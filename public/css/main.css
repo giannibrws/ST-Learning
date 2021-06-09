@@ -39709,6 +39709,30 @@ main {
   overflow-y: auto;
 }
 
+.cr-extensions__title {
+  margin-bottom: 1rem;
+}
+
+.cr-extensions__list {
+  justify-content: center;
+}
+
+.cr-extensions__add-form {
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cr-extensions__add-form div {
+  margin-bottom: 0.3rem;
+}
+
+.cr-extensions__add-new {
+  cursor: pointer;
+  font-size: 24px;
+}
+
 .st-card {
   align-items: center;
   padding: 3rem;
@@ -39816,6 +39840,10 @@ a.st-hover:hover {
 
 .space-between {
   justify-content: space-between;
+}
+
+.noPadding {
+  padding: 0 !important;
 }
 
 @media (min-width: 640px){

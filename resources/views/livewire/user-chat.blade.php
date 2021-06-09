@@ -3,7 +3,7 @@
 
 
         @if($is_visible)
-            @livewire('messages', ['classroom_id' => $classroom_id])
+            @livewire('user-messages', ['classroom_id' => $classroom_id])
         @else
             <div class="">
                 @php ($k = 0) @endphp
