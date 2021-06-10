@@ -39,7 +39,7 @@
     {{--End login navigation: --}}
 
 
-    <div class="mx-auto">
+    <div class="mx-auto homepage">
         {{-- Logo image: --}}
         <img class="mx-auto w-1/12" src="{{asset('./img/st-learning-logo.png')}}" alt="">
     </div>

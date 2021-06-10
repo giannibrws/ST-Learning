@@ -29,6 +29,10 @@ main{
   min-height:100vh !important;
 }
 
+.homepage{
+margin-top:250px;
+}
+
 
 .header{
 
@@ -36,7 +40,14 @@ main{
 
   &__image{
     transform: rotate(180deg);
+    position: absolute;
+    top:0;
+
+    &--absolute{
+      position: absolute;
+    }
   }
+
 }
 
 
@@ -190,10 +201,19 @@ main{
       min-height: 4rem;
       height: auto;
 
+      &__admin-title {
+        display: flex;
+        flex-direction: row;
+        padding-top: 1rem;
+        justify-content: center;
+      }
+
+
       &__title{
         display: flex;
         flex-direction: column;
         justify-content: center;
+
       }
 
       &__message{
@@ -273,15 +293,19 @@ main{
     padding:0.5rem 1rem 1rem 1rem;
   }
 
+  &--classroom{
+    height:100%;
+    max-height:350px;
+  }
+
   &--note{
     display:grid;
-    min-height:200px;
+    height:100%;
     max-height:410px;
     overflow-y: hidden;
     padding:1rem;
 
   }
-
 
 }
 

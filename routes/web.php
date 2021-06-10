@@ -7,6 +7,7 @@ use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\UserHistoryController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\CommunityController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,16 +19,21 @@ use App\Http\Controllers\MessageController;
 |
 */
 
+// Default home route:
+//Route::any('/', function () {
+//    return view('home');
+//});
+
+// Default home route:
 Route::get('/home', function () {
     return view('home');
 });
 
+
 // if verified get dashboard url:
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-
 })->name('dashboard');
-
 
 // Only authenticated users may access this route...
 Route::group(['middleware' => 'auth'], function () {
@@ -42,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // @info: https://gyazo.com/b1dcca493538db567a9ec28d3a5fadf3
     route::get('/classrooms/search', [ClassroomController::class, 'searchClassrooms']);
+    route::get('/explore', [CommunityController::class, 'index']);
 
     Route::resource('classrooms', ClassroomController::class);
 

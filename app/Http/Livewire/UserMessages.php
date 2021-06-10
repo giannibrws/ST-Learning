@@ -40,7 +40,7 @@ class UserMessages extends Component
     public function mount($classroom_id)
     {
         $this->classroom_id = $classroom_id;
-        $this->messages = Messages::all();
+        $this->messages = Messages::where('classroom_id', $classroom_id)->get();
         $this->linked_users = $this->getLinkedUsers($this->classroom_id);
         $this->userProfilePhotos = [];
         $this->linkProfilePhotos();

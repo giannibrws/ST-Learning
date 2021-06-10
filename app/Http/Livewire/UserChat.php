@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class UserChat extends Component
 {
-
+    public $admins;
     public $linked_users;
     public $is_visible = false;
     public $users;
@@ -30,11 +30,11 @@ class UserChat extends Component
     {
        $this->classroom_id = $classroom_id;
        $this->linked_users = $this->getLinkedUsers($this->classroom_id);
+       $this->admins = $this->getAdmins($this->classroom_id);
+
        $this->userProfilePhotos = [];
-        $this->linkProfilePhotos();
-        $this->showErrors = false;
-
-
+       $this->linkProfilePhotos();
+       $this->showErrors = false;
     }
 
     // Toggle chat & messages:
@@ -52,8 +52,15 @@ class UserChat extends Component
         return view('livewire.user-chat');
     }
 
+    public function getAdmins($cr_id){
+        $admins = ClassroomUser::where('classroom_id', '=', $cr_id)->where('is_admin', '=', 1)->get();
+        // Fetches the ids from the dataset:
+        $plucked = $admins->pluck('user_id')->all();
+        return User::whereIn('id', $plucked)->get();
+    }
+
     public function getLinkedUsers($cr_id){
-        $linkedIDs = ClassroomUser::where('classroom_id', $cr_id)->get();
+        $linkedIDs = ClassroomUser::where('classroom_id', $cr_id)->where('is_admin', '=', 0)->get();
         // Fetches the ids from the dataset:
         $plucked = $linkedIDs->pluck('user_id')->all();
         return User::whereIn('id', $plucked)->get();
@@ -62,7 +69,11 @@ class UserChat extends Component
     public function linkProfilePhotos(){
         // fetch all data
         $userManager = new UserController();
-        foreach ($this->linked_users as $user){
+
+        // merge all users:
+        $users = $this->admins->merge($this->linked_users);
+
+        foreach ($users as $user){
 
             $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl($user->id);
             $userProfile = ([

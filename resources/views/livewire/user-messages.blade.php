@@ -21,5 +21,12 @@
         @endforeach
         @php $j++ @endphp
     @endforeach
+
+    @if(!filled($messages))
+        <div class="cr-chat__content__row">
+            <p class="cr-chat__content__row__title ml-3 text-gray-600">This chat has no messages..</p>
+        </div>
+    @endif
+
 </div>
 

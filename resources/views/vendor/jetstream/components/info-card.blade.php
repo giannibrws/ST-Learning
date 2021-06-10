@@ -3,7 +3,7 @@
     @if(!isset($noRedirect))
     <a href="{{ route( $url . '.show', $id)}}">
     @endif
-    <div class="{{isset($display_grid) ? '' : 'st-item-flex' }} st-card shadow-sm {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
+    <div class="{{isset($display_grid) ? '' : 'st-item-flex' }} st-card {{isset($card_type) ? $card_type : ''}} shadow-sm {{isset($noRedirect) ? '' : 'hover:opacity-50'}}">
         <div class="p-3 st-item-flex rounded-full bg-indigo-600 bg-opacity-75">
             <svg class="h-12 w-12 text-white" viewBox="0 0 28 30" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +31,17 @@
                 <div class="text-gray-500">{{ substr($description,0,100) . "..." }}</div>
             @endif
             <div class="pt-8 pb-4"></div>
-            @if(isset($madeBy))
-                <span class="absolute -ml-12 font-bold st-admin-title">{{$madeBy}}</span>
+
+
+            @if(isset($createdBy))
+                <span class="absolute -ml-20 font-bold st-admin-title">
+                    @if(isset($memberCount))
+                        <span title="members">
+                            <i class="fas fa-users"></i> <b class="mr-3">{{$memberCount}}</b>
+                        </span>
+                    @endif
+                    Made by: {{$createdBy}}
+                </span>
             @endif
 
         </div>

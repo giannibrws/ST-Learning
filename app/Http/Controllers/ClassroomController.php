@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Traits\InputValidator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class ClassroomController extends Controller
@@ -32,9 +33,14 @@ class ClassroomController extends Controller
 
     public function index()
     {
+        // search for registered classrooms:
+        $linkedRooms = ClassroomUser::where('user_id', auth()->id())->get()->pluck("classroom_id");
+        // fetch personal created classrooms:
+        $classrooms = DB::table('classrooms')->where('fk_user_id','=', auth()->id())
+            ->orWhereIn('id', $linkedRooms)
+            ->paginate(8);
 
-        // fetch all data
-        $classrooms = DB::table('classrooms')->paginate(8);
+
         return view($this->prefix . '.classroom-overview', compact('classrooms'));
     }
 
@@ -60,12 +66,13 @@ class ClassroomController extends Controller
         $this->validateInput($request);
         $classroom = new Classroom();
         $classroom->name = request('cr-name');
+        $classroom->created_by = Auth::user()->name;
+        $classroom->member_count = 1;
         // fetch user id:
         $userID = auth()->id();
         $classroom->fk_user_id = $userID;
         // Store data:
         $classroom->save();
-
         $referenced_room = DB::table('classrooms')->latest()->first();
         $this->linkClassroom($userID, $referenced_room->id);
 

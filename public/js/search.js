@@ -22,6 +22,8 @@ $(document).ready(function(){
                 },
                 success:function(data){
                     // console.log(data)
+
+                    // Manipulate DOM:
                     $('#dynamic_cr_results').html(data);
                     // show last card once user has finished searching:
                     searchRequest.length <= 1 ? $('#cr_card_submit').show() : $('#cr_card_submit').hide()

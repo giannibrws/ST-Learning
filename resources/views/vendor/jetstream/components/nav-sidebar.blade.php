@@ -39,8 +39,8 @@
                 <span class="mx-3">Settings</span>
             </a>
 
-            <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
-               href="/#">
+            <a class="flex items-center mt-4 py-2 px-6 {{$url == "Community" ? "bg-gray-700 text-gray-100": "text-gray-500 hover:bg-gray-700 hover:text-gray-100"}} hover:bg-opacity-25"
+               href="/explore">
                 <i class="fas fa-user-friends"></i>
                 <span class="mx-3">Community</span>
             </a>

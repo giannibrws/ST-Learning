@@ -32,20 +32,31 @@
                                placeholder="Search">
                     </div>
                     {{--End Search box: --}}
+
+                    <div class="cr-header">
+                        <h2>
+                            <p class="font-bold">Your personal classrooms:</p>
+                        </h2>
+                    </div>
+
+
                 </header>
                 {{--End header:--}}
 
                 <main class="overflow-x-hidden overflow-y-auto bg-gray-200">
                     <div class="container py-8 mx-auto">
-                        <h3 class="text-gray-700 text-3xl font-bold font-medium text-center">Dashboard</h3>
+
                             <div class="st-container" id="dynamic_cr_results">
 
                                 @foreach($classrooms as $classroom)
                                     <x-jet-info-card>
+                                        <x-slot name="card_type">{{'st-card--classroom'}}</x-slot>
                                         <x-slot name="url">{{'classrooms'}}</x-slot>
                                         <x-slot name="id">{{$classroom->id}}</x-slot>
                                         <x-slot name="title">{{$classroom->name}}</x-slot>
                                         <x-slot name="description">{{$classroom->bio}}</x-slot>
+                                        <x-slot name="createdBy">{{$classroom->created_by}}</x-slot>
+                                        <x-slot name="memberCount">{{$classroom->member_count}}</x-slot>
                                     </x-jet-info-card>
                                 @endforeach
 

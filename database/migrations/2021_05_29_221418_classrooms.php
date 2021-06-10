@@ -17,6 +17,8 @@ class Classrooms extends Migration
             $table->id();
             $table->string('name');
             $table->text('bio')->nullable();
+            $table->string('created_by')->nullable();
+            $table->integer('member_count')->default(0);
             // add foreign key relation:
             $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade');
             // Define publicity of classroom:

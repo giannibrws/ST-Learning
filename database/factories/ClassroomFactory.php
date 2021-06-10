@@ -24,6 +24,7 @@ class ClassroomFactory extends Factory
         return [
             'name' => $this->generateClassName(),
             'bio' => $this->faker->paragraph(rand(0,50)),
+            'created_by' => 'Gianni',
             'fk_user_id' => 1,
         ];
     }

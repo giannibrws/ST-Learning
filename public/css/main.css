@@ -39503,12 +39503,22 @@ main {
   min-height: 100vh !important;
 }
 
+.homepage {
+  margin-top: 250px;
+}
+
 .header {
   background-color: transparent;
 }
 
 .header__image {
   transform: rotate(180deg);
+  position: absolute;
+  top: 0;
+}
+
+.header__image--absolute {
+  position: absolute;
 }
 
 .footer__image {
@@ -39682,6 +39692,13 @@ main {
   height: auto;
 }
 
+.cr-chat__content__row__admin-title {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+  justify-content: center;
+}
+
 .cr-chat__content__row__title {
   display: flex;
   flex-direction: column;
@@ -39746,9 +39763,14 @@ main {
   padding: 0.5rem 1rem 1rem 1rem;
 }
 
+.st-card--classroom {
+  height: 100%;
+  max-height: 350px;
+}
+
 .st-card--note {
   display: grid;
-  min-height: 200px;
+  height: 100%;
   max-height: 410px;
   overflow-y: hidden;
   padding: 1rem;

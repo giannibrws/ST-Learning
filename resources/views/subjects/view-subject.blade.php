@@ -52,11 +52,11 @@
                                 {{csrf_field()}}
                                 @method('PUT')
                                 <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="cr_bio">{{$subject->bio}}</textarea>
-                                <div class="st-item-flex space-between">
-                                    <x-jet-button type="submit">Update bio</x-jet-button>
-                                    @if(isset($adminName))
-                                        <span class="font-bold mt-2 st-admin-title">{{$adminName}}</span>
-                                    @endif
+                                <div class="">
+                                    <x-jet-button type="submit" class="">Update bio</x-jet-button>
+                                    {{--@if(isset($adminName))--}}
+                                        {{--<span class="ml-3 font-bold">{{$adminName}}</span>--}}
+                                    {{--@endif--}}
                                 </div>
                             </form>
 

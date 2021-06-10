@@ -6,14 +6,20 @@
             @livewire('user-messages', ['classroom_id' => $classroom_id])
         @else
             <div class="">
-                @php ($k = 0) @endphp
                 <p>Registered users:</p>
+                @foreach($admins as $admin)
+                    <div class="cr-chat__content__row">
+                        <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$admin->id]}}" alt="">
+                        <p class="cr-chat__content__row__admin-title">{{$admin->name}} -  <b class="ml-1"> (Admin)</b> </p>
+
+                    </div>
+                @endforeach
+
                 @foreach($linked_users as $user)
                     <div class="cr-chat__content__row">
                         <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$user->id]}}" alt="">
                         <p class="cr-chat__content__row__title">{{$user->name}}</p>
                     </div>
-                    @php $k++ @endphp
                 @endforeach
             </div>
         @endif
