@@ -33,6 +33,12 @@ class ClassroomController extends Controller
 
     public function index()
     {
+
+        $c = new Classroom();
+        $c->generateToken();
+
+
+
         // search for registered classrooms:
         $linkedRooms = ClassroomUser::where('user_id', auth()->id())->get()->pluck("classroom_id");
         // fetch personal created classrooms:
@@ -65,6 +71,7 @@ class ClassroomController extends Controller
         // Validate input data:
         $this->validateInput($request);
         $classroom = new Classroom();
+
         $classroom->name = request('cr-name');
         $classroom->created_by = Auth::user()->name;
         $classroom->member_count = 1;
@@ -132,13 +139,21 @@ class ClassroomController extends Controller
      */
     public function update($classroom_id, Request $request)
     {
+
+
         $updateValues = $request->all();
         unset($updateValues['_token'], $updateValues['_method']);
         $this->validateInput($request);
-        $classroom_bio = $updateValues['cr_bio'];
+
+        $values = [
+            'bio' => $updateValues['cr_bio'],
+            'name' => $updateValues['cr_name'],
+            'is_public' => $updateValues['cr_publicity'],
+            'invitation_link' => $updateValues['invitation_link']
+        ];
 
         Classroom::where('id', $classroom_id)
-            ->update(['bio' => $classroom_bio]);
+            ->update($values);
 
         return redirect()->action([ClassroomController::class, 'show'], $classroom_id);
     }

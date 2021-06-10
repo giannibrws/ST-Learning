@@ -39726,6 +39726,22 @@ main {
   overflow-y: auto;
 }
 
+.cr-settings {
+  width: 100%;
+  padding: 1rem 4rem 0rem 0.5rem;
+}
+
+.cr-settings__row {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.cr-settings__inline {
+  display: flex;
+  flex-direction: row;
+}
+
 .cr-extensions__title {
   margin-bottom: 1rem;
 }

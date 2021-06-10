@@ -48,8 +48,12 @@
                             {{csrf_field()}}
                              @method('PUT')
                             <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="cr_bio">{{$classroom->bio}}</textarea>
-                            <x-jet-button type="button"><i class="fas fa-cog"></i> </x-jet-button>
-                            <x-jet-button type="submit">Update bio</x-jet-button>
+
+
+                            {{--// Classroom settings:--}}
+                            @livewire('classroom-settings', ['classroom' => $classroom])
+                            {{--// Classroom settings:--}}
+
                         </form>
                     </div>
 

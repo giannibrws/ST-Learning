@@ -247,6 +247,26 @@ margin-top:250px;
   }
 }
 
+.cr-settings{
+  width:100%;
+  padding: 1rem 4rem 0rem 0.5rem;
+
+  &__row{
+    padding:0.5rem;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__inline{
+    display: flex;
+    flex-direction: row;
+  }
+
+
+
+
+}
+
 .cr-extensions{
 
   &__title{
