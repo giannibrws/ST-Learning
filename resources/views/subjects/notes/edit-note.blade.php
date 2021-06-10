@@ -32,7 +32,7 @@
             </header>
 
             <div class="ck-textarea">
-                <form method="POST" action="{{ route('notes.update', [$classroom_id, $note->fk_subject_id , $note->id])}}">
+                <form method="POST" action="{{ route('notes.update', ['classroom_id' => $classroom_id, $note->fk_subject_id , $note->id])}}">
                     {{--Post methods are unsupported for this route, therefore use PUT--}}
                     {{csrf_field()}}
                     @method('PUT')
@@ -52,7 +52,7 @@
                         heading: {
                             options: [
                                 { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1', name: 'title'},
                                 { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
                                 { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
                             ]

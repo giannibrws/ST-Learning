@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Notes;
 use App\Models\Classroom;
 use App\Http\Controllers\SubjectsController;
+use App\Http\Traits\InputValidator;
 use App\Models\Subjects;
 use Illuminate\Http\Request;
 
 class NotesController extends Controller
 {
+
+    use InputValidator;
 
     protected $table = 'notes';
     protected $prefix = 'subjects.notes.';
@@ -77,18 +80,28 @@ class NotesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update($classroom_id, Request $request)
     {
+        $this->validateInput($request);
         $updateValues = $request->all();
         unset($updateValues['_token'], $updateValues['_method']);
+        $updateValues['name'] = 'Title';
 
-//        $this->validateInput($request);
+        // if note contains headers:
+        if(strpos($updateValues['content'] , '<h1>') !== false){
+            // Find the first <h1> occurrence and bind its value to note->title
+            preg_match('/<h1>(.*?)<\/h1>/s', $updateValues['content'], $title);
+            // https://www.php.net/manual/en/function.preg-match.php
+            $updateValues['name'] = $title[1];
+            $updateValues['content'] = substr($updateValues['content'], strlen($title[0]));
+        }
+
         Notes::where('id', $request->id)
             ->update($updateValues);
 
         // @todo: Fetch classroom id from Query
 
-        return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => 1, 'subject' => $request->fk_subject_id]);
+        return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => $classroom_id, 'subject' => $request->fk_subject_id]);
     }
 
     /**
@@ -100,5 +113,14 @@ class NotesController extends Controller
     public function destroy(Notes $notes)
     {
         //
+    }
+
+    protected function get_string_between($string, $start, $end){
+        $string = ' ' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        return substr($string, $ini, $len);
     }
 }

@@ -138,7 +138,7 @@ class SubjectsController extends Controller
 
     public function getSubjectNotes($subject_id)
     {
-        return DB::table('notes')->where('fk_subject_id', $subject_id)->paginate(10);
+        return DB::table('notes')->where('fk_subject_id', $subject_id)->paginate(20);
     }
 
     /* Clears html from preview: */

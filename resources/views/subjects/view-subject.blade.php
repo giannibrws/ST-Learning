@@ -78,6 +78,8 @@
                         @endforeach
 
 
+                        {{--Limit to max 20 notes per classroom:--}}
+                        @if((count($subject_notes)) < 20)
                             <form id="addNote" method="POST" action="{{ route('notes.store', ['classroom_id' => $subject->fk_classroom_id, 'subject_id' => $subject->id])}}">
                                 @csrf
                                 <div class="createNote st-card cursor-pointer st-card--note shadow-sm hover:opacity-50">
@@ -88,8 +90,7 @@
                                 </div>
                                 <div class="p-1 bg-indigo-600 bg-opacity-75"></div>
                             </form>
-
-
+                        @endif
 
                     </div>
                 </div>
