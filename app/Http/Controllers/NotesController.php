@@ -57,19 +57,6 @@ class NotesController extends Controller
             ['classroom_id' => $classroom_id, 'subject_id' => $subject_id, 'note' => $note]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Notes  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function show($classroom_id, $subject_id, Notes $note)
-    {
-
-        $parent_page_name = Subjects::where('id', $note->fk_subject_id)->first()->name;
-        $is_child_page = true;
-        return view($this->prefix . 'view-note', compact('note', 'parent_page_name', 'is_child_page'));
-    }
 
     /**
      * Show the form for editing the specified resource.
