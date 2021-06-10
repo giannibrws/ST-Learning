@@ -3,6 +3,10 @@
 
 <p align="center">Welcome to ST-learning!</p>
 
+### Requirements:
+- Composer: https://getcomposer.org/
+- Any database system: MySQL, Postgres, SQLite, or SQL Server.
+
 ### Getting started:
 
 To start using this project please configure your database by setting up your .env file using the .env.example. 
