@@ -77,6 +77,20 @@
                             </x-jet-card-note>
                         @endforeach
 
+
+                            <form id="addNote" method="POST" action="{{ route('notes.store', ['classroom_id' => $subject->fk_classroom_id, 'subject_id' => $subject->id])}}">
+                                @csrf
+                                <div class="createNote st-card cursor-pointer st-card--note shadow-sm hover:opacity-50">
+                                    <div class="mx-5">
+                                    <h4 class="text-2xl font-semibold text-gray-700">{{ 'Create new..' }}</h4>
+                                    <div class="pt-8 pb-4"></div>
+                                    </div>
+                                </div>
+                                <div class="p-1 bg-indigo-600 bg-opacity-75"></div>
+                            </form>
+
+
+
                     </div>
                 </div>
 </div>

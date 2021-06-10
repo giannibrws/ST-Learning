@@ -30,7 +30,7 @@ class NotesController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -39,21 +39,22 @@ class NotesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($classroom_id, $subject_id, Request $request)
     {
 
         $note = new Notes();
 
-        $note->name = "leave_blank";
-        $note->content = request('content');
+        $note->name = "Title";
+        $note->content = '';
         // fetch user id:
         $note->fk_user_id = auth()->id();
-        $note->fk_subject_id = request('subject_id');
+        $note->fk_subject_id = $subject_id;
         // Store data:
         $note->save();
 
         // return to home index action:
-        return redirect()->action([NotesController::class, 'show'], $note);
+        return redirect()->action([NotesController::class, 'edit'],
+            ['classroom_id' => $classroom_id, 'subject_id' => $subject_id, 'note' => $note]);
     }
 
     /**
@@ -62,7 +63,7 @@ class NotesController extends Controller
      * @param  \App\Models\Notes  $note
      * @return \Illuminate\Http\Response
      */
-    public function show(Notes $note)
+    public function show($classroom_id, $subject_id, Notes $note)
     {
 
         $parent_page_name = Subjects::where('id', $note->fk_subject_id)->first()->name;

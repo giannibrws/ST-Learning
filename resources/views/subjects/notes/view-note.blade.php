@@ -32,7 +32,7 @@
             </header>
 
             <div class="ck-textarea">
-                <form method="POST" action="{{ route('notes.store')}}">
+                <form method="POST" action="">
                     @csrf
                     <input type="hidden" name="id" value="{{$note->id}}">
                     <input type="hidden" name="subject_id" value="{{$note->fk_subject_id}}">
