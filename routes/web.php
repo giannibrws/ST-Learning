@@ -73,7 +73,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('subjects', SubjectsController::class);
 
         Route::group(['middelware' => 'subjects', 'prefix' => 'subjects/{subject_id}'], function() {
-            Route::resource('notes', NotesController::class);
+
+            Route::resource('notes', NotesController::class)->except('show');
+
+            Route::group(['middelware' => 'notes', 'prefix' => 'notes/{note_id}'], function($note_id) {
+                Route::get('/delete', [NotesController::class, 'destroy'], ['id' => $note_id]);
+            });
         });
     });
 

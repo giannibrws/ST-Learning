@@ -39884,6 +39884,15 @@ a.st-hover:hover {
   padding: 0 !important;
 }
 
+.note-delete {
+  padding-left: 0.5rem;
+  font-size: 24px;
+}
+
+.st-danger {
+  background-color: #ff272a;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;

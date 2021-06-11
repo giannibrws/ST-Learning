@@ -107,20 +107,13 @@ class NotesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Notes  $notes
+     * @param  \App\Models\Notes  $note
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notes $notes)
+    public function destroy($classroom_id, $subject_id, $note_id)
     {
-        //
+        Notes::where('id',$note_id)->delete();
+        return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => $classroom_id, 'subject' => $subject_id]);
     }
 
-    protected function get_string_between($string, $start, $end){
-        $string = ' ' . $string;
-        $ini = strpos($string, $start);
-        if ($ini == 0) return '';
-        $ini += strlen($start);
-        $len = strpos($string, $end, $ini) - $ini;
-        return substr($string, $ini, $len);
-    }
 }
