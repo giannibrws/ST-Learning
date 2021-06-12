@@ -39515,10 +39515,31 @@ main {
   transform: rotate(180deg);
   position: absolute;
   top: 0;
+  margin-bottom: 250px;
 }
 
 .header__image--absolute {
   position: absolute;
+}
+
+.auth-card {
+  padding-top: 200px;
+}
+
+@media (max-width: 1475px) {
+  .auth-card {
+    padding-top: 100px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .auth-card {
+    padding-top: 50px;
+  }
+}
+
+.st-sidebar {
+  margin-top: -93px;
 }
 
 .footer__image {
@@ -39605,7 +39626,8 @@ main {
   font-weight: normal;
 }
 
-.st-inputGroup input, .st-inputGroup label {
+.st-inputGroup input,
+.st-inputGroup label {
   transition: 0.4s all ease;
 }
 
@@ -39623,7 +39645,8 @@ main {
   border: none;
 }
 
-.st-inputGroup input:focus, .st-inputGroup input:not(:placeholder-shown) {
+.st-inputGroup input:focus,
+.st-inputGroup input:not(:placeholder-shown) {
   outline: none;
   border: none;
 }
@@ -39640,7 +39663,8 @@ main {
   color: #000;
 }
 
-.st-inputGroup input:focus ~ label, .st-inputGroup input:not(:placeholder-shown) ~ label {
+.st-inputGroup input:focus ~ label,
+.st-inputGroup input:not(:placeholder-shown) ~ label {
   transform: translate(10px, -2rem) scale(0.9);
   padding: 0;
   color: #000;
@@ -39659,8 +39683,6 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2em 2em;
-  /* Grid-template-rows starts from the first row downward: */
-  /* You can add as many template rows as you like: */
   grid-auto-rows: minmax(100px, auto);
 }
 
@@ -39726,6 +39748,19 @@ main {
   overflow-y: auto;
 }
 
+.cr-subjects__holder {
+  flex-direction: column;
+}
+
+.cr-subjects__item {
+  padding-left: 0.75rem;
+}
+
+.cr-subjects__item::before {
+  content: "-";
+  width: 0.5rem;
+}
+
 .cr-settings {
   width: 100%;
   padding: 1rem 4rem 0rem 0.5rem;
@@ -39773,6 +39808,26 @@ main {
   border-radius: 0.375rem;
 }
 
+.st-card__content {
+  width: 100%;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.st-card__content--note {
+  flex-direction: column;
+}
+
+.st-card__icon {
+  height: 72px;
+  width: 72px;
+  flex-shrink: 0;
+}
+
+.st-card__footer {
+  width: 100%;
+}
+
 .st-card--headers {
   font-weight: bold;
   text-align: center;
@@ -39780,6 +39835,9 @@ main {
 }
 
 .st-card--classroom {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   height: 100%;
   max-height: 350px;
 }
@@ -39790,6 +39848,11 @@ main {
   max-height: 410px;
   overflow-y: hidden;
   padding: 1rem;
+}
+
+.st-card input,
+.st-card textarea {
+  border-bottom: solid 1px #4551f3;
 }
 
 .st-error {
@@ -39869,9 +39932,11 @@ a.st-hover:hover {
 
 .card-editable textarea {
   min-height: 150px;
-  margin: 1rem 1rem 0.2rem 1rem;
+  margin: 1rem 0 1rem 0;
   width: 100%;
-  border: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   overflow: auto;
   outline: none;
 }

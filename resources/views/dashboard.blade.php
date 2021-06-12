@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-        <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
+        <div x-data="{ sidebarOpen: false }" class="flex bg-gray-200">
         <x-jet-nav-sidebar>
             <x-slot name="url">{{"Dashboard"}}</x-slot>
         </x-jet-nav-sidebar>

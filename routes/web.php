@@ -57,9 +57,9 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('/classrooms/search', [ClassroomController::class, 'searchClassrooms']);
     route::get('/explore', [CommunityController::class, 'index']);
 
-    Route::get('/classrooms/invite/{token}', function ($token) {
-
-    });
+    // @info: check token link:
+    Route::get('/classrooms/invite/{token}', [ClassroomController::class, 'addToClassroom']);
+   
 
     Route::resource('classrooms', ClassroomController::class);
 

@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
+    <div x-data="{ sidebarOpen: false }" class="flex bg-gray-200">
         <x-jet-nav-sidebar>
             <x-slot name="url">{{"Classrooms"}}</x-slot>
         </x-jet-nav-sidebar>
@@ -25,8 +25,8 @@
                 </div>
             </header>
 
-            <div class="container py-8 mx-auto">
-                <div class="st-grid-container">
+          
+            <div class="st-grid-container py-8 px-8 mx-auto">
 
                     {{--<div class="st-grid-row--span-2" style="height:40px; text-align: center; background: white;"> ttttt</div>--}}
 
@@ -67,10 +67,10 @@
                  <div class="cr-subjects st-scroll-custom">
                      <div class="st-card shadow-sm">
                          <div class="mx-5">
-                             <div class="text-gray-500 pb-2">
+                             <div class="text-gray-500 pb-2 flex cr-subjects__holder">
                                  <p class="font-bold">Browse subjects:</p>
                                  @foreach($linked_subjects as $subject)
-                                     <p><a href="{{$classroom->id}}/subjects/{{$subject->id}}" class="st-hover">{{strtolower($subject->name)}}</a></p>
+                                     <a class="st-hover cr-subjects__item" href="{{$classroom->id}}/subjects/{{$subject->id}}" class="st-hover">{{strtolower($subject->name)}}</a>
                                  @endforeach
                              </div>
                          </div>
@@ -98,12 +98,26 @@
                     @livewire('connected-apps', ['classroom_id' => $classroom->id])
                 </div>
 
-            </div>
-
 </div>
 
 
 </div>
 </div>
+
+@if($popup)
+
+<script>
+        $(function() {
+            swal({
+            title: 'Welcome!',
+            text: 'Thanks for joining this classroom!',
+            icon: 'success',
+            buttons: ['']
+            });
+        });
+</script>
+
+@endif
+
 
 </x-app-layout>

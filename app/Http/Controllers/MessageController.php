@@ -48,7 +48,7 @@ class MessageController extends Controller
         $classroom = Classroom::where('id', auth()->id())->first();
 
         // return to home index action:
-        return redirect()->action([ClassroomController::class, 'show'], $classroom);
+        return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom]);
     }
 
     /**

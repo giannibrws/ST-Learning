@@ -26,7 +26,7 @@ class Classrooms extends Migration
             $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade');
             // Define publicity of classroom:
             $table->boolean('is_public')->default(1);
-            $table->string('invitation_link')->default('http://127.0.0.1:8000/classrooms/'. $this->fetchToken());
+            $table->string('invitation_link')->default('http://127.0.0.1:8000/classrooms/invite/'. $this->fetchToken());
             $table->timestamps();
         });
     }

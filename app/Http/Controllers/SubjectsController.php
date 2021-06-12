@@ -105,11 +105,13 @@ class SubjectsController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request  $request
+     * 
+     * @param  \App\Models\Classrooms $classroom_id
      * @param  \App\Models\Subjects $subject_id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $subject_id)
+    public function update($classroom_id, $subject_id, Request $request)
     {
         $updateValues = $request->all();
         unset($updateValues['_token'], $updateValues['_method']);
@@ -120,6 +122,7 @@ class SubjectsController extends Controller
             ->update(['bio' => $classroom_bio]);
 
         $classroom_id = Subjects::where('id', $subject_id)->first()->fk_classroom_id;
+
         $subject = Subjects::where('id', $subject_id)->first();
 
         return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => $classroom_id, 'subject' => $subject]);

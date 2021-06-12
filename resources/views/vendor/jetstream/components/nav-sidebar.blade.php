@@ -6,31 +6,31 @@
 
         {{-- nav header logo:--}}
             <div class="flex">
-                <div class="flex w-32 ml-2 p-4">
+                <div class="flex w-32 ml-4 p-4 mt-8">
                     <img src="{{asset('./img/st-logo-white.svg')}}" alt="">
                     {{--<x-jet-application-mark></x-jet-application-mark>--}}
                 </div>
             </div>
         {{--header logo:--}}
 
-        <div class="text-white text-2xl mx-2 font-semibold">Dashboard</div>
+        {{-- <div class="text-white text-2xl mx-2 font-semibold">Dashboard</div> --}}
 
         <nav class="mt-10">
 
             <a class="flex items-center mt-4 py-2 px-6 {{$url == "Dashboard" ? "bg-gray-700 text-gray-100": "text-gray-500 hover:bg-gray-700 hover:text-gray-100"}} hover:bg-opacity-25" href="/">
                 <i class="fas fa-home"></i>
-                <span class="mx-3">Dashboard:</span>
+                <span class="mx-3">Dashboard</span>
             </a>
 
             <a class="flex items-center mt-4 py-2 px-6 text-gray:500 {{$url == "Classrooms" ? "bg-gray-700 text-gray-100": "text-gray-500 hover:bg-gray-700 hover:text-gray-100"}} hover:bg-opacity-25 " href="/classrooms">
                 <i class="fas fa-users"></i>
-                <span class="mx-3">Classrooms:</span>
+                <span class="mx-3">Classrooms</span>
             </a>
 
             <a class="flex items-center mt-4 py-2 px-6 {{$url == "History" ? "bg-gray-700 text-gray-100": "text-gray-500 hover:bg-gray-700 hover:text-gray-100"}} hover:bg-opacity-25"
                href="/history-overview">
                 <i class="fas fa-history"></i>
-                <span class="mx-3">History</span>
+                <span class="mx-3">User history</span>
             </a>
 
             <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"

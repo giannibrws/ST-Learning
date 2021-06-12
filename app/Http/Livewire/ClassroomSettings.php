@@ -37,7 +37,7 @@ class ClassroomSettings extends Component
 
     public function updateLink(){
         $c = new Classroom();
-        $token = $c->updateToken();
+        $token = $c->updateToken($this->classroom->id);
         $this->invitation_link = 'http://127.0.0.1:8000/classrooms/invite/' . $token;
     }
 

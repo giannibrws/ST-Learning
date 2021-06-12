@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use App\Models\Subjects;
 use App\Models\Messages;
 use App\Models\User;
+use App\Models\UserHistory;
 use App\Models\ClassroomUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,15 +38,12 @@ class ClassroomController extends Controller
         $c = new Classroom();
         $c->generateToken();
 
-
-
         // search for registered classrooms:
         $linkedRooms = ClassroomUser::where('user_id', auth()->id())->get()->pluck("classroom_id");
         // fetch personal created classrooms:
         $classrooms = DB::table('classrooms')->where('fk_user_id','=', auth()->id())
             ->orWhereIn('id', $linkedRooms)
             ->paginate(8);
-
 
         return view($this->prefix . '.classroom-overview', compact('classrooms'));
     }
@@ -84,7 +82,7 @@ class ClassroomController extends Controller
         $this->linkClassroom($userID, $referenced_room->id);
 
         // return to home index action:
-        return redirect()->action([ClassroomController::class, 'show'], $classroom);
+        return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom]);
     }
 
     /**
@@ -95,11 +93,20 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
+
+        $popup = false;
+ 
+
         // Add visit to history:
         $currentUser = auth()->id();
         $page_visted = $classroom->name;
         $timestamp = Carbon::now()->format('Y-m-d-H');
         $url = '/classrooms/' . $classroom->id;
+
+        // check if user has any registered history:
+        if($this->notifyUser($currentUser, $url)){
+            $popup = true; 
+        }
 
         $userController = new UserController();
         $userController->registerVisit($currentUser, $page_visted, $url, $timestamp);
@@ -116,7 +123,7 @@ class ClassroomController extends Controller
         }
 
         $adminName = User::where('id', $classroom->fk_user_id)->first()->name;
-        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'linked_subjects', 'linked_users', 'userProfilePhotos'));
+        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'linked_subjects', 'linked_users', 'userProfilePhotos', 'popup'));
     }
 
 
@@ -140,10 +147,14 @@ class ClassroomController extends Controller
     public function update($classroom_id, Request $request)
     {
 
-
+        $values = [];
         $updateValues = $request->all();
         unset($updateValues['_token'], $updateValues['_method']);
         $this->validateInput($request);
+
+        if(!isset($updateValues['cr_name'])){
+            $updateValues['cr_name'] = 'testet';
+        }
 
         $values = [
             'bio' => $updateValues['cr_bio'],
@@ -155,7 +166,7 @@ class ClassroomController extends Controller
         Classroom::where('id', $classroom_id)
             ->update($values);
 
-        return redirect()->action([ClassroomController::class, 'show'], $classroom_id);
+        return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
     }
 
     /**
@@ -200,6 +211,17 @@ class ClassroomController extends Controller
     }
 
 
+    public function notifyUser($user_id, $url){
+
+        $firstVisit = !filled(UserHistory::where([
+            ['page_url', '=', $url],
+            ['fk_user_id', '=', $user_id]
+            ])->first());
+
+        return $firstVisit;
+    }
+
+
       /**
        * Links users to their respective classrooms.
        **/
@@ -207,18 +229,66 @@ class ClassroomController extends Controller
     protected function linkClassroom($user_id, $classroom_id){
         // Link user to classroom:
         $linkClassroom = new ClassroomUser();
-        $linkClassroom->user_id = $user_id;
-        $linkClassroom->classroom_id = $classroom_id;
+  
+        $classroomExists = ClassroomUser::where('classroom_id', $classroom_id)->get()->count();
+        $is_registered = ClassroomUser::where([
+            ['classroom_id', '=', $classroom_id],
+            ['user_id', '=', $user_id]
+            ])->first();
 
-        $is_registered = ClassroomUser::where('id', $classroom_id)->get()->count();
-
-        if(!$is_registered){
+        // if there are no members, give creator admin rights:
+        if(!$classroomExists){
             $linkClassroom->is_admin = true;
         }
-        
-        // Store data:
-        $linkClassroom->save();
+
+        // if query returns null: 
+        if(!filled($is_registered)){
+
+            $linkClassroom->user_id = $user_id;
+            $linkClassroom->classroom_id = $classroom_id;
+            
+            // Store data:
+            $linkClassroom->save();
+        }
     }
+
+
+    /**
+     * Links users to their respective classrooms.
+     **/
+    public function addToClassroom($token){
+
+        $linkedRoom = $this->verifyInviteToken($token);
+
+        // if verified:
+        if(is_numeric($linkedRoom)){
+            // if user is logged in:
+            if(Auth::check()){
+                $classroom_id = $linkedRoom;
+                $currentUser = auth()->id();
+
+                $this->linkClassroom($currentUser, $classroom_id);
+                return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
+            }
+        }
+    }
+
+
+    public function verifyInviteToken($token){
+
+        $searchForToken = Classroom::where('invitation_link', 'like', '%' . $token . '%')->first();
+
+          // if token is valid:
+            if(filled($searchForToken)){
+                return $searchForToken->id;
+            }
+
+        return false; 
+    }
+
+
+
+
 
 
     public function searchClassrooms(Request $request)
@@ -237,7 +307,7 @@ class ClassroomController extends Controller
                 if(count($classrooms)>0){
                     foreach($classrooms as $card){
                         $output .= '<div class="w-full px-6 sm:w-1/2 xl:w-1/3 mb-8">
-                            <a href="'.route("classrooms.show", $card->id).'">
+                            <a href="'.route("classrooms.show", ['classroom' => $card->id]).'">
                             <div class="flex items-center px-5 py-12 shadow-sm rounded-md bg-white hover:opacity-50">
                                 <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
                                     <svg class="h-12 w-12 text-white" viewBox="0 0 28 30" fill="none"
