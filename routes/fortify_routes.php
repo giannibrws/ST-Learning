@@ -21,6 +21,11 @@ use Laravel\Fortify\Http\Controllers\VerifyEmailController;
 Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
     $enableViews = config('fortify.views', true);
 
+    // default route:
+    Route::get('/', function () {
+        return view('home');
+    });
+
     // Authentication...
     if ($enableViews) {
         Route::get('/login', [AuthenticatedSessionController::class, 'create'])

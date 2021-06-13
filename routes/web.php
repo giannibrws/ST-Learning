@@ -29,12 +29,17 @@ use App\Models\Classroom;
 //    return view('home');
 //});
 
+
+
+// Default home route:
+Route::get('/', function () {
+    return view('home');
+});
+
 // Default home route:
 Route::get('/home', function () {
     return view('home');
 });
-
-
 
 
 // if verified get dashboard url:
@@ -58,7 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('/explore', [CommunityController::class, 'index']);
 
     // @info: check token link:
-    Route::get('/classrooms/invite/{token}', [ClassroomController::class, 'addToClassroom']);
+    Route::get('/classrooms/invite/{token}', [ClassroomController::class, 'linkToClassroom']);
    
 
     Route::resource('classrooms', ClassroomController::class);

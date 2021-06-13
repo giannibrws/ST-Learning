@@ -79,7 +79,7 @@ class ClassroomController extends Controller
         // Store data:
         $classroom->save();
         $referenced_room = DB::table('classrooms')->latest()->first();
-        $this->linkClassroom($userID, $referenced_room->id);
+        $this->addToClassroom($userID, $referenced_room->id);
 
         // return to home index action:
         return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom]);
@@ -206,7 +206,6 @@ class ClassroomController extends Controller
         $linkedIDs = ClassroomUser::where('classroom_id', $cr_id)->get();
         // Fetches the ids from the dataset:
         $plucked = $linkedIDs->pluck('user_id')->all();
-
         return User::whereIn('id', $plucked)->get();
     }
 
@@ -223,10 +222,10 @@ class ClassroomController extends Controller
 
 
       /**
-       * Links users to their respective classrooms.
+       * Add users to the respective classroom.
        **/
 
-    protected function linkClassroom($user_id, $classroom_id){
+    protected function addToClassroom($user_id, $classroom_id){
         // Link user to classroom:
         $linkClassroom = new ClassroomUser();
   
@@ -239,14 +238,14 @@ class ClassroomController extends Controller
         // if there are no members, give creator admin rights:
         if(!$classroomExists){
             $linkClassroom->is_admin = true;
+            $linkClassroom->role = 'admin';
         }
 
         // if query returns null: 
         if(!filled($is_registered)){
-
             $linkClassroom->user_id = $user_id;
             $linkClassroom->classroom_id = $classroom_id;
-            
+            $linkClassroom->role = 'user';
             // Store data:
             $linkClassroom->save();
         }
@@ -256,10 +255,9 @@ class ClassroomController extends Controller
     /**
      * Links users to their respective classrooms.
      **/
-    public function addToClassroom($token){
+    public function linkToClassroom($token){
 
         $linkedRoom = $this->verifyInviteToken($token);
-
         // if verified:
         if(is_numeric($linkedRoom)){
             // if user is logged in:
@@ -267,7 +265,7 @@ class ClassroomController extends Controller
                 $classroom_id = $linkedRoom;
                 $currentUser = auth()->id();
 
-                $this->linkClassroom($currentUser, $classroom_id);
+                $this->addToClassroom($currentUser, $classroom_id);
                 return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
             }
         }

@@ -17,6 +17,7 @@ class ClassroomUsers extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('classroom_id')->constrained('classrooms')->onDelete('cascade');
+            $table->string('role')->default('spectator');
             $table->boolean('is_admin')->default(0);
             $table->timestamps();
         });
