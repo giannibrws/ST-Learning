@@ -67,7 +67,7 @@
                                 <div class="st-input">
                                     <div class="st-inputGroup">
                                         <input type="text" id="name" name="cr-name" class="no-outline" placeholder="My classroom.." />
-                                        <span id="st-create-classroom">
+                                        <span class="st-add-input">
                                                                     <i class="fas fa-times"></i>
                                                                   </span>
                                         <label for="name">Classroom name:</label>

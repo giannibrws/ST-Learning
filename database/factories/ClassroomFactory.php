@@ -24,17 +24,19 @@ class ClassroomFactory extends Factory
         return [
             'name' => $this->generateClassName(),
             'bio' => $this->faker->paragraph(rand(0,50)),
-            'created_by' => 'Gianni',
+            'member_count' => rand(1,10),
+            'created_by' => $this->randomName(),
             'fk_user_id' => 1,
         ];
     }
 
     protected function generateClassName(){
-
-        $names = ["Geschiedenis", "Biologie", "Wiskunde", "Scheikunde", "Techniek .1", "Koken", "Schilderen"];
-
+        $names = ["Photoshop", "Webhosting", "Adobe After effects", "Wiskunde", "PHP introductie", "Javascript 2.", "Javascript 1.", "Koken", "Programmeren arduino"];
         return $names[array_rand($names, 1)];
     }
 
-
+    protected function randomName(){
+        $names = ["Willem", "Sarah", "Thomas", "Jason", "Philip", "Lenny", "Wendy", "John Doe"];
+        return $names[array_rand($names, 1)];
+    }
 }

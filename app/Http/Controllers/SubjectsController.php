@@ -44,7 +44,7 @@ class SubjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($classroom_id, Request $request)
     {
 
         // Validate input data:
@@ -54,7 +54,7 @@ class SubjectsController extends Controller
         $subject->name = request('sub_name');
         // fetch user id:
         $subject->fk_user_id = auth()->id();
-        $subject->fk_classroom_id = request('cr_id');
+        $subject->fk_classroom_id = $classroom_id;
         // Store data:
         $subject->save();
 

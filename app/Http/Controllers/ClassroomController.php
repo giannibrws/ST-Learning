@@ -35,9 +35,6 @@ class ClassroomController extends Controller
     public function index()
     {
 
-        $c = new Classroom();
-        $c->generateToken();
-
         // search for registered classrooms:
         $linkedRooms = ClassroomUser::where('user_id', auth()->id())->get()->pluck("classroom_id");
         // fetch personal created classrooms:
@@ -50,6 +47,7 @@ class ClassroomController extends Controller
 
 
     public function getCurrentClassroom($classroom_id){
+//        Classroom::find($id);
        return $classrooms = DB::table('classrooms')->where('id','=', $classroom_id)->first();
     }
 
@@ -82,10 +80,11 @@ class ClassroomController extends Controller
 
         $classroom->name = request('cr-name');
         $classroom->created_by = Auth::user()->name;
-        $classroom->member_count = 1;
         // fetch user id:
         $userID = auth()->id();
         $classroom->fk_user_id = $userID;
+        // generate invitation link
+        $classroom->invitation_link = $classroom->generateInvitationURL($classroom->id);
         // Store data:
         $classroom->save();
         $referenced_room = DB::table('classrooms')->latest()->first();
@@ -104,16 +103,18 @@ class ClassroomController extends Controller
     public function show(Classroom $classroom)
     {
 
-        $popup = false;
- 
+        // Deny visits 
+
+
 
         // Add visit to history:
         $currentUser = auth()->id();
         $page_visted = $classroom->name;
         $timestamp = Carbon::now()->format('Y-m-d-H');
         $url = '/classrooms/' . $classroom->id;
+        $popup = false;
 
-        // check if user has any registered history:
+        // check if user has any registered history on the classroom:
         if($this->notifyUser($currentUser, $url)){
             $popup = true; 
         }
@@ -156,25 +157,33 @@ class ClassroomController extends Controller
      */
     public function update($classroom_id, Request $request)
     {
+        $updateValues = [];
 
-        $values = [];
-        $updateValues = $request->all();
-        unset($updateValues['_token'], $updateValues['_method']);
         $this->validateInput($request);
+        $postValues = $request->all();
 
-        if(!isset($updateValues['cr_name'])){
-            $updateValues['cr_name'] = 'testet';
+
+        // remove unnecessary elements:
+        unset($postValues['_token'], $postValues['_method']);
+
+        // order is based on input location:
+        $keys = ["cr_bio", "cr_name", "cr_publicity", "invitation_link"];
+        $tableNames = ["bio", "name", "is_public", "invitation_link"];
+
+
+
+        // fill the update array based on given update values:
+        foreach ($keys as $idx => $key){
+
+            // allow field to update if key is posted but value is empty:
+            // else check if field is set then add to update:
+            if(array_key_exists($key, $postValues) || isset($postValues[$key])){
+                $updateValues[$tableNames[$idx]] = $postValues[$key];
+            }
         }
 
-        $values = [
-            'bio' => $updateValues['cr_bio'],
-            'name' => $updateValues['cr_name'],
-            'is_public' => $updateValues['cr_publicity'],
-            'invitation_link' => $updateValues['invitation_link']
-        ];
-
         Classroom::where('id', $classroom_id)
-            ->update($values);
+            ->update($updateValues);
 
         return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
     }
@@ -219,7 +228,9 @@ class ClassroomController extends Controller
         return User::whereIn('id', $plucked)->get();
     }
 
-
+    /**
+     * @function: Returns true if user makes his first classroom visit:
+     **/
     public function notifyUser($user_id, $url){
 
         $firstVisit = !filled(UserHistory::where([
@@ -232,9 +243,8 @@ class ClassroomController extends Controller
 
 
       /**
-       * Add users to the respective classroom.
+       * @function: Add given users to their respective classroom.
        **/
-
     protected function addToClassroom($user_id, $classroom_id){
         // Link user to classroom:
         $linkClassroom = new ClassroomUser();
@@ -258,12 +268,21 @@ class ClassroomController extends Controller
             $linkClassroom->role = 'user';
             // Store data:
             $linkClassroom->save();
+
+            // updateClassroomCount
+            $this->updateMemberCount($classroom_id);
         }
-
-
-
     }
 
+    /**
+     * @param: referenced Classroom id;
+     * Update member count for classrooms
+     **/
+    public function updateMemberCount($classroom_id){
+        $memberCount = ClassroomUser::where('classroom_id', '=', $classroom_id)->count();
+        Classroom::where('id', $classroom_id)
+            ->update(['member_count' => $memberCount]);
+    }
 
     /**
      * Links users to their respective classrooms.
@@ -286,20 +305,13 @@ class ClassroomController extends Controller
 
 
     public function verifyInviteToken($token){
-
         $searchForToken = Classroom::where('invitation_link', 'like', '%' . $token . '%')->first();
-
           // if token is valid:
             if(filled($searchForToken)){
                 return $searchForToken->id;
             }
-
         return false; 
     }
-
-
-
-
 
 
     public function searchClassrooms(Request $request)

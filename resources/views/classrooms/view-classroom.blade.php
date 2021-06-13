@@ -82,10 +82,9 @@
                                 @csrf
                                 <div class="st-input">
                                     <div class="st-inputGroup">
-                                        <input type="hidden" name="cr_id" value="{{$classroom->id}}" />
-                                        <input type="text" name="sub_name" class="no-outline" placeholder="Subject name.." />
-                                        <span id="st-create-classroom"><i class="fas fa-times"></i></span>
-                                        <label for="name">Create a new subject:</label>
+                                        <input type="text" id="sub_name" name="sub_name" class="no-outline" placeholder="Subject name.." />
+                                        <span class="st-add-input"><i class="fas fa-times"></i></span>
+                                        <label for="sub_name">Create a new subject:</label>
                                     </div>
                                     <x-jet-button wire:click.prevent="storeMessage" type="submit">Create subject</x-jet-button>
                                 </div>

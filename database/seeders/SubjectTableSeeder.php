@@ -15,8 +15,8 @@ class SubjectTableSeeder extends Seeder
     {
         $records = [
             [
-                'name' => 'H2 Magnetisme',
-                'bio' => 'Alles over magnetisme h2',
+                'name' => 'VScode plugins',
+                'bio' => 'Plugin support for react native',
                 'fk_classroom_id' => '1',
                 'fk_user_id' => '1'
             ]

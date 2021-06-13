@@ -19,7 +19,10 @@ class ClassroomUserSeeder extends Seeder
         for($k = 1; $k <= 10; $k++){
 
             $is_admin = 0;
-            if($k == 0){$is_admin = 1;}
+
+            if($k == 0){
+                $is_admin = 1;
+            }
 
             $val =   [
                 'user_id' => $k,
