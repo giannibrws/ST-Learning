@@ -67,16 +67,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/classrooms/invite/{token}', [ClassroomController::class, 'linkToClassroom']);
    
 
-    Route::resource('classrooms', ClassroomController::class);
+    Route::resource('classrooms', ClassroomController::class)->except('edit', 'create');
 
     // use prefix for subjects:
     Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms/{classroom_id}'], function() {
 
-        // register chat route:
-        Route::post('chat', [MessageController::class, 'store'], ['classroom_id' => '{classroom_id}']);
+
+//        Route::post('chat', [MessageController::class, 'store'], ['classroom_id' => '{classroom_id}']);
 
         // subjects needs Classroom parameter:
-        Route::resource('subjects', SubjectsController::class);
+        Route::resource('subjects', SubjectsController::class)->except('edit', 'create');
 
         Route::group(['middelware' => 'subjects', 'prefix' => 'subjects/{subject_id}'], function() {
 

@@ -52,10 +52,6 @@ class ClassroomController extends Controller
     }
 
 
-
-
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -103,13 +99,13 @@ class ClassroomController extends Controller
     public function show(Classroom $classroom)
     {
 
-        // Deny visits 
-
-
+        // Deny visits for unauthorized users:
+        if(!$this->checkPermissions($classroom->id)){
+            return redirect()->action([ClassroomController::class, 'index']);
+        }
 
         // Add visit to history:
-        $currentUser = auth()->id();
-        $page_visted = $classroom->name;
+        $page_visited = $classroom->name;
         $timestamp = Carbon::now()->format('Y-m-d-H');
         $url = '/classrooms/' . $classroom->id;
         $popup = false;
@@ -120,9 +116,8 @@ class ClassroomController extends Controller
         }
 
         $userController = new UserController();
-        $userController->registerVisit($currentUser, $page_visted, $url, $timestamp);
+        $userController->registerVisit($currentUser, $page_visited, $url, $timestamp);
         $linked_subjects = $this->getChildSubjects($classroom->id);
-        $linked_users = $this->getLinkedUsers($classroom->id);
         $userProfilePhotos = [];
 
          // fetch all data
@@ -139,15 +134,23 @@ class ClassroomController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Classroom  $classrooms
-     * @return \Illuminate\Http\Response
+     * @function: check if user has permission to the designated classroom:
      */
-    public function edit(Classroom $classrooms)
-    {
-        //
+    public function checkPermissions($classroom_id){
+
+        $linked_users = $this->getLinkedUsers($classroom_id);
+        $linkedIds = $linked_users->pluck('id')->all();
+        $currentUser = auth()->id();
+
+        // Deny visits for unauthorized users:
+        if(!in_array($currentUser, $linkedIds)){
+            // Return back to dashboard:
+            return false;
+        }
+
+        return true;
     }
+
 
     /**
      * Update the specified resource in storage.

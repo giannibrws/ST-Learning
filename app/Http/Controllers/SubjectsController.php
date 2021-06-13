@@ -70,6 +70,13 @@ class SubjectsController extends Controller
      */
     public function show($classroom_id, Subjects $subject)
     {
+        // Deny visits for unauthorized users:
+        $c = new ClassroomController();
+
+        if(!$c->checkPermissions($classroom_id)){
+            return redirect()->action([ClassroomController::class, 'index']);
+        }
+
         // general settings:
         $is_child_page = true;
         $parent_page_name = Classroom::where('id', $subject->fk_classroom_id)->first()->name;
