@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectsController;
@@ -32,14 +33,12 @@ use App\Models\Classroom;
 
 
 // Default home route:
-Route::get('/', function () {
-    return view('home');
-});
-
-// Default home route:
 Route::get('/home', function () {
     return view('home');
 });
+
+
+
 
 
 // if verified get dashboard url:
@@ -50,10 +49,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Only authenticated users may access this route...
 Route::group(['middleware' => 'auth'], function () {
 
+
+
     // if signed in:
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
     // custom urls go before resource routes:
     // Route::get('classrooms/{classroom}', [ClassroomController::class, 'test']);
@@ -89,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('history-overview', UserHistoryController::class)->only('index', 'show', 'destroy');
 });
+
 
 
 //Require custom jetstream fortify routing:

@@ -48,6 +48,16 @@ class ClassroomController extends Controller
         return view($this->prefix . '.classroom-overview', compact('classrooms'));
     }
 
+
+    public function getCurrentClassroom($classroom_id){
+       return $classrooms = DB::table('classrooms')->where('id','=', $classroom_id)->first();
+    }
+
+
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -249,6 +259,9 @@ class ClassroomController extends Controller
             // Store data:
             $linkClassroom->save();
         }
+
+
+
     }
 
 

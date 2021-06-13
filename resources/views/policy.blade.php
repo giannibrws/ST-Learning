@@ -21,7 +21,7 @@
                 <x-jet-authentication-card-logo />
             </div>
 
-            <div class="w-full mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose text-center">
+            <div class="w-full mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose max-w-5xl text-center">
                 {!! $policy !!}
             </div>
         </div>

@@ -21,7 +21,7 @@
                     </svg>
                 </button>
                 <div class="cr-header">
-                    <h2><a href="{{url()->current()}}" class="st-hover">{{$classroom->name}}</a></h2>
+                    <h2><a href="{{url()->current()}}" class="st-hover font-bold">{{$classroom->name}}</a></h2>
                 </div>
             </header>
 

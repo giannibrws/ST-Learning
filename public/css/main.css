@@ -39695,6 +39695,10 @@ main {
   display: flex;
 }
 
+.db-history {
+  max-height: 400px;
+}
+
 .cr-chat {
   align-items: center;
   text-align: center;
