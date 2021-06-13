@@ -16,8 +16,10 @@ class ClassroomTableSeeder extends Seeder
 
         $records = [
             [
-            'name' => 'Scheikunde',
-            'bio' => 'Scheikunde les voor klas 2',
+            'name' => 'React Native',
+            'bio' => 'Alles over React Native',
+            'member_count' => '10',
+            'created_by' => 'Gianni',
             'fk_user_id' => '1'
             ]
         ];

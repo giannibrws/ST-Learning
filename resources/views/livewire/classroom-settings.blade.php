@@ -24,8 +24,8 @@
                         <x-jet-label for="invitation_link" value="{{ __('Invitation link:') }}" class="mt-2 pr-2" />
                         <x-jet-input id="invitation_link" wire:model="invitation_link" name="invitation_link" required type="text" value="{{$invitation_link}}" />
                     </div>
-                    <a href="#" onclick="CopyText()" ><i class="hover:text-purple-500 pt-10 ml-3 fas fa-copy "></i></a>
-                    <a href="#" wire:click.prevent="updateLink"><i class="hover:text-purple-500 pt-10 ml-3 fas fa-sync "></i></a>
+                    <a href="#" title="Copy link" onclick="CopyText()" ><i class="hover:text-purple-500 pt-10 ml-3 fas fa-copy "></i></a>
+                    <a href="#" title="Generate link" wire:click.prevent="updateLink"><i class="hover:text-purple-500 pt-10 ml-3 fas fa-sync "></i></a>
 
                 </div>
                 <div class="cr-settings__row">

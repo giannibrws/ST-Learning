@@ -44,7 +44,7 @@ class SubjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($classroom_id, Request $request)
     {
 
         // Validate input data:
@@ -54,7 +54,7 @@ class SubjectsController extends Controller
         $subject->name = request('sub_name');
         // fetch user id:
         $subject->fk_user_id = auth()->id();
-        $subject->fk_classroom_id = request('cr_id');
+        $subject->fk_classroom_id = $classroom_id;
         // Store data:
         $subject->save();
 
@@ -70,6 +70,13 @@ class SubjectsController extends Controller
      */
     public function show($classroom_id, Subjects $subject)
     {
+        // Deny visits for unauthorized users:
+        $c = new ClassroomController();
+
+        if(!$c->checkPermissions($classroom_id)){
+            return redirect()->action([ClassroomController::class, 'index']);
+        }
+
         // general settings:
         $is_child_page = true;
         $parent_page_name = Classroom::where('id', $subject->fk_classroom_id)->first()->name;
@@ -105,11 +112,13 @@ class SubjectsController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request  $request
+     * 
+     * @param  \App\Models\Classrooms $classroom_id
      * @param  \App\Models\Subjects $subject_id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $subject_id)
+    public function update($classroom_id, $subject_id, Request $request)
     {
         $updateValues = $request->all();
         unset($updateValues['_token'], $updateValues['_method']);
@@ -120,6 +129,7 @@ class SubjectsController extends Controller
             ->update(['bio' => $classroom_bio]);
 
         $classroom_id = Subjects::where('id', $subject_id)->first()->fk_classroom_id;
+
         $subject = Subjects::where('id', $subject_id)->first();
 
         return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => $classroom_id, 'subject' => $subject]);

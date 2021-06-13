@@ -32,7 +32,7 @@
                     <div class="st-inputGroup">
                         <label for="userChatInput">@if($showErrors) <p style="color: red">{{$errorMsg}} </p> @endif</label>
                         <input type="text" required maxlength="500" id="userChatInput" name="message_body" wire:model="message_body" class="no-outline" placeholder="Message.." />
-                        <span class=""><i class="fas fa-times"></i></span>
+                        {{--<span class=""><i class="fas fa-times"></i></span>--}}
                     </div>
 
                     <div class="flex flex-wrap">

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectsController;
@@ -29,10 +30,13 @@ use App\Models\Classroom;
 //    return view('home');
 //});
 
+
+
 // Default home route:
 Route::get('/home', function () {
     return view('home');
 });
+
 
 
 
@@ -45,10 +49,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Only authenticated users may access this route...
 Route::group(['middleware' => 'auth'], function () {
 
+
+
     // if signed in:
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
     // custom urls go before resource routes:
     // Route::get('classrooms/{classroom}', [ClassroomController::class, 'test']);
@@ -57,20 +63,20 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('/classrooms/search', [ClassroomController::class, 'searchClassrooms']);
     route::get('/explore', [CommunityController::class, 'index']);
 
-    Route::get('/classrooms/invite/{token}', function ($token) {
+    // @info: check token link:
+    Route::get('/classrooms/invite/{token}', [ClassroomController::class, 'linkToClassroom']);
+   
 
-    });
-
-    Route::resource('classrooms', ClassroomController::class);
+    Route::resource('classrooms', ClassroomController::class)->except('edit', 'create');
 
     // use prefix for subjects:
     Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms/{classroom_id}'], function() {
 
-        // register chat route:
-        Route::post('chat', [MessageController::class, 'store'], ['classroom_id' => '{classroom_id}']);
+
+//        Route::post('chat', [MessageController::class, 'store'], ['classroom_id' => '{classroom_id}']);
 
         // subjects needs Classroom parameter:
-        Route::resource('subjects', SubjectsController::class);
+        Route::resource('subjects', SubjectsController::class)->except('edit', 'create');
 
         Route::group(['middelware' => 'subjects', 'prefix' => 'subjects/{subject_id}'], function() {
 
@@ -84,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('history-overview', UserHistoryController::class)->only('index', 'show', 'destroy');
 });
+
 
 
 //Require custom jetstream fortify routing:

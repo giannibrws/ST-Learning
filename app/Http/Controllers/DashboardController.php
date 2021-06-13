@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Messages;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ClassroomController;
-use App\Models\Classroom;
+use Illuminate\Support\Facades\DB;
+use Laravel\Jetstream\HasProfilePhoto;
+use App\Models\User;
+use App\Models\UserHistory;
 
-class MessageController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,16 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+   
+        // fetch all data
+        $userManager = new UserController();
+        $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl(auth()->id());
+        $userProfilePath = $userManager->getUserProfilePicture();
+
+        $userHistory = DB::table('user_histories')->where('fk_user_id', '=', auth()->id())->orderByDesc('created_at')->limit(10)->get();
+        $currentUser = DB::table('users')->where('id', '=', auth()->id())->first();
+
+        return view('Dashboard', compact('userHistory', 'currentUser', 'defaultPhotoPath', 'userProfilePath'));
     }
 
     /**
@@ -37,27 +47,16 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-
-        $message = new Messages();
-        $message->body = request('message_body');
-        $message->user_id = auth()->id();
-        $message->classroom_id = auth()->id();
-
-        $message->save();
-
-        $classroom = Classroom::where('id', auth()->id())->first();
-
-        // return to home index action:
-        return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom]);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Messages  $messages
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Messages $messages)
+    public function show($id)
     {
         //
     }
@@ -65,10 +64,10 @@ class MessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Messages  $messages
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Messages $messages)
+    public function edit($id)
     {
         //
     }
@@ -77,10 +76,10 @@ class MessageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Messages  $messages
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Messages $messages)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -88,13 +87,11 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Messages  $messages
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Messages $messages)
+    public function destroy($id)
     {
         //
     }
-
-
 }

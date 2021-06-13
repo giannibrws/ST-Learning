@@ -14,11 +14,55 @@ $fa-font-path: "../webfonts";
 @import "@fortawesome/fontawesome-free/scss/solid.scss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-
 $secondary-color: #7B74EC;
 
-html{
+// Media Queries Mixins
+@mixin desktop-wide {
+  @media (min-width: 1476px) {
+    @content;
+  }
+}
 
+@mixin desktop {
+  @media (max-width: 1475px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin desktop-and-up {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tablet-and-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media (min-width: 1024px) and (max-width: 1339px) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
 }
 
 body{
@@ -30,33 +74,46 @@ main{
 }
 
 .homepage{
-margin-top:250px;
+  margin-top:250px;
 }
 
-
 .header{
-
   background-color: transparent;
 
   &__image{
     transform: rotate(180deg);
     position: absolute;
     top:0;
+    margin-bottom: 250px;
 
     &--absolute{
       position: absolute;
     }
   }
-
 }
 
+.auth-card {
+  padding-top: 200px;
+
+  @include desktop {
+    padding-top: 100px;
+  }
+
+  @include tablet {
+    padding-top: 50px;
+  }
+}
+
+
+.st-sidebar{
+  margin-top: -93px;
+}
 
 .footer{
   &__image{
     margin-bottom: -5em;
   }
 }
-
 
 .cr-header{
   text-align: center;
@@ -104,13 +161,16 @@ margin-top:250px;
     border-bottom: 2px solid #fff;
     outline: none;
   }
+
   input::placeholder {
     opacity: 0.9;
   }
+
   select {
     border-bottom: 2px solid #000;
     cursor: pointer;
   }
+
   label {
     position: absolute;
     padding-left: 10px;
@@ -122,7 +182,9 @@ margin-top:250px;
     text-transform: uppercase;
     font-weight: normal;
   }
-  input, label {
+
+  input, 
+  label {
     transition: 0.4s all ease;
   }
 
@@ -130,22 +192,22 @@ margin-top:250px;
     border: none !important;
   }
 
-  input:focus, input:not(:placeholder-shown) {
+  input:focus, 
+  input:not(:placeholder-shown) {
     outline: none;
     border: none;
   }
+
   //foreach input focus that follows a label:
-  input:focus ~ label, input:not(:placeholder-shown) ~ label {
+  input:focus ~ label, 
+  input:not(:placeholder-shown) ~ label {
     transform: translate(10px, -2rem) scale(0.9);
     padding: 0;
     color: #000;
   }
-
 }
 
-
 //Elements:
-
 .st-container{
   max-height:100%;
   display:flex;
@@ -159,13 +221,6 @@ margin-top:250px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2em 2em;
-  /* Grid-template-rows starts from the first row downward: */
-  /* You can add as many template rows as you like: */
-
-  //grid-template-rows: 50px;
-
-  //Define the height of the upfollowing grid rows:
-  // set this on auto and give cards a max height.
   grid-auto-rows: minmax(100px, auto);
 }
 
@@ -174,13 +229,15 @@ margin-top:250px;
   grid-column:span 2;
 }
 
-
 .st-item-flex{
   display:flex;
 }
 
-// Classroom styling:
+.db-history {
+  max-height: 400px;
+}
 
+// Classroom styling:
 .cr-chat{
   align-items: center;
   text-align: center;
@@ -188,12 +245,8 @@ margin-top:250px;
   grid-row:span 2;
 
   &__content{
-
     max-height:400px;
     overflow-y: auto;
-
-    &__title{
-    }
 
     &__row{
       display: flex;
@@ -208,12 +261,10 @@ margin-top:250px;
         justify-content: center;
       }
 
-
       &__title{
         display: flex;
         flex-direction: column;
         justify-content: center;
-
       }
 
       &__message{
@@ -225,13 +276,8 @@ margin-top:250px;
         margin-top:0.6rem;
         margin-right:1rem;
       }
-
     }
-
   }
-
-
-
 }
 
 .cr-subjects{
@@ -244,6 +290,19 @@ margin-top:250px;
   .st-card:first-child{
     max-height:350px;
     overflow-y: auto;
+  }
+
+  &__holder {
+    flex-direction: column;
+  }
+
+  &__item {
+    padding-left: .75rem;
+
+    &::before {
+      content: "-";
+      width: .5rem;
+    }
   }
 }
 
@@ -261,14 +320,9 @@ margin-top:250px;
     display: flex;
     flex-direction: row;
   }
-
-
-
-
 }
 
 .cr-extensions{
-
   &__title{
     margin-bottom:1rem;
   }
@@ -277,27 +331,21 @@ margin-top:250px;
     justify-content: center;
   }
 
-
   &__add-form{
     display: flex;
     padding:0.5rem;
-    // top to bottom:
     flex-direction: column;
     align-items:center;
 
     div{
       margin-bottom:0.3rem;
     }
-
-
-
   }
 
   &__add-new{
     cursor: pointer;
     font-size:24px;
   }
-
 }
 
 // modifiers start with "--"
@@ -307,6 +355,26 @@ margin-top:250px;
   background-color:white;
   border-radius: 0.375rem;
 
+  &__content{
+    width:100%;
+    display: flex;
+    margin-bottom: 1rem;
+
+    &--note {
+      flex-direction: column;
+    }
+  }
+
+  &__icon{
+    height:72px;
+    width:72px;
+    flex-shrink: 0;
+  }
+
+  &__footer{
+    width:100%;
+  }
+
   &--headers{
     font-weight: bold;
     text-align: center;
@@ -314,6 +382,9 @@ margin-top:250px;
   }
 
   &--classroom{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
     height:100%;
     max-height:350px;
   }
@@ -324,14 +395,12 @@ margin-top:250px;
     max-height:410px;
     overflow-y: hidden;
     padding:1rem;
-
   }
 
-}
-
-.st-sidebar{
-
-
+  input,
+  textarea {
+    border-bottom: solid 1px #4551f3;
+  }
 }
 
 .st-error{
@@ -342,8 +411,6 @@ margin-top:250px;
 a.st-hover:hover{
   color:$secondary-color;
 }
-
-
 
 .subject-grid-container {
   display: grid;
@@ -360,13 +427,7 @@ a.st-hover:hover{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1em 1em;
-
-
-
-
 }
-
-
 
 .ck-textarea{
   padding:2rem;
@@ -384,12 +445,9 @@ a.st-hover:hover{
     color:$secondary-color;
     font-size:1.5rem;
   }
-
 }
 
 .st-scroll-custom{
-
-
   &::-webkit-scrollbar{
     width:12px;
   }
@@ -399,6 +457,7 @@ a.st-hover:hover{
     -webkit-border-radius: 10px;
     border-radius: 10px;
   }
+
   /* Handle */
   &::-webkit-scrollbar-thumb {
     background: $secondary-color;
@@ -406,6 +465,7 @@ a.st-hover:hover{
     -webkit-border-radius: 10px;
     border-radius: 0.375rem;
   }
+
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: #4551f3;
@@ -422,14 +482,14 @@ a.st-hover:hover{
   min-height: 500px;
 }
 
-
 .card-editable{
-
   textarea{
     min-height:150px;
-    margin:1rem 1rem 0.2rem 1rem;
+    margin:1rem 0 1rem 0;
     width:100%;
-    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     overflow: auto;
     outline: none;
   }

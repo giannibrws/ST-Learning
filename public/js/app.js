@@ -3803,11 +3803,18 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
 console.log('Ready!');
-document.querySelector("#st-create-classroom").addEventListener("click", function () {
+document.querySelector(".st-add-input").addEventListener("click", function () {
   var name = document.querySelector("#name");
-  name.value = ""; // return cursor focus to the input field:
 
-  name.focus();
+  if (!name) {
+    name = document.querySelector("#sub_name");
+  }
+
+  if (name) {
+    name.value = ""; // return cursor focus to the input field:
+
+    name.focus();
+  }
 });
 
 /***/ }),

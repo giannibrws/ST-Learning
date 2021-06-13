@@ -2,9 +2,11 @@
     <!-- Primary Navigation Menu -->
     <div class="mb-5 mx-auto px-4 sm:px-6 lg:px-10">
         <div class="flex justify-between h-16">
+
+                <!-- Header Logo -->
             <div class="flex">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
+                <!-- Header Logo -->
+                {{-- <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <div class="flex mt-5 w-16">
                             <x-jet-application-mark></x-jet-application-mark>
@@ -14,11 +16,11 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex items-center">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                </div>
+                </div> --}}
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

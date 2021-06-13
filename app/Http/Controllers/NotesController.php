@@ -69,6 +69,12 @@ class NotesController extends Controller
      */
     public function edit($classroom_id, $subject_id, Notes $note)
     {
+        // Deny visits for unauthorized users:
+        $c = new ClassroomController();
+        if(!$c->checkPermissions($classroom_id)){
+            return redirect()->action([ClassroomController::class, 'index']);
+        }
+
         $parent_page_name = Subjects::where('id', $note->fk_subject_id)->first()->name;
         $is_child_page = true;
         return view($this->prefix . 'edit-note', compact('note', 'parent_page_name', 'is_child_page', 'classroom_id'));
