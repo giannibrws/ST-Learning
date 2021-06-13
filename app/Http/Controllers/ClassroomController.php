@@ -105,6 +105,8 @@ class ClassroomController extends Controller
         }
 
         // Add visit to history:
+        $currentUser = auth()->id();
+        $linked_users = $this->getLinkedUsers($classroom->id)->all();
         $page_visited = $classroom->name;
         $timestamp = Carbon::now()->format('Y-m-d-H');
         $url = '/classrooms/' . $classroom->id;
@@ -138,12 +140,11 @@ class ClassroomController extends Controller
      */
     public function checkPermissions($classroom_id){
 
-        $linked_users = $this->getLinkedUsers($classroom_id);
-        $linkedIds = $linked_users->pluck('id')->all();
+        $linked_users = $this->getLinkedUsers($classroom_id)->pluck('id')->all();
         $currentUser = auth()->id();
 
         // Deny visits for unauthorized users:
-        if(!in_array($currentUser, $linkedIds)){
+        if(!in_array($currentUser, $linked_users)){
             // Return back to dashboard:
             return false;
         }
