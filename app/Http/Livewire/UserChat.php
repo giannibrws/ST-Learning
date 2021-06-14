@@ -8,10 +8,11 @@ use App\Models\ClassroomUser;
 use App\Models\Messages;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserChat extends Component
 {
-    public $admins;
+
     public $linked_users;
     public $is_visible = false;
     public $users;
@@ -29,8 +30,8 @@ class UserChat extends Component
     public function mount($classroom_id)
     {
        $this->classroom_id = $classroom_id;
+
        $this->linked_users = $this->getLinkedUsers($this->classroom_id);
-       $this->admins = $this->getAdmins($this->classroom_id);
 
        $this->userProfilePhotos = [];
        $this->linkProfilePhotos();
@@ -52,28 +53,24 @@ class UserChat extends Component
         return view('livewire.user-chat');
     }
 
-    public function getAdmins($cr_id){
-        $admins = ClassroomUser::where('classroom_id', '=', $cr_id)->where('is_admin', '=', 1)->get();
-        // Fetches the ids from the dataset:
-        $plucked = $admins->pluck('user_id')->all();
-        return User::whereIn('id', $plucked)->get();
-    }
 
     public function getLinkedUsers($cr_id){
-        $linkedIDs = ClassroomUser::where('classroom_id', $cr_id)->where('is_admin', '=', 0)->get();
-        // Fetches the ids from the dataset:
-        $plucked = $linkedIDs->pluck('user_id')->all();
-        return User::whereIn('id', $plucked)->get();
+
+        // first join both tables then use where clause: 
+        $users = DB::table('users')->select('classroom_users.id', 'classroom_users.classroom_id', 'name', 'email', 'profile_photo_path', 'role')
+        ->join('classroom_users', 'users.id', '=', 'classroom_users.user_id')
+        ->where('classroom_users.classroom_id', '=' , $cr_id)
+        ->get();
+
+        return $users;
     }
 
     public function linkProfilePhotos(){
         // fetch all data
         $userManager = new UserController();
 
-        // merge all users:
-        $users = $this->admins->merge($this->linked_users);
 
-        foreach ($users as $user){
+        foreach ($this->linked_users as $user){
 
             $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl($user->id);
             $userProfile = ([
