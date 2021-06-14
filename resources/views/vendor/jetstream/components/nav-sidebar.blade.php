@@ -7,8 +7,10 @@
         {{-- nav header logo:--}}
             <div class="flex">
                 <div class="flex w-32 ml-4 p-4 mt-8">
-                    <img src="{{asset('./img/st-logo-white.svg')}}" alt="">
-                    {{--<x-jet-application-mark></x-jet-application-mark>--}}
+                    <a href="/">
+                        <img src="{{asset('./img/st-logo-white.svg')}}" alt="">
+                        {{--<x-jet-application-mark></x-jet-application-mark>--}}
+                    </a>
                 </div>
             </div>
         {{--header logo:--}}

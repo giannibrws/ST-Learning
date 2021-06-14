@@ -32,46 +32,46 @@
                     <div class="st-grid-container py-8 px-8 mx-auto">
                         <div class="st-card card-editable shadow-sm">
                             <p class="font-bold">Welcome to the dashboard of st-learning!</p><br>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
-                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-                            Donec quam felis, ultricies nec.</p>
+                            <p>Within this st-learning platform you can attend classrooms, add subjects and interact with other users.</p>
                         </div>
 
-                        <div class="st-card card-editable shadow-sm st-scroll-custom overflow-y-auto db-history">
-                            <p class="font-bold mb-5">User History: <br>Your personal browse history</p>
-                            {{-- @info: Data table template:--}}
-                                <table class="min-w-full">
-                                    <thead>
-                                    <tr>
-                                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            Last visited:</th>
-                                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            Time:</th>
-                                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            </th>
-                                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                                    </tr>
-                                    </thead>
+                        <div class="st-card card-editable shadow-sm">
+                            <div class="st-scroll-custom overflow-y-auto db-history">
+                                <p class="font-bold mb-5">User History: <br>Your personal browse history</p>
+                                {{-- @info: Data table template:--}}
+                                    <table class="min-w-full">
+                                        <thead>
+                                        <tr>
+                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                Last visited:</th>
+                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                Time:</th>
+                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                </th>
+                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                                        </tr>
+                                        </thead>
 
-                                    <tbody class="bg-white">
-                                        @foreach($userHistory as $history_item)
-                                            <tr>
-                                              
-                                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                    <div class="text-sm leading-5 text-gray-900">{{$history_item->visited_page}}</div>
-                                                </td>
-                                           
-                                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                                    {{$history_item->created_at}}
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
-                                                    <a href="{{$history_item->page_url}}" class="text-indigo-600 hover:text-indigo-900">Navigate to item</a>
-                                                </td>
-                                            </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                        {{-- @info: End Data table template:--}}
+                                        <tbody class="bg-white">
+                                            @foreach($userHistory as $history_item)
+                                                <tr>
+                                                
+                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                        <div class="text-sm leading-5 text-gray-900">{{$history_item->visited_page}}</div>
+                                                    </td>
+                                            
+                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                                                        {{$history_item->created_at}}
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
+                                                        <a href="{{$history_item->page_url}}" class="text-indigo-600 hover:text-indigo-900">Navigate to item</a>
+                                                    </td>
+                                                </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                {{-- @info: End Data table template:--}}
+                            </div>
                         </div>
                      </div>
                 </main>

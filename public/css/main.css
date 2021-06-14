@@ -39714,21 +39714,15 @@ main {
 .cr-chat__content__row {
   display: flex;
   flex-direction: row;
-  min-height: 4rem;
   height: auto;
-}
-
-.cr-chat__content__row__admin-title {
-  display: flex;
-  flex-direction: row;
-  padding-top: 1rem;
-  justify-content: center;
+  margin-bottom: 1.5rem;
+  align-items: center;
 }
 
 .cr-chat__content__row__title {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 .cr-chat__content__row__message {
@@ -39737,7 +39731,6 @@ main {
 }
 
 .cr-chat__content__row img {
-  margin-top: 0.6rem;
   margin-right: 1rem;
 }
 
@@ -39803,6 +39796,12 @@ main {
 .cr-extensions__add-new {
   cursor: pointer;
   font-size: 24px;
+  margin-top: 2rem;
+}
+
+.cr-extensions img {
+  height: 70px;
+  width: auto;
 }
 
 .st-card {
@@ -39947,7 +39946,7 @@ a.st-hover:hover {
 }
 
 .subject-info {
-  height: 450px;
+  min-height: 450px;
 }
 
 .useful-links {
@@ -39959,6 +39958,22 @@ a.st-hover:hover {
   font-size: 14px;
   padding: 0rem 0rem 1rem 0.3rem;
   text-align: center;
+}
+
+.useful-links__item {
+  display: flex;
+}
+
+.useful-links__item-top {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.useful-links__delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .space-between {

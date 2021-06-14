@@ -251,20 +251,14 @@ main{
     &__row{
       display: flex;
       flex-direction: row;
-      min-height: 4rem;
       height: auto;
-
-      &__admin-title {
-        display: flex;
-        flex-direction: row;
-        padding-top: 1rem;
-        justify-content: center;
-      }
+      margin-bottom: 1.5rem;
+      align-items: center;
 
       &__title{
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        align-items: center;
+        flex-direction: row;
       }
 
       &__message{
@@ -272,9 +266,8 @@ main{
         text-align: left;
       }
 
-      img{
-        margin-top:0.6rem;
-        margin-right:1rem;
+      img {
+        margin-right: 1rem;
       }
     }
   }
@@ -345,6 +338,12 @@ main{
   &__add-new{
     cursor: pointer;
     font-size:24px;
+    margin-top: 2rem;
+  }
+
+  img {
+    height: 70px;
+    width: auto;
   }
 }
 
@@ -499,7 +498,7 @@ a.st-hover:hover{
 
 
 .subject-info{
-  height:450px;
+  min-height:450px;
 }
 
 .useful-links{
@@ -512,7 +511,21 @@ a.st-hover:hover{
     text-align: center;
   }
 
+  &__item {
+    display: flex;
+  }
 
+  &__item-top {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  }
+
+  &__delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 

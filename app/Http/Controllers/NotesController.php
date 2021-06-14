@@ -47,7 +47,7 @@ class NotesController extends Controller
 
         $note = new Notes();
 
-        $note->name = "Title";
+        $note->name = '';
         $note->content = '';
         // fetch user id:
         $note->fk_user_id = auth()->id();
@@ -93,7 +93,7 @@ class NotesController extends Controller
         unset($updateValues['_token'], $updateValues['_method']);
 
         if(empty($updateValues['name'])){
-            $updateValues['name'] = 'Title';
+            $updateValues['name'] = '';
         }
 
         // if note contains headers:
@@ -102,7 +102,6 @@ class NotesController extends Controller
             preg_match('/<h1>(.*?)<\/h1>/s', $updateValues['content'], $title);
             // https://www.php.net/manual/en/function.preg-match.php
             $updateValues['name'] = $title[1];
-            $updateValues['content'] = substr($updateValues['content'], strlen($title[0]));
         }
 
         Notes::where('id', $request->id)
