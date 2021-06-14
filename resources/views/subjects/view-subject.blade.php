@@ -47,13 +47,13 @@
                                 <form method="POST" action="{{ route('subjects.update', [$subject->fk_classroom_id, $subject->id])}}">
                                     {{csrf_field()}}
                                     @method('PUT')
-                                    <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="cr_bio">{{$subject->bio}}</textarea>
-                                    <div class="">
-                                        <x-jet-button type="submit" class="">Update bio</x-jet-button>
-                                        {{--@if(isset($adminName))--}}
-                                            {{--<span class="ml-3 font-bold">{{$adminName}}</span>--}}
-                                        {{--@endif--}}
-                                    </div>
+                                    <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="sub_bio">{{$subject->bio}}</textarea>
+                                    
+                                    {{--// Subject settings:--}}
+                                    @livewire('subject-settings', ['subject' => $subject])
+                                    {{--// Subject settings:--}}
+                                    
+                              
                                 </form>
                         </div>
 

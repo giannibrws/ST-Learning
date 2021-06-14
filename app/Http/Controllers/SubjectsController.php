@@ -120,16 +120,31 @@ class SubjectsController extends Controller
      */
     public function update($classroom_id, $subject_id, Request $request)
     {
-        $updateValues = $request->all();
-        unset($updateValues['_token'], $updateValues['_method']);
+        $updateValues = [];
+
         $this->validateInput($request);
-        $classroom_bio = $updateValues['cr_bio'];
+        $postValues = $request->all();
+
+        // remove unnecessary elements:
+        unset($postValues['_token'], $postValues['_method']);
+
+        // order is based on input location:
+        $keys = ["sub_bio", "sub_name"];
+        $tableNames = ["bio", "name"];
+
+        // fill the update array based on given update values:
+        foreach ($keys as $idx => $key){
+            // allow field to update if key is posted but value is empty:
+            // else check if field is set then add to update:
+            if(array_key_exists($key, $postValues) || isset($postValues[$key])){
+                $updateValues[$tableNames[$idx]] = $postValues[$key];
+            }
+        }
 
         Subjects::where('id', $subject_id)
-            ->update(['bio' => $classroom_bio]);
+            ->update($updateValues);
 
         $classroom_id = Subjects::where('id', $subject_id)->first()->fk_classroom_id;
-
         $subject = Subjects::where('id', $subject_id)->first();
 
         return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => $classroom_id, 'subject' => $subject]);
@@ -137,13 +152,14 @@ class SubjectsController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Subjects  $subjects
+     *@param  \App\Models\ $classroom
+     * @param  \App\Models\ $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subjects $subjects)
+    public function destroy($classroom_id,  $subject_id)
     {
-        //
+        Subjects::where('id',$subject_id)->delete();
+        return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
     }
 
     public function getSubjectNotes($subject_id)

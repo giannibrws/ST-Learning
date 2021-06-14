@@ -3,35 +3,24 @@
         {{csrf_field()}}
         @method('PUT')
 
-        <div class="flex">
-            <p class="useful-links__desc ">Pin useful links to your subjects</p>
-        </div>
+        <p class="useful-links__desc font-bold">Pin useful links to your subjects</p>
 
-        <table class="min-w-full">
-            <thead>
-            <tr>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Link name:</th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    URL:</th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-
-                </th>
-            </tr>
-            </thead>
+        <div class="min-w-full">
             <tbody>
             @foreach($linkedUrls as $value)
-                <tr>
-                    <td class="pl-3 pr-2 whitespace-no-wrap border-b border-gray-200">
-                        <div class="text-sm leading-5 text-gray-900">{{$value->url_name}}</div>
-                    </td>
-                    <td class="py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
-                        <a href="{{url($value->url)}}" class="text-indigo-600 hover:text-indigo-900" target="_blank">{{$value->url}}</a>
-                    </td>
-                    <td class="py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
+                <div class="useful-links__item pb-2.5 mb-2.5 border-b border-gray-200">
+                    <div class="useful-links__item-top">
+                        <div class="useful-links__label">
+                            <div class="text-sm leading-5 text-gray-900">{{$value->url_name}}</div>
+                        </div>
+                        <div class="useful-links__url pt-4 whitespace-no-wrap text-sm leading-5 font-medium">
+                            <a href="{{url($value->url)}}" class="text-indigo-600 hover:text-indigo-900" target="_blank">{{$value->url}}</a>
+                        </div>
+                    </div>
+                    <div class="useful-links__delete py-5 px-5 text-sm leading-5 font-medium">
                         <a href="#" wire:click.prevent="destroy({{ $value->id }})" title="Delete" ><i class="hover:text-purple-500 fas fa-times "></i></a>
-                    </td>
-                </tr>
+                    </div>
+                </div>
             @endforeach
             <tr class="">
                 <td class="pt-4 pr-2">

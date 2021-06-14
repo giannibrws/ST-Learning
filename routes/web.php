@@ -85,6 +85,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['middelware' => 'subjects', 'prefix' => 'subjects/{subject_id}'], function() {
 
+            // delete subjects:
+            Route::get('/delete', [SubjectsController::class, 'destroy']);
+
             Route::resource('notes', NotesController::class)->except('show');
 
             Route::group(['middelware' => 'notes', 'prefix' => 'notes/{note_id}'], function($note_id) {
