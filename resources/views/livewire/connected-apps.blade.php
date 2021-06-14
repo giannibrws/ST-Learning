@@ -7,6 +7,7 @@
                 <select wire:model="app_type" name="app_type" class="w-full pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
                     <option selected value="discord">Discord</option>
                     <option value="gdrive">Google Drive</option>
+                    <option value="other">Other...</option>
                 </select>
             </div>
             <div class=""><x-jet-input  wire:model="webhook_url" required type="text" value="" name="webhook_url" placeholder="webhook url"/></div>
@@ -22,6 +23,7 @@
             <p>
                 <a wire:click.prevent="interactWith('{{$key}}')"  href="{{url($app->webhook_url)}}" target="_blank">
                     <div class="flex mr-6 items-center mb-4">
+
                         <img alt="app" class="w-20 border-gray-300  {{$app->type == 'discord' ? 'rounded-full border-2' : ''}} " src="{{asset('img/connectedApps/' . $app->type . '.png' )}}" />
                         <div id="header-text" class="leading-5 sm">
                             <h5 id="job" class="mt-2 font-semibold text-blue-600">{{$app->name}}</h5>

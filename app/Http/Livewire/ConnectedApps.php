@@ -11,7 +11,7 @@ class ConnectedApps extends Component
     public $connectApp;
     public $interactWith = false;
     public $connectedApps = [];
-    public $app_types = ['discord', 'gdrive'];
+    public $app_types = ['discord', 'gdrive', 'other'];
     public $selected_idx;
 
     // properties:
