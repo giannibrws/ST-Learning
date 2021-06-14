@@ -47,12 +47,14 @@
                         <form method="POST" action="{{ route('classrooms.update', $classroom->id)}}">
                             {{csrf_field()}}
                              @method('PUT')
-                            <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="cr_bio">{{$classroom->bio}}</textarea>
+                            <textarea {{$user_role == 'admin' ? '' : 'disabled'}} placeholder="Set a bio for this classroom:" class="no-outline" name="cr_bio">{{$classroom->bio}}</textarea>
 
 
-                            {{--// Classroom settings:--}}
-                            @livewire('classroom-settings', ['classroom' => $classroom])
-                            {{--// Classroom settings:--}}
+                            @if($user_role == 'admin')
+                                {{--// Classroom settings:--}}
+                                @livewire('classroom-settings', ['classroom' => $classroom])
+                                {{--// Classroom settings:--}}
+                            @endif
 
                         </form>
                     </div>

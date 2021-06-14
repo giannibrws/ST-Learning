@@ -50,16 +50,6 @@ class ClassroomController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -104,12 +94,14 @@ class ClassroomController extends Controller
         // Add visit to history:
         $currentUser = auth()->id();
         $linked_users = $this->getLinkedUsers($classroom->id)->all();
+
+
         $page_visited = $classroom->name;
         $timestamp = Carbon::now()->format('Y-m-d-H');
         $url = '/classrooms/' . $classroom->id;
         $popup = false;
 
-        // check if user has any registered history on the classroom:
+        // check if user has any registered history for the referred classroom:
         if($this->notifyUser($currentUser, $url)){
             $popup = true; 
         }
@@ -127,10 +119,28 @@ class ClassroomController extends Controller
             array_push($userProfilePhotos, $defaultPhotoPath);
         }
 
+        // get user role:
+        $user_role = $this->getUserRole($currentUser, $classroom->id);
+
         $adminName = User::where('id', $classroom->fk_user_id)->first()->name;
-        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'linked_subjects', 'linked_users', 'userProfilePhotos', 'popup'));
+        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'user_role', 'linked_subjects', 'linked_users', 'userProfilePhotos', 'popup'));
     }
 
+
+    /**
+     * @function: Returns the permission type for the referred user
+     * @return: The permission type of the authenticated user:
+     */
+    public function getUserRole($user_id, $classroom_id){
+
+        $currentUser = ClassroomUser::where([
+            ['user_id', '=', $user_id],
+            ['classroom_id', '=', $classroom_id]
+            ]
+            )->first();
+
+        return $currentUser->role;
+    }
 
     /**
      * @function: check if user has permission to the designated classroom:
@@ -260,17 +270,25 @@ class ClassroomController extends Controller
         // if there are no members, give creator admin rights:
         if(!$classroomExists){
             $linkClassroom->is_admin = true;
-            $linkClassroom->role = 'admin';
-        }
-
-        // if query returns null: 
-        if(!filled($is_registered)){
             $linkClassroom->user_id = $user_id;
             $linkClassroom->classroom_id = $classroom_id;
-            $linkClassroom->role = 'user';
+            $linkClassroom->role = 'admin';
             // Store data:
             $linkClassroom->save();
 
+            // updateClassroomCount
+            $this->updateMemberCount($classroom_id);
+        }
+
+        // if classroom already exists:
+        if($classroomExists){
+            $role = !filled($is_registered) ? 'user' : 'spectator'; 
+            $linkClassroom->is_admin = false;
+            $linkClassroom->user_id = $user_id;
+            $linkClassroom->classroom_id = $classroom_id;
+            $linkClassroom->role = $role;
+            // Store data:
+            $linkClassroom->save();
             // updateClassroomCount
             $this->updateMemberCount($classroom_id);
         }
