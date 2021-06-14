@@ -90,8 +90,10 @@
                            <div class="st-card--headers"><h4></h4></div>
 
                              {{-- Subject links: --}}
-                            <div class="st-card card-editable useful-links shadow-sm st-scroll-custom">
-                                @livewire('subject-links', ['subject' => $subject])
+                            <div class="st-card card-editable shadow-sm">
+                                <div class="st-scroll-custom useful-links pr-5">
+                                    @livewire('subject-links', ['subject' => $subject])
+                                </div>
                             </div>
 
                 </div>
