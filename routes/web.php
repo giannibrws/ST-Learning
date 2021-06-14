@@ -9,6 +9,7 @@ use App\Http\Controllers\UserHistoryController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\FileController;
 
 
 use App\Models\Classroom;
@@ -54,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
     // if signed in:
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::post('/image_upload', [FileController::class, 'store'])->name('image_upload');
 
 
     // custom urls go before resource routes:

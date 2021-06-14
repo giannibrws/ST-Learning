@@ -11,7 +11,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <!-- Font awesome -->
         <link rel="stylesheet" type="text/css" href="{{asset('css/fontawesome.css')}}">
-
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <!-- Include main css file -->
@@ -25,8 +24,13 @@
 
         <!-- Jquery: -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <!-- Ckeditor: -->
-        <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+
+        <!-- Ckeditor: 4 -->
+        <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+
+        {{--<!-- Ckeditor: 5 -->--}}
+        {{--<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>--}}
+
         <!-- Alpine: -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <!-- SweetAlert: -->

@@ -91,7 +91,10 @@ class NotesController extends Controller
         $this->validateInput($request);
         $updateValues = $request->all();
         unset($updateValues['_token'], $updateValues['_method']);
-        $updateValues['name'] = 'Title';
+
+        if(empty($updateValues['name'])){
+            $updateValues['name'] = 'Title';
+        }
 
         // if note contains headers:
         if(strpos($updateValues['content'] , '<h1>') !== false){

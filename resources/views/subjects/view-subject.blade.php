@@ -73,7 +73,7 @@
                                 </x-jet-card-note>
                             @endforeach
 
-                            {{--Limit to max 20 notes per classroom:--}}
+                            {{--Limit creation to max 20 notes per classroom:--}}
                             @if((count($subject_notes)) < 20)
                                 <form id="addNote" method="POST" action="{{ route('notes.store', ['classroom_id' => $subject->fk_classroom_id, 'subject_id' => $subject->id])}}">
                                     @csrf
