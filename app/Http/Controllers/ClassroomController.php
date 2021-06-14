@@ -38,13 +38,10 @@ class ClassroomController extends Controller
         // search for registered classrooms:
         $linkedRooms = ClassroomUser::where('user_id', auth()->id())->get()->pluck("classroom_id");
         // fetch personal created classrooms:
-        $classrooms = DB::table('classrooms')->where('fk_user_id','=', auth()->id())
-            ->orWhereIn('id', $linkedRooms)
-            ->paginate(8);
+        $classrooms = DB::table('classrooms')->whereIn('id',$linkedRooms)->paginate(8);
 
         return view($this->prefix . '.classroom-overview', compact('classrooms'));
     }
-
 
     public function getCurrentClassroom($classroom_id){
 //        Classroom::find($id);

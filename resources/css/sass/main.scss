@@ -415,8 +415,9 @@ a.st-hover:hover{
 .subject-grid-container {
   display: grid;
   grid-template-columns: 3fr 5fr;
+  // verhouding per row:
+  grid-template-rows: 0.1fr 1fr 0.1fr 1fr;
   gap: 2em 2em;
-  grid-template-rows: repeat(3, 40px);
 }
 
 // Create a separate container for notes:
@@ -495,6 +496,28 @@ a.st-hover:hover{
     outline: none;
   }
 }
+
+
+.subject-info{
+  height:450px;
+}
+
+.useful-links{
+  height:450px;
+  overflow-y: auto;
+
+  &__desc{
+    font-size:14px;
+    padding:0rem 0rem 1rem 0.3rem;
+    text-align: center;
+  }
+
+
+}
+
+
+
+
 
 .space-between{
   justify-content: space-between;

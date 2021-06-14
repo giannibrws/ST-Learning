@@ -39871,8 +39871,8 @@ a.st-hover:hover {
 .subject-grid-container {
   display: grid;
   grid-template-columns: 3fr 5fr;
+  grid-template-rows: 0.1fr 1fr 0.1fr 1fr;
   gap: 2em 2em;
-  grid-template-rows: repeat(3, 40px);
 }
 
 .notes-container {
@@ -39944,6 +39944,21 @@ a.st-hover:hover {
   border-right: none;
   overflow: auto;
   outline: none;
+}
+
+.subject-info {
+  height: 450px;
+}
+
+.useful-links {
+  height: 450px;
+  overflow-y: auto;
+}
+
+.useful-links__desc {
+  font-size: 14px;
+  padding: 0rem 0rem 1rem 0.3rem;
+  text-align: center;
 }
 
 .space-between {
