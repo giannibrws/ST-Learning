@@ -65,13 +65,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     // @info: check token link:
     Route::get('/classrooms/invite/{token}', [ClassroomController::class, 'linkToClassroom']);
-   
+
 
     Route::resource('classrooms', ClassroomController::class)->except('edit', 'create');
 
     // use prefix for subjects:
     Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms/{classroom_id}'], function() {
 
+        // setup custom destroy route:
+        Route::get('/delete', [ClassroomController::class, 'destroy']);
 
 //        Route::post('chat', [MessageController::class, 'store'], ['classroom_id' => '{classroom_id}']);
 

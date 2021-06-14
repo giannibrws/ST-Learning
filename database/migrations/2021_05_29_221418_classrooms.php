@@ -25,7 +25,7 @@ class Classrooms extends Migration
             // add foreign key relation:
             $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade');
             // Define publicity of classroom:
-            $table->boolean('is_public')->default(1);
+            $table->boolean('is_public')->default(0);
             $table->string('invitation_link')->default('');
             $table->timestamps();
         });

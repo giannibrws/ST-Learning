@@ -26,8 +26,18 @@
                     </div>
                     <a href="#" title="Copy link" onclick="CopyText()" ><i class="hover:text-purple-500 pt-10 ml-3 fas fa-copy "></i></a>
                     <a href="#" title="Generate link" wire:click.prevent="updateLink"><i class="hover:text-purple-500 pt-10 ml-3 fas fa-sync "></i></a>
-
                 </div>
+
+                    <div class="ml-1 mt-1 font-bold">
+                <a href="#" wire:click.prevent="toggleAdvanced" class="st-hover">{{$advancedOptions ? 'Hide' : 'Show'}} advanced options:</a>
+                </div>
+
+                @if($advancedOptions)
+                <a class="delete-confirm ml-2" onclick="deleteConfirm()" href="{{route('classrooms.destroy', ['classroom' => $classroom->id])}}">
+                    <x-jet-danger-button-secondary class="mt-4 text-sm" type="button">Delete classroom</x-jet-danger-button-secondary>
+                </a>
+                @endif
+
                 <div class="cr-settings__row">
                     <div class="pr-2"><x-jet-button type="submit">Save settings</x-jet-button></div>
                     <div class=""><x-jet-button wire:click.prevent="interactWith" type="button">Close</x-jet-button></div>
@@ -39,10 +49,33 @@
 
 
 <script>
+
+    function deleteConfirm(){
+            event.preventDefault();
+            // if confirm redirect destroy route:
+            // use jQuery instead $ to prevent loading issues:
+            const url = jQuery('.delete-confirm').attr('href') + '/delete';
+            var keyword = 'classroom';
+            console.log(url)
+
+            swal({
+                title: 'Are you sure?',
+                text: 'This ' + keyword + ' and all of its contents will be permanantly deleted!',
+                icon: 'warning',
+                buttons: ["Cancel", "Yes!"],
+            }).then(function (value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+    }
+
+    // default js:
     function CopyText() {
         var copyText = document.getElementById('invitation_link')
         copyText.select();
         document.execCommand('copy')
         console.log('Text copied')
     }
+
 </script>

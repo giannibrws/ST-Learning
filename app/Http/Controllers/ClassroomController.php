@@ -195,12 +195,13 @@ class ClassroomController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Classroom  $classrooms
+     * @param  $classroom_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classroom $classrooms)
+    public function destroy($classroom_id)
     {
-        //
+        Classroom::where('id',$classroom_id)->delete();
+        return redirect()->action([ClassroomController::class, 'index']);
     }
 
 

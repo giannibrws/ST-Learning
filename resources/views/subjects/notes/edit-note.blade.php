@@ -40,7 +40,7 @@
                     <input type="hidden" name="fk_subject_id" value="{{$note->fk_subject_id}}">
                     <textarea id="ck_editor" name="content" placeholder="start writing..">{{$note->content}}</textarea>
                     <x-jet-button-secondary class="mt-4 px-8" type="submit">Submit</x-jet-button-secondary>
-                    <a class="delete-note" href="{{route('notes.destroy', ['classroom_id' => $classroom_id, 'subject_id' => $note->fk_subject_id , 'note' => $note->id])}}">
+                    <a class="delete-confirm" href="{{route('notes.destroy', ['classroom_id' => $classroom_id, 'subject_id' => $note->fk_subject_id , 'note' => $note->id])}}">
                         <x-jet-danger-button-secondary class="mt-4 px-8" type="button">Delete Note</x-jet-danger-button-secondary></a>
                     <a href="/classrooms/{{$classroom_id}}/subjects/{{$note->fk_subject_id}}"><x-jet-button class="mt-4 px-8" type="button">Return</x-jet-button></a>
                 </form>

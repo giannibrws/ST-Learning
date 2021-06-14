@@ -11,6 +11,7 @@ class ClassroomSettings extends Component
     public $interactWith;
     public $classroom;
     public $invitation_link;
+    public $advancedOptions;
 
 
     protected $listeners = ['collapseSettings' => '$refresh'];
@@ -18,6 +19,7 @@ class ClassroomSettings extends Component
     public function mount(){
         $this->invitation_link = $this->classroom->invitation_link;
         $this->interactWith = false;
+        $this->advancedOptions = false;
     }
 
     public function render()
@@ -34,6 +36,17 @@ class ClassroomSettings extends Component
             $this->interactWith = false;
         }
     }
+
+    public function toggleAdvanced(){
+        // toggle between states:
+        if(!$this->advancedOptions){
+            $this->advancedOptions = true;
+        }
+        else{
+            $this->advancedOptions = false;
+        }
+    }
+
 
     public function updateLink(){
         $c = new Classroom();
