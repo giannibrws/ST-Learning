@@ -17,7 +17,8 @@ class Classroom extends Model
      */
     public function generateInvitationURL($classroom_id){
         $token = '';
-        $url = 'http://127.0.0.1:8000/classrooms/invite/';
+        $url =  url('/') . '/classrooms/invite/';
+
         do {
             $token = str::random(10);
             $exists = filled(Classroom::where('invitation_link', 'like', '%' . $token . '%')->first());

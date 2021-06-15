@@ -71,7 +71,7 @@ class ClassroomController extends Controller
         // Store data:
         $classroom->save();
         $referenced_room = DB::table('classrooms')->latest()->first();
-        $this->addToClassroom($userID, $referenced_room->id);
+        $this->addToClassroom($userID, $referenced_room->id, false);
 
         // return to home index action:
         return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom]);

@@ -26,7 +26,7 @@ class DashboardController extends Controller
         $userHistory = DB::table('user_histories')->where('fk_user_id', '=', auth()->id())->orderByDesc('created_at')->limit(10)->get();
         $currentUser = DB::table('users')->where('id', '=', auth()->id())->first();
 
-        return view('Dashboard', compact('userHistory', 'currentUser', 'defaultPhotoPath', 'userProfilePath'));
+        return view('dashboard', compact('userHistory', 'currentUser', 'defaultPhotoPath', 'userProfilePath'));
     }
 
     /**
