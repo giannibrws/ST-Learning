@@ -40,8 +40,6 @@ Route::get('/home', function () {
 
 
 
-
-
 // if verified get dashboard url:
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -50,41 +48,36 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Only authenticated users may access this route...
 Route::group(['middleware' => 'auth'], function () {
 
-
-
     // if signed in:
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // @todo: Notes:
     Route::post('/image_upload', [FileController::class, 'store'])->name('image_upload');
 
 
     // custom urls go before resource routes:
-    // Route::get('classrooms/{classroom}', [ClassroomController::class, 'test']);
 
     // @info: https://gyazo.com/b1dcca493538db567a9ec28d3a5fadf3
     route::get('/classrooms/search', [ClassroomController::class, 'searchClassrooms']);
     route::get('/explore', [CommunityController::class, 'index']);
 
-    // @info: check token link:
+    // define special route for visitors:
+    Route::get('/visit/{id}', [ClassroomController::class, 'visitRoom'])->name('classrooms.visit');
     Route::get('/classrooms/invite/{token}', [ClassroomController::class, 'linkToClassroom']);
 
-
     Route::resource('classrooms', ClassroomController::class)->except('edit', 'create');
-
     // use prefix for subjects:
     Route::group(['middelware' => 'classrooms', 'prefix' => 'classrooms/{classroom_id}'], function() {
-
         // setup custom destroy route:
         Route::get('/delete', [ClassroomController::class, 'destroy']);
 
-//        Route::post('chat', [MessageController::class, 'store'], ['classroom_id' => '{classroom_id}']);
+
 
         // subjects needs Classroom parameter:
         Route::resource('subjects', SubjectsController::class)->except('edit', 'create');
 
         Route::group(['middelware' => 'subjects', 'prefix' => 'subjects/{subject_id}'], function() {
-
             // delete subjects:
             Route::get('/delete', [SubjectsController::class, 'destroy']);
 
@@ -96,9 +89,9 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
+    // @todo: remove history-overview:
     Route::resource('history-overview', UserHistoryController::class)->only('index', 'show', 'destroy');
 });
-
 
 
 //Require custom jetstream fortify routing:

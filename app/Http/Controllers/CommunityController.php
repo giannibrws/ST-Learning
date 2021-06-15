@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ClassroomController;
 
 use App\Models\Classroom;
 
@@ -25,6 +26,10 @@ class CommunityController extends Controller
 
         return view($this->prefix . '.community-overview', compact('classrooms'));
     }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

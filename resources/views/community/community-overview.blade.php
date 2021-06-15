@@ -61,6 +61,7 @@
                                 <x-slot name="description">{{$classroom->bio}}</x-slot>
                                 <x-slot name="memberCount">{{$classroom->member_count}}</x-slot>
                                 <x-slot name="createdBy">{{$classroom->created_by}}</x-slot>
+                                <x-slot name="communityED">{{true}}</x-slot>
                             </x-jet-info-card>
                         @endforeach
 

@@ -78,6 +78,27 @@ class ClassroomController extends Controller
     }
 
     /**
+     * @info: Visitors/Members that are redirected from
+     *  "community/visit" will be handled in this function:
+     */
+    public function visitRoom($classroom_id)
+    {
+        $referredRoom = $this->getCurrentClassroom($classroom_id);
+        $user = Auth()->id();
+
+        // add user to classroom:
+        if($referredRoom->is_public){
+            $this->addToClassroom($user, $classroom_id, false);
+        }
+
+        return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
+    }
+
+
+
+
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Classroom  $classroom
@@ -245,10 +266,10 @@ class ClassroomController extends Controller
       /**
        * @function: Add given users to their respective classroom.
        **/
-    protected function addToClassroom($user_id, $classroom_id){
+    protected function addToClassroom($user_id, $classroom_id, $customInvite){
         // Link user to classroom:
         $linkClassroom = new ClassroomUser();
-  
+
         $classroomExists = ClassroomUser::where('classroom_id', $classroom_id)->get()->count();
         $is_registered = ClassroomUser::where([
             ['classroom_id', '=', $classroom_id],
@@ -263,23 +284,27 @@ class ClassroomController extends Controller
             $linkClassroom->role = 'admin';
             // Store data:
             $linkClassroom->save();
-
             // updateClassroomCount
             $this->updateMemberCount($classroom_id);
         }
 
-        // if classroom already exists:
-        if($classroomExists){
-            $role = !filled($is_registered) ? 'user' : 'spectator'; 
-            $linkClassroom->is_admin = false;
-            $linkClassroom->user_id = $user_id;
-            $linkClassroom->classroom_id = $classroom_id;
-            $linkClassroom->role = $role;
-            // Store data:
-            $linkClassroom->save();
-            // updateClassroomCount
-            $this->updateMemberCount($classroom_id);
-        }
+        // if classroom already exists & member is not registered:
+        if($classroomExists && !$is_registered){
+                $role = ($customInvite) ? 'user' : 'spectator';
+                $linkClassroom->is_admin = false;
+                $linkClassroom->user_id = $user_id;
+                $linkClassroom->classroom_id = $classroom_id;
+                $linkClassroom->role = $role;
+                // Store data:
+                $linkClassroom->save();
+                // updateClassroomCount
+                $this->updateMemberCount($classroom_id);
+            }
+
+
+
+        // after all is set and done, just return:
+        return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
     }
 
     /**
@@ -305,12 +330,14 @@ class ClassroomController extends Controller
                 $classroom_id = $linkedRoom;
                 $currentUser = auth()->id();
 
-                $this->addToClassroom($currentUser, $classroom_id);
+                $this->addToClassroom($currentUser, $classroom_id, true);
                 return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
             }
         }
-    }
 
+        // if !exists:
+        return redirect()->action([ClassroomController::class, 'index']);
+    }
 
     public function verifyInviteToken($token){
         $searchForToken = Classroom::where('invitation_link', 'like', '%' . $token . '%')->first();
