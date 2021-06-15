@@ -14,6 +14,7 @@ class SubjectLinks extends Component
     public $linkedUrls = [];
     public $url_name = '';
     public $url = '';
+    public $user_role;
 
     public function mount($subject){
         $this->subject_id = $subject->id;

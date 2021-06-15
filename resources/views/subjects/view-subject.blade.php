@@ -47,11 +47,14 @@
                                 <form method="POST" action="{{ route('subjects.update', [$subject->fk_classroom_id, $subject->id])}}">
                                     {{csrf_field()}}
                                     @method('PUT')
-                                    <textarea placeholder="Set a bio for this classroom:" class="no-outline" name="sub_bio">{{$subject->bio}}</textarea>
-                                    
+                                    <textarea {{$user_role == 'spectator' ? 'disabled' : ''}}  placeholder="Set a bio for this classroom:" class="no-outline" name="sub_bio">{{$subject->bio}}</textarea>
+
+
+                                    @if($user_role == 'admin' || $user_role == 'user')
                                     {{--// Subject settings:--}}
                                     @livewire('subject-settings', ['subject' => $subject])
                                     {{--// Subject settings:--}}
+                                    @endif
 
                                 </form>
                         </div>
@@ -91,7 +94,7 @@
                              {{-- Subject links: --}}
                             <div class="st-card card-editable shadow-sm">
                                 <div class="st-scroll-custom useful-links pr-5">
-                                    @livewire('subject-links', ['subject' => $subject])
+                                    @livewire('subject-links', ['subject' => $subject, 'user_role' => $user_role])
                                 </div>
                             </div>
 

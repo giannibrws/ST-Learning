@@ -89,6 +89,8 @@ class SubjectsController extends Controller
         $userController = new UserController();
         $userController->registerVisit($currentUser, $page_visited, $url, $timestamp);
 
+        $user_role = $c->getUserRole($currentUser, $classroom_id);
+
         // fetch display data:
         $adminName = User::where('id', $subject->fk_user_id)->first()->name;
         $subject_notes = $this->getSubjectNotes($subject->id);
@@ -96,7 +98,7 @@ class SubjectsController extends Controller
         // remove html code from ckeditor:
         $this->removeHtmlAttrs($subject_notes);
 
-        return view($this->prefix . 'view-subject', compact('subject','adminName', 'is_child_page', 'parent_page_name', 'subject_notes'));
+        return view($this->prefix . 'view-subject', compact('subject','adminName', 'user_role', 'is_child_page', 'parent_page_name', 'subject_notes'));
     }
 
     /**

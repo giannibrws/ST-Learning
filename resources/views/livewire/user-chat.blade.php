@@ -6,12 +6,37 @@
         @else
             <div class="">
                 <p>Registered users:</p>
+
+                {{--Show all admins: --}}
                 @foreach($linkedUsers as $user)
-                    <div class="cr-chat__content__row">
-                        <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$user->id] }}" alt="">
-                        <p class="cr-chat__content__row__title">{{$user->name}} <b class='ml-1'>{{($user->role == 'admin') ? '(Admin)' : '' }}</b></p>
-                     </div>
+                    @if($user->role == 'admin')
+                        <div class="cr-chat__content__row">
+                            <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$user->id] }}" alt="">
+                            <p class="cr-chat__content__row__title">{{$user->name}} <b class='ml-1'>({{$user->role}})</b></p>
+                        </div>
+                    @endif
                 @endforeach
+
+                {{--Show all users: --}}
+                @foreach($linkedUsers as $user)
+                    @if($user->role == 'user')
+                        <div class="cr-chat__content__row">
+                            <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$user->id] }}" alt="">
+                            <p class="cr-chat__content__row__title">{{$user->name}} <b class='ml-1'>({{$user->role}})</b></p>
+                        </div>
+                    @endif
+                @endforeach
+
+                {{--Show all spectators: --}}
+                @foreach($linkedUsers as $user)
+                    @if($user->role == 'spectator')
+                        <div class="cr-chat__content__row">
+                            <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$user->id] }}" alt="">
+                            <p class="cr-chat__content__row__title">{{$user->name}} <b class='ml-1'>{{$user->role}}</b></p>
+                        </div>
+                    @endif
+                @endforeach
+
             </div>
         @endif
     </div>
