@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72944fd4-3c1a-4004-ad21-304e7c31db37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassroomController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassroomController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CommunityController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommunityController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SubjectsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubjectsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Livewire/SubjectLinks.php" afterPath="$PROJECT_DIR$/app/Http/Livewire/SubjectLinks.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/community/community-overview.blade.php" afterPath="$PROJECT_DIR$/resources/views/community/community-overview.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/livewire/subject-links.blade.php" afterPath="$PROJECT_DIR$/resources/views/livewire/subject-links.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/livewire/user-chat.blade.php" afterPath="$PROJECT_DIR$/resources/views/livewire/user-chat.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/subjects/view-subject.blade.php" afterPath="$PROJECT_DIR$/resources/views/subjects/view-subject.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/cr-image.blade.php" afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/cr-image.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/info-card.blade.php" afterPath="$PROJECT_DIR$/resources/views/vendor/jetstream/components/info-card.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,81 +30,31 @@
         <entry file="file://$PROJECT_DIR$/resources/views/subjects/view-subject.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="441">
-              <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="85" />
+              <caret line="52" column="27" lean-forward="true" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subject-links.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/livewire/subject-links.blade.php">
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="30" column="66" lean-forward="true" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
+            <state relative-caret-position="104">
+              <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubjectLinks.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Livewire/SubjectLinks.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="16" column="21" lean-forward="false" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubjectsController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SubjectsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="100" column="95" lean-forward="false" selection-start-line="100" selection-start-column="95" selection-end-line="100" selection-end-column="95" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassroomController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClassroomController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="82" column="7" lean-forward="true" selection-start-line="82" selection-start-column="7" selection-end-line="82" selection-end-column="7" />
-              <folding>
-                <marker date="1623770430582" expanded="true" signature="11316:14066" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="11412:14035" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="11530:14002" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="11621:13665" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="11724:13626" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="12039:12114" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="12333:12408" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="12583:12658" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="12904:12979" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="13197:13272" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="13508:13583" ph="..." />
-                <marker date="1623770430582" expanded="true" signature="13716:13967" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="65" column="72" lean-forward="true" selection-start-line="65" selection-start-column="72" selection-end-line="65" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user-chat.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/livewire/user-chat.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="234">
+                <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -179,9 +118,9 @@
       <find>addtoclass</find>
       <find>$user-&gt;rol</find>
       <find>admin</find>
-      <find>livewi</find>
       <find>option for new</find>
       <find>addtocl</find>
+      <find>livewi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,7 +131,6 @@
       <list>
         <option value="$PROJECT_DIR$/routes/fortify_routes.php" />
         <option value="$PROJECT_DIR$/LICENCE" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/livewire/search-classrooms.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
@@ -241,6 +179,7 @@
         <option value="$PROJECT_DIR$/resources/views/livewire/subject-links.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/livewire/user-chat.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClassroomController.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -256,7 +195,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -456,30 +395,6 @@
             <path>
               <item name="ST-learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="ST-learning" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ST-learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ST-learning" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="jetstream" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ST-learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ST-learning" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="jetstream" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ST-learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ST-learning" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
@@ -551,15 +466,15 @@
       <workItem from="1623673179767" duration="19117000" />
       <workItem from="1623711650496" duration="6470000" />
       <workItem from="1623731489092" duration="4504000" />
-      <workItem from="1623764493649" duration="5903000" />
+      <workItem from="1623764493649" duration="6594000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="357174000" />
+    <option name="totallyTimeSpent" value="357865000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23560767" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -616,14 +531,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/services.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-331">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -637,13 +544,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -961,14 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/subjects/view-subject.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Livewire/SubjectLinks.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -1035,6 +927,33 @@
         <state relative-caret-position="363">
           <caret line="100" column="95" lean-forward="false" selection-start-line="100" selection-start-column="95" selection-end-line="100" selection-end-column="95" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/subjects/view-subject.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="52" column="27" lean-forward="true" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="234">
+            <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

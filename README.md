@@ -7,6 +7,7 @@ My Bachelor project for my graduation year of Nxtmedia Technology
 
 ### Requirements:
 - Composer: https://getcomposer.org/
+- NodeJS https://nodejs.org/en/download/
 - Any database system: MySQL, Postgres, SQLite, or SQL Server.
 
 ### Getting started:
