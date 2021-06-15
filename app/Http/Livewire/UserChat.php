@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\DB;
 class UserChat extends Component
 {
 
-    public $linked_users;
+    public $linkedUsers;
     public $is_visible = false;
     public $users;
     public $userProfilePhotos;
     public $classroom_id;
     public $message_body;
-    public $scrollHeight = 0;
     public $showErrors = false;
     public $errorMsg = '';
 
@@ -30,12 +29,13 @@ class UserChat extends Component
     public function mount($classroom_id)
     {
        $this->classroom_id = $classroom_id;
-
-       $this->linked_users = $this->getLinkedUsers($this->classroom_id);
+       $this->linkedUsers = $this->getLinkedUsers($this->classroom_id);
 
        $this->userProfilePhotos = [];
        $this->linkProfilePhotos();
        $this->showErrors = false;
+
+
     }
 
     // Toggle chat & messages:
@@ -46,6 +46,7 @@ class UserChat extends Component
         else{
             $this->is_visible = false;
         }
+        $this->mount($this->classroom_id);
     }
 
     public function render()
@@ -55,9 +56,8 @@ class UserChat extends Component
 
 
     public function getLinkedUsers($cr_id){
-
         // first join both tables then use where clause: 
-        $users = DB::table('users')->select('classroom_users.id', 'classroom_users.classroom_id', 'name', 'email', 'profile_photo_path', 'role')
+        $users = DB::table('users')->select('users.id', 'classroom_users.classroom_id', 'name', 'email', 'profile_photo_path', 'role')
         ->join('classroom_users', 'users.id', '=', 'classroom_users.user_id')
         ->where('classroom_users.classroom_id', '=' , $cr_id)
         ->get();
@@ -69,8 +69,7 @@ class UserChat extends Component
         // fetch all data
         $userManager = new UserController();
 
-
-        foreach ($this->linked_users as $user){
+        foreach ($this->linkedUsers as $user){
 
             $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl($user->id);
             $userProfile = ([

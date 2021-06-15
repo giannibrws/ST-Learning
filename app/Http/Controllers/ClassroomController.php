@@ -93,9 +93,6 @@ class ClassroomController extends Controller
 
         // Add visit to history:
         $currentUser = auth()->id();
-        $linked_users = $this->getLinkedUsers($classroom->id)->all();
-
-
         $page_visited = $classroom->name;
         $timestamp = Carbon::now()->format('Y-m-d-H');
         $url = '/classrooms/' . $classroom->id;
@@ -109,21 +106,12 @@ class ClassroomController extends Controller
         $userController = new UserController();
         $userController->registerVisit($currentUser, $page_visited, $url, $timestamp);
         $linked_subjects = $this->getChildSubjects($classroom->id);
-        $userProfilePhotos = [];
-
-         // fetch all data
-        $userManager = new UserController();
-
-        foreach ($linked_users as $user){
-            $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl($user->id);
-            array_push($userProfilePhotos, $defaultPhotoPath);
-        }
 
         // get user role:
         $user_role = $this->getUserRole($currentUser, $classroom->id);
 
         $adminName = User::where('id', $classroom->fk_user_id)->first()->name;
-        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'user_role', 'linked_subjects', 'linked_users', 'userProfilePhotos', 'popup'));
+        return view('classrooms.view-classroom', compact('classroom', 'adminName', 'user_role', 'linked_subjects', 'popup'));
     }
 
 

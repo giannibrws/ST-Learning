@@ -13,7 +13,7 @@ trait InputValidator
             if($key !== "_token" || $key !== "_method"){
                 // if textarea:
                 if($key == "content"){
-                    $request->validate([$key => 'required|max:1000'],
+                    $request->validate([$key => 'required|max:2000'],
                         [
                             $key . '.required' => 'Field ' . $key . ' is required',
                             $key . '.max' => 'Field ' . $key . ' is too long. Max 1000 characters allowed!',

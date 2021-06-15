@@ -1,18 +1,15 @@
 <div class="" @message_added.window="open = false">
     <div class="cr-chat__content st-scroll-custom">
 
-
         @if($is_visible)
             @livewire('user-messages', ['classroom_id' => $classroom_id])
         @else
             <div class="">
                 <p>Registered users:</p>
-              
-
-                @foreach($linked_users as $user)
+                @foreach($linkedUsers as $user)
                     <div class="cr-chat__content__row">
-                        <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$user->id]}}" alt="">
-                        <p class="cr-chat__content__row__title">{{$user->name}} <b class='ml-1'>{{ ($user->role == 'admin') ? '(Admin)' : '' }}</b></p>
+                        <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$user->id] }}" alt="">
+                        <p class="cr-chat__content__row__title">{{$user->name}} <b class='ml-1'>{{($user->role == 'admin') ? '(Admin)' : '' }}</b></p>
                      </div>
                 @endforeach
             </div>

@@ -32,7 +32,17 @@
                     <div class="st-grid-container py-8 px-8 mx-auto">
                         <div class="st-card card-editable shadow-sm">
                             <p class="font-bold">Welcome to the dashboard of st-learning!</p><br>
-                            <p>Within this st-learning platform you can attend classrooms, add subjects and interact with other users.</p>
+
+                            <div class="w-3/4">
+                                <p class="pb-4">ST learning offers you a brand new learning experience! <br>
+                                    In this platform you can attend and create classrooms, add subjects, discover trending topics
+                                    and interact with other users!
+                                </p>
+                                <p>Visit the <a href="/classrooms" class="text-purple-600 st-hover">Classrooms</a> link to the left to start your first project!</p>
+
+                            </div>
+
+
                         </div>
 
                         <div class="st-card card-editable shadow-sm">

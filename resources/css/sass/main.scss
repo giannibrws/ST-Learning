@@ -324,6 +324,8 @@ main{
     justify-content: center;
   }
 
+
+
   &__add-form{
     display: flex;
     padding:0.5rem;
@@ -341,9 +343,11 @@ main{
     margin-top: 2rem;
   }
 
+  // app images:
   img {
-    height: 70px;
-    width: auto;
+    height:70px;
+    width: 70px;
+    //width: auto;
   }
 }
 

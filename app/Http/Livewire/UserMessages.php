@@ -6,13 +6,11 @@ use Livewire\Component;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Models\Messages;
+use Illuminate\Support\Facades\DB;
 use App\Models\ClassroomUser;
-use Illuminate\Http\Request;
 
 class UserMessages extends Component
 {
-
-
     public $linked_users;
     public $classroom_id;
     public $userProfilePhotos;
@@ -42,6 +40,7 @@ class UserMessages extends Component
         $this->classroom_id = $classroom_id;
         $this->messages = Messages::where('classroom_id', $classroom_id)->get();
         $this->linked_users = $this->getLinkedUsers($this->classroom_id);
+
         $this->userProfilePhotos = [];
         $this->linkProfilePhotos();
     }
@@ -52,10 +51,13 @@ class UserMessages extends Component
     }
 
     public function getLinkedUsers($cr_id){
-        $linkedIDs = ClassroomUser::where('classroom_id', $cr_id)->get();
-        // Fetches the ids from the dataset:
-        $plucked = $linkedIDs->pluck('user_id')->all();
-        return User::whereIn('id', $plucked)->get();
+        // first join both tables then use where clause:
+        $users = DB::table('users')->select('users.id', 'classroom_users.classroom_id', 'name', 'email', 'profile_photo_path', 'role')
+            ->join('classroom_users', 'users.id', '=', 'classroom_users.user_id')
+            ->where('classroom_users.classroom_id', '=' , $cr_id)
+            ->get();
+
+        return $users;
     }
 
     public function linkProfilePhotos(){
@@ -63,7 +65,6 @@ class UserMessages extends Component
         $userManager = new UserController();
 
         foreach ($this->linked_users as $user){
-
             $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl($user->id);
             $userProfile = ([
                 'user_id' => $user->id,
@@ -71,7 +72,6 @@ class UserMessages extends Component
             ]);
 
             array_push($this->userProfilePhotos, $userProfile);
-
         }
         // Link id to picture:
         foreach ($this->userProfilePhotos as $idx => $value){

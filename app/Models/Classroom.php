@@ -25,7 +25,7 @@ class Classroom extends Model
 
         $invitation_url = $url . $token;
         Classroom::where('id', $classroom_id)
-        ->update(['invitation_link' => $url]);
+        ->update(['invitation_link' => $invitation_url]);
 
         return $invitation_url;
     }

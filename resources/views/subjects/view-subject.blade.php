@@ -52,8 +52,7 @@
                                     {{--// Subject settings:--}}
                                     @livewire('subject-settings', ['subject' => $subject])
                                     {{--// Subject settings:--}}
-                                    
-                              
+
                                 </form>
                         </div>
 

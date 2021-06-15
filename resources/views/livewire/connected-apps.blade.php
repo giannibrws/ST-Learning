@@ -6,11 +6,12 @@
             @foreach($connectedApps as $key => $app)
                 <div class="cr-extensions__list st-item-flex h-full items-center">
                     <a wire:click.prevent="interactWith('{{$key}}')" class="h-full" href="{{url($app->webhook_url)}}" target="_blank">
-                        <div class="flex flex-col h-full mr-6">
-
-                            <img alt="app" class="border-gray-300  {{$app->type == 'discord' ? 'rounded-full border-2' : ''}} " src="{{asset('img/connectedApps/' . $app->type . '.png' )}}" />
+                        <div class="flex flex-col h-full mr-6 items-center">
+                            <div>
+                                <img alt="app" class="border-gray-300  {{$app->type == 'discord' ? 'rounded-full border-2' : ''}} " src="{{asset('img/connectedApps/' . $app->type . '.png' )}}" />
+                            </div>
                             <div id="header-text" class="leading-5 sm">
-                                <h5 id="job" class="mt-2 font-semibold text-blue-600">{{$app->name}}</h5>
+                                <h5 class="mt-2 font-semibold text-blue-600">{{$app->name}}</h5>
                             </div>
                         </div>
                     </a>
