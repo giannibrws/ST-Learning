@@ -87,7 +87,7 @@ class SubjectsController extends Controller
         $timestamp = Carbon::now()->format('Y-m-d-H');
         $url = '/classrooms/' . $subject->fk_classroom_id . '/subjects/' .$subject->id;
         $userController = new UserController();
-        $userController->registerVisit($currentUser, $page_visited, $url, $timestamp);
+        $userController->registerVisit($currentUser, $classroom_id, $page_visited, $url, $timestamp);
 
         $user_role = $c->getUserRole($currentUser, $classroom_id);
 

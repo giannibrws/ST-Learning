@@ -20,6 +20,7 @@ class CreateUserHistoriesTable extends Migration
             $table->string('page_url');
             // add foreign key relation:
             $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('fk_classroom_id')->constrained('classrooms')->onDelete('cascade');
             $table->timestamp('created_at');
         });
     }

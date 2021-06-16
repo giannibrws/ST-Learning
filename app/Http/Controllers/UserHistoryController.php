@@ -50,6 +50,7 @@ class UserHistoryController extends Controller
         $userHistory->visited_page = $request->pageName;
         $userHistory->page_url = $request->url;
         $userHistory->fk_user_id = $request->user_id;
+        $userHistory->fk_classroom_id = $request->classroom_id;
 
         $userHistory->save();
     }

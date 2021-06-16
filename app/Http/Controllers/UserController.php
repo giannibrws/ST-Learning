@@ -91,10 +91,11 @@ class UserController extends Controller
         //
     }
 
-    public function registerVisit($user_id, $pageName, $url, $timestamp)
+    public function registerVisit($user_id, $classroom_id, $pageName, $url, $timestamp)
     {
         $visited = new Request([
             'user_id'   => $user_id,
+            'classroom_id'   => $classroom_id,
             'pageName' => $pageName,
             'url' => $url,
             'created_at' => $timestamp,

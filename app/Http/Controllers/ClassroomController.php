@@ -125,7 +125,7 @@ class ClassroomController extends Controller
         }
 
         $userController = new UserController();
-        $userController->registerVisit($currentUser, $page_visited, $url, $timestamp);
+        $userController->registerVisit($currentUser, $classroom->id, $page_visited, $url, $timestamp);
         $linked_subjects = $this->getChildSubjects($classroom->id);
 
         // get user role:
