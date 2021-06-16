@@ -31,11 +31,9 @@
                     <div class="text-sm leading-5 mb-2 text-gray-900">
                         <x-jet-input wire:model="url_name" value="{{}}" class="pr-2" placeholder="link name"></x-jet-input>
                     </div>
-
                     <div class="text-sm leading-5 text-gray-900">
                         <x-jet-input wire:model="url" class="" placeholder="url"></x-jet-input>
                     </div>
-
                     <x-jet-button wire:click.prevent="store" type="button" class="mt-8">Add</x-jet-button>
             @endif
 

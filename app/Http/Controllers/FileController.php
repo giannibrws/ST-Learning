@@ -12,9 +12,6 @@ class FileController extends Controller
 
     public function store(Request $request){
 
-        dd('y');
-
-
         if($request->hasFile('upload')){
         }
 

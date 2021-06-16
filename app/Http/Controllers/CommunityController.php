@@ -22,7 +22,8 @@ class CommunityController extends Controller
     public function index()
     {
         // fetch all data
-        $classrooms = DB::table('classrooms')->where('is_public','=', true)->paginate(6);
+        $classrooms = DB::table('classrooms')->where('is_public', '=', true)
+            ->paginate(6);
 
         return view($this->prefix . '.community-overview', compact('classrooms'));
     }

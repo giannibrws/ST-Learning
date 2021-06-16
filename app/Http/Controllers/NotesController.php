@@ -56,8 +56,10 @@ class NotesController extends Controller
         $note->save();
 
         // return to home index action:
-        return redirect()->action([NotesController::class, 'edit'],
-            ['classroom_id' => $classroom_id, 'subject_id' => $subject_id, 'note' => $note]);
+        return redirect()->action(
+            [NotesController::class, 'edit'],
+            ['classroom_id' => $classroom_id, 'subject_id' => $subject_id, 'note' => $note]
+        );
     }
 
 
@@ -71,7 +73,7 @@ class NotesController extends Controller
     {
         // Deny visits for unauthorized users:
         $c = new ClassroomController();
-        if(!$c->checkPermissions($classroom_id)){
+        if (!$c->checkPermissions($classroom_id)) {
             return redirect()->action([ClassroomController::class, 'index']);
         }
 
@@ -92,12 +94,12 @@ class NotesController extends Controller
         $updateValues = $request->all();
         unset($updateValues['_token'], $updateValues['_method']);
 
-        if(empty($updateValues['name'])){
+        if (empty($updateValues['name'])) {
             $updateValues['name'] = '';
         }
 
         // if note contains headers:
-        if(strpos($updateValues['content'] , '<h1>') !== false){
+        if (strpos($updateValues['content'], '<h1>') !== false) {
             // Find the first <h1> occurrence and bind its value to note->title
             preg_match('/<h1>(.*?)<\/h1>/s', $updateValues['content'], $title);
             // https://www.php.net/manual/en/function.preg-match.php
@@ -120,7 +122,7 @@ class NotesController extends Controller
      */
     public function destroy($classroom_id, $subject_id, $note_id)
     {
-        Notes::where('id',$note_id)->delete();
+        Notes::where('id', $note_id)->delete();
         return redirect()->action([SubjectsController::class, 'show'], ['classroom_id' => $classroom_id, 'subject' => $subject_id]);
     }
 

@@ -10,12 +10,14 @@ class Classroom extends Model
 {
     use HasFactory;
 
-    /*
+    /**
+     * @param:
      * @function: Create a new invitation token.
      * @return: invitation url for classrooms:
      * @info: check if token is unique if not regenerate token.
      */
-    public function generateInvitationURL($classroom_id){
+    public function generateInvitationURL($classroom_id)
+    {
         $token = '';
         $url =  url('/') . '/classrooms/invite/';
 
