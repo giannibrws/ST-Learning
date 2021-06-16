@@ -47,7 +47,7 @@
                 <div class="st-input">
                     <div class="st-inputGroup">
                         <label for="userChatInput">@if($showErrors) <p style="color: red">{{$errorMsg}} </p> @endif</label>
-                        <input type="text" required maxlength="500" id="userChatInput" name="message_body" wire:model="message_body" class="no-outline" placeholder="Message.." />
+                        <input type="text" required maxlength="500" id="userChatInput" name="message_body" wire:model.defer="message_body" class="no-outline" placeholder="Message.." />
                         {{--<span class=""><i class="fas fa-times"></i></span>--}}
                     </div>
 
@@ -64,6 +64,26 @@
 </div>
 
 <script>
+
+    // messages staan los van de cr-chat__content container
+    // daarom scrollt hij niet automatisch.
+    window.addEventListener('updateFeed', event => {
+
+        let scrollPos = $('.cr-chat__content').scrollTop();
+        let chatLength = $('.cr-chat__content')[0].scrollHeight - 450;
+
+        // only scroll to latest if user has not scrolled up:
+        if(scrollPos >= chatLength){
+                setTimeout(() => {
+                    $('.cr-chat__content').scrollTop($('.cr-chat__content')[0].scrollHeight);
+            }, 500);
+        }
+
+        console.log(scrollPos);
+        console.log(scrollSize);
+
+    })
+
     window.addEventListener('message_added', event => {
         // Wait a few mseconds for message to be added:
         setTimeout(() => {

@@ -1,5 +1,5 @@
-<div class="">
-    @php ($j = 0)  @endphp
+{{--Refresh component every 2 seconds: (only if component is visible) --}}
+<div wire:poll="mountData('{{$classroom_id}}')".visible class="">
     @php ($today = false)  @endphp
     @foreach($messages as $message)
         @if ($message->created_at->format('Y-m-d') == date('Y-m-d'))
@@ -19,7 +19,6 @@
                 </div>
             @endif
         @endforeach
-        @php $j++ @endphp
     @endforeach
 
     @if(!filled($messages))

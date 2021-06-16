@@ -94,7 +94,6 @@ class UserChat extends Component
                 $this->emit('store', $this->message_body);
                 $this->message_body = '';
                 $this->dispatchBrowserEvent('message_added');
-
             }
 
             else{

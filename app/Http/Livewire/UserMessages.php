@@ -45,6 +45,19 @@ class UserMessages extends Component
         $this->linkProfilePhotos();
     }
 
+    // run custom mount for wire:poll:
+    public function mountData($classroom_id)
+    {
+        $this->classroom_id = $classroom_id;
+        $this->messages = Messages::where('classroom_id', $classroom_id)->get();
+        $this->linked_users = $this->getLinkedUsers($this->classroom_id);
+        $this->userProfilePhotos = [];
+        $this->linkProfilePhotos();
+
+        // always scroll down to last message:
+        $this->dispatchBrowserEvent('updateFeed');
+    }
+
     public function render()
     {
         return view('livewire.user-messages');
