@@ -5,22 +5,26 @@
 
                 <!-- Header Logo -->
             <div class="flex">
-                <!-- Header Logo -->
-                {{-- <div class="flex-shrink-0 flex items-center">
+
+
+
+              @if(Route::is(route('profile.show')))
+                <!-- Profile navigation -->
+                <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <div class="flex mt-5 w-16">
                             <x-jet-application-mark></x-jet-application-mark>
                         </div>
-
                     </a>
                 </div>
+              @endif
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex items-center">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                </div> --}}
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -160,17 +164,7 @@
                                      src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80"
                                      alt="avatar">
                                 <p class="text-sm mx-2">
-                                    <span class="font-bold" href="#">Slick Net</span> start following you . 45m
-                                </p>
-                            </a>
-                            <a href="#"
-                               class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-indigo-600 -mx-2">
-                                <img class="h-8 w-8 rounded-full object-cover mx-1"
-                                     src="https://images.unsplash.com/photo-1450297350677-623de575f31c?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"
-                                     alt="avatar">
-                                <p class="text-sm mx-2">
-                                    <span class="font-bold" href="#">Jane Doe</span> Like Your reply on <span
-                                            class="font-bold text-indigo-400" href="#">Test with TDD</span> artical . 1h
+                                    <span class="font-bold" href="#">Admin</span>- Welcome to ST-learning!
                                 </p>
                             </a>
                         </div>

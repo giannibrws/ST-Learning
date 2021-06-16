@@ -9,8 +9,8 @@
             <div class="">
 
                 <div class="">
-                       <x-jet-label for="webhook_url" value="{{ __('Classroom name:') }}" class="mt-2 pr-2 w-full" />
-                        <x-jet-input id="webhook_url" type="text" value="{{$classroom->name}}" name="cr_name" />
+                       <x-jet-label for="url" value="{{ __('Classroom name:') }}" class="mt-2 pr-2 w-full" />
+                        <x-jet-input id="url" type="text" value="{{$classroom->name}}" name="cr_name" />
                 </div>
                 <div class="">
                     <x-jet-label for="cr_publicity" value="{{ __('Classroom publicity:') }}" class="mt-2 pr-2 w-full" />

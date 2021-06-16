@@ -72,6 +72,7 @@
                                     </x-jet-card-note>
                                 @endforeach
 
+                         @if($user_role == 'admin' || $user_role == 'user')
                                 {{--Limit creation to max 20 notes per classroom:--}}
                                 @if((count($subject_notes)) < 20)
                                     <form id="addNote" method="POST" action="{{ route('notes.store', ['classroom_id' => $subject->fk_classroom_id, 'subject_id' => $subject->id])}}">
@@ -87,6 +88,7 @@
                                 @endif
                             </div>
                             {{-- end of notes --}}
+                        @endif
 
                            <div class="st-card st-card--headers"><h4>Useful links:</h4></div>
                            <div class="st-card--headers"><h4></h4></div>

@@ -22,9 +22,14 @@
                 </button>
                 <div class="cr-header">
                     <h2>
-                        <a href="{{URL::previous()}}" class="st-hover text-lg">{{$parent_page_name}}</a>
+                        <a href="{{url('classrooms/' . $classroom_id . 'subject/' . $note->fk_subject_id)}}" class="st-hover text-lg">
+                            {{$parent_page_name}}
+                        </a>
+
                     @if($is_child_page)
-                        <span class="font-bold">{{'>'}}</span>
+                        @if(!empty($note->name))
+                            <span class="font-bold">{{'>'}}</span>
+                        @endif
                         <a href="{{url()->current()}}" class="st-hover font-bold">{{$note->name}}</a>
                     @endif
                     </h2>

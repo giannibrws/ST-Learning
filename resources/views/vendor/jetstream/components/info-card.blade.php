@@ -15,7 +15,7 @@
                 <h4 class="text-2xl font-semibold text-gray-700">{{ $title }}</h4>
                 @if(isset($editable))
                 @else
-                <div class="text-gray-500">{{ substr($description,0,100) . "..." }}</div>
+                <div class="text-gray-500">{!! substr($description,0,100) . "..." !!}</div>
                 @endif
             </div>
 

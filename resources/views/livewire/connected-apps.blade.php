@@ -4,6 +4,7 @@
         @if(filled($connectedApps))
 
             @foreach($connectedApps as $key => $app)
+
                 <div class="cr-extensions__list st-item-flex h-full items-center">
                     <a wire:click.prevent="interactWith('{{$key}}')" class="h-full" href="{{url($app->webhook_url)}}" target="_blank">
                         <div class="flex flex-col h-full mr-6 items-center">
@@ -52,7 +53,7 @@
                         <option value="other">Other...</option>
                     </select>
                 </div>
-                <div class=""><x-jet-input  wire:model="webhook_url" required type="text" value="" name="webhook_url" placeholder="webhook url"/></div>
+                <div class=""><x-jet-input  wire:model="webhook_url" required type="text" value="" name="webhook_url" placeholder="app url"/></div>
                 <div class=""><x-jet-input  wire:model="app_name" required type="text" value="" name="app_name" placeholder="Name your app"/></div>
                 <div class="pt-1 pb-8"><x-jet-button wire:click.prevent="store" type="button">Connect App</x-jet-button></div>
             </div>

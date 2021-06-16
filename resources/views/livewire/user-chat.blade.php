@@ -32,7 +32,7 @@
                     @if($user->role == 'spectator')
                         <div class="cr-chat__content__row">
                             <img class="h-10 w-10 rounded-full" src="{{$userProfilePhotos[$user->id] }}" alt="">
-                            <p class="cr-chat__content__row__title">{{$user->name}} <b class='ml-1'>{{$user->role}}</b></p>
+                            <p class="cr-chat__content__row__title">{{$user->name}} <b class='ml-1'>({{$user->role}})</b></p>
                         </div>
                     @endif
                 @endforeach
@@ -70,17 +70,27 @@
     window.addEventListener('updateFeed', event => {
 
         let scrollPos = $('.cr-chat__content').scrollTop();
-        let chatLength = $('.cr-chat__content')[0].scrollHeight - 450;
+        let chatLength = $('.cr-chat__content')[0].scrollHeight;
+
+        // dont allow scroll if scrollbar is all the way up:
+        if(chatLength > 500){
+            if(chatLength >= 3000){
+                chatLength = ((chatLength / 10) * 8);
+            }
+            else{
+                chatLength = ((chatLength / 10) * 7);
+            }
+        }
 
         // only scroll to latest if user has not scrolled up:
         if(scrollPos >= chatLength){
-                setTimeout(() => {
+            setTimeout(() => {
                     $('.cr-chat__content').scrollTop($('.cr-chat__content')[0].scrollHeight);
             }, 500);
         }
 
         console.log(scrollPos);
-        console.log(scrollSize);
+        console.log(chatLength);
 
     })
 

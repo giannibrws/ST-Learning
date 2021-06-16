@@ -34,10 +34,11 @@
                             <p class="font-bold">Welcome to the dashboard of st-learning!</p><br>
 
                             <div class="w-3/4">
-                                <p class="pb-4">ST learning offers you a brand new learning experience! <br>
+                                <p class="pb-4">ST learning offers you a brand new way of interacting with your studies! <br>
                                     In this platform you can attend and create classrooms, add subjects, discover trending topics
                                     and interact with other users!
                                 </p>
+                                <p>Start with picking a topic you find interesting and start expanding your project</p>
                                 <p>Visit the <a href="/classrooms" class="text-purple-600 st-hover">Classrooms</a> link to the left to start your first project!</p>
 
                             </div>
