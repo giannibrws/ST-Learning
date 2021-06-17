@@ -116,8 +116,6 @@ class NotesController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Notes  $note
      * @return \Illuminate\Http\Response
      */
     public function destroy($classroom_id, $subject_id, $note_id)

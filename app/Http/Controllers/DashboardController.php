@@ -17,14 +17,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-   
         // fetch all data
         $userManager = new UserController();
         $defaultPhotoPath = $userManager->getDefaultProfilePhotoUrl(auth()->id());
         $userProfilePath = $userManager->getUserProfilePicture();
 
-        $userHistory = DB::table('user_histories')->where('fk_user_id', '=', auth()->id())->orderByDesc('created_at')->limit(10)->get();
-        $currentUser = DB::table('users')->where('id', '=', auth()->id())->first();
+        $userHistory = DB::table('user_histories')
+            ->where('fk_user_id', '=', auth()->id())
+            ->orderByDesc('created_at')->limit(10)->get();
+
+        $currentUser = DB::table('users')
+            ->where('id', '=', auth()->id())->first();
 
         return view('dashboard', compact('userHistory', 'currentUser', 'defaultPhotoPath', 'userProfilePath'));
     }

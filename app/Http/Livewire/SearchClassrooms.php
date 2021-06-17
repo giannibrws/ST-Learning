@@ -4,12 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Classroom;
 use Livewire\Component;
+use App\Models\ClassroomUser;
 
 class SearchClassrooms extends Component
 {
 
     public $query;
-    public $classrooms;
 
     public function render()
     {
@@ -17,14 +17,11 @@ class SearchClassrooms extends Component
     }
 
     public function mount(){
-
         $this->query = '';
     }
 
     public function onUpdate(){
-        $this->classrooms = Classroom::where('name', 'like', '%', $this->query . '%')->get();
 
     }
-
 
 }

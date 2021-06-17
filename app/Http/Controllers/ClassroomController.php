@@ -34,7 +34,6 @@ class ClassroomController extends Controller
 
     public function index()
     {
-
         // search for registered classrooms:
         $linkedRooms = ClassroomUser::where('user_id', auth()->id())->get()->pluck("classroom_id");
         // fetch personal created classrooms:
@@ -44,7 +43,6 @@ class ClassroomController extends Controller
     }
 
     public function getCurrentClassroom($classroom_id){
-//        Classroom::find($id);
        return $classrooms = DB::table('classrooms')->where('id','=', $classroom_id)->first();
     }
 
@@ -95,9 +93,6 @@ class ClassroomController extends Controller
     }
 
 
-
-
-
     /**
      * Display the specified resource.
      *
@@ -140,7 +135,8 @@ class ClassroomController extends Controller
      * @function: Returns the permission type for the referred user
      * @return: The permission type of the authenticated user:
      */
-    public function getUserRole($user_id, $classroom_id){
+    public function getUserRole($user_id, $classroom_id)
+    {
 
         $currentUser = ClassroomUser::where([
             ['user_id', '=', $user_id],
@@ -154,8 +150,8 @@ class ClassroomController extends Controller
     /**
      * @function: check if user has permission to the designated classroom:
      */
-    public function checkPermissions($classroom_id){
-
+    public function checkPermissions($classroom_id)
+    {
         $linked_users = $this->getLinkedUsers($classroom_id)->pluck('id')->all();
         $currentUser = auth()->id();
 
@@ -182,15 +178,12 @@ class ClassroomController extends Controller
         $this->validateInput($request);
         $postValues = $request->all();
 
-
         // remove unnecessary elements:
         unset($postValues['_token'], $postValues['_method']);
 
         // order is based on input location:
         $keys = ["cr_bio", "cr_name", "cr_publicity", "invitation_link"];
         $tableNames = ["bio", "name", "is_public", "invitation_link"];
-
-
 
         // fill the update array based on given update values:
         foreach ($keys as $idx => $key){
@@ -224,8 +217,8 @@ class ClassroomController extends Controller
     /**
      * Displays classroom chat view:
      */
-    public function updateChat($classroom_id){
-
+    public function updateChat($classroom_id)
+    {
         $messages = [];
 
         $messages = Messages::where('classroom_id', $classroom_id)->get();
@@ -266,7 +259,8 @@ class ClassroomController extends Controller
       /**
        * @function: Add given users to their respective classroom.
        **/
-    protected function addToClassroom($user_id, $classroom_id, $customInvite){
+    protected function addToClassroom($user_id, $classroom_id, $customInvite)
+    {
         // Link user to classroom:
         $linkClassroom = new ClassroomUser();
 
@@ -300,8 +294,6 @@ class ClassroomController extends Controller
                 // updateClassroomCount
                 $this->updateMemberCount($classroom_id);
             }
-
-
 
         // after all is set and done, just return:
         return redirect()->action([ClassroomController::class, 'show'], ['classroom' => $classroom_id]);
@@ -354,10 +346,11 @@ class ClassroomController extends Controller
 
         if($request->ajax()){
 
-            $classrooms = Classroom::where('name', 'like', '%' . $request->get('searchRequest') . '%')->get();
+            $linkedRooms = ClassroomUser::where('user_id', '=', auth()->id())->pluck('classroom_id');
+            $classrooms = Classroom::where('name', 'like', '%' . $request->get('searchRequest') . '%')->whereIn('id', $linkedRooms)->get();
 
             if((strlen($request->searchRequest) <= 1) || (empty($request->searchRequest))){
-                $classrooms = DB::table($this->table)->paginate(8);
+                $classrooms = Classroom::where('name', 'like', '%' . $request->get('searchRequest') . '%')->whereIn('id', $linkedRooms)->paginate(8);
             }
 
             $output = '';
