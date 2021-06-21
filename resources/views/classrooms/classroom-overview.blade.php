@@ -22,7 +22,7 @@
                     </button>
 
                     {{--Search box: --}}
-                        @livewire('search-classrooms');
+                        @livewire('search-classrooms')
                     {{--End Search box: --}}
 
                     <div class="cr-header">
