@@ -13,8 +13,10 @@ class FileController extends Controller
     public function store(Request $request)
     {
 
-        $note = new Note();
-        $note->id = 300;
+        $note = new Notes();
+        $note->id = 0;
+        // stopt media in database: (faked de note save optie)
+        $note->exists = true;
         $image = $note->addMediaFromRequest('upload')->toMediaCollection('images');
 
         // $path_url = 'storage/' . Auth::id();
@@ -28,9 +30,11 @@ class FileController extends Controller
         //     $url = asset($path_url . '/' . $fileName);
         // }
   
-        return response()->json([
-            'url' => $image->getUrl()
-        ]);
+        return response()->json(
+            [
+            'url' => $image->getUrl('imgSize')
+            ]
+        );
     }
 
 }

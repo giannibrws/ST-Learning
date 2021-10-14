@@ -39993,6 +39993,26 @@ a.st-hover:hover {
   background-color: #ff272a;
 }
 
+/* ckeditor styling: */
+
+.ck-content .image {
+  display: table;
+  margin: 0px;
+}
+
+.ck-editor__editable {
+  max-height: 680px;
+}
+
+.ck-editor__editable .figure {
+  display: flex;
+  margin: 0px;
+}
+
+.ck-editor__editable .figure .img {
+  align-items: flex-start;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;

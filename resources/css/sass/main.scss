@@ -552,3 +552,23 @@ a.st-hover:hover{
 .st-danger{
   background-color: #ff272a;
 }
+
+/* ckeditor styling: */
+
+.ck-content .image {
+  display: table;
+  margin: 0px;
+}
+
+.ck-editor__editable {
+  max-height: 680px;
+
+  .figure{
+    display: flex;
+    margin: 0px;
+
+    .img{
+      align-items: flex-start;
+    }
+  }
+}
