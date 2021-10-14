@@ -52,8 +52,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+
     // @todo: Notes:
-    Route::post('/image_upload', [FileController::class, 'store'])->name('image_upload');
+    Route::post('image_upload', [FileController::class, 'store'])->name('image_upload');
 
 
     // custom urls go before resource routes:
@@ -84,6 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('notes', NotesController::class)->except('show');
 
             Route::group(['middelware' => 'notes', 'prefix' => 'notes/{note_id}'], function($note_id) {
+
                 Route::get('/delete', [NotesController::class, 'destroy'], ['id' => $note_id]);
             });
         });
